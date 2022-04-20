@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="371.0" styleClass="btn" stylesheets="@tableview.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddReclamationController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="384.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reply Reclamation : ">
+               <font>
+                  <Font name="Bauhaus 93" size="32.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Titre : " wrappingWidth="102.13671875">
+               <font>
+                  <Font name="Century Gothic" size="21.0" />
+               </font>
+            </Text>
+            <TextField fx:id="titrefid" promptText="titreReclamation" />
+           
+         </children>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="64.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contenu :" wrappingWidth="102.13671875">
+               <font>
+                  <Font name="Century Gothic" size="21.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="contenufid" prefHeight="200.0" prefWidth="200.0" promptText="contenuReclamation" />
+         </children>
+         <VBox.margin>
+            <Insets top="17.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="89.0">
+         <VBox.margin>
+            <Insets top="17.0" />
+         </VBox.margin>
+      </HBox>
+      <Button mnemonicParsing="false" onMouseClicked="#save" text="Send" />
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="114.0">
+         <VBox.margin>
+            <Insets top="17.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="62.0" prefWidth="384.0">
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+         <children>
+          
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+</VBox>

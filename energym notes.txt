@@ -1,0 +1,31 @@
+slim : cryptage ,
+ proposition des login , 
+suppression suite a 3 reclamations consecutives, 
+login attempts, 
+adresse ip +216
+==========================================
+edit profile  , forget password 
+ajout modification reclamation reply zeda 
+front
+total 
+update status
+##########################################
+whats done : recherche dynamique , tri , time, notification , login , signup 
+ , affichage user ,supression , ajout , ctrl de saisie , reduire+close , animation , forget password
+backend +- ,total recl , total user , 
+##########################################
+to do :  front (reclamation) , age calculator, 
+suppression produit suite 3 reclamation , login attempts , music , status
+slim.ayadi@esprit.tn
+// ajout prog front fiha check box control de saisie
+
+
+
+
+
+
+
+
+
+
+omar : like , map , nbr de place
