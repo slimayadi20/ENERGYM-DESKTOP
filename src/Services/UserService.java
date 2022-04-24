@@ -200,6 +200,7 @@ public class UserService {
                 u.setStatus(rs.getInt("status"));
                 u.setNom(rs.getString("nom"));
                 u.setImageFile(rs.getString("image_file"));
+                System.out.println(rs.getString("image_file"));
                 u.setPassword(cryptWithMD5(rs.getString("password")));
                 u.setPrenom(rs.getString("prenom"));
                 u.setRoles(rs.getString("roles"));
@@ -267,6 +268,23 @@ public class UserService {
             if (rs.next()) {
         
               email = rs.getString("email");
+             
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return email;
+    }
+    public String findByIdimage(int username) {
+        User u = new User();
+        String email = " " ;
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from user where id='" + username + "'";
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+        
+              email = rs.getString("image_file");
              
             }
         } catch (SQLException ex) {

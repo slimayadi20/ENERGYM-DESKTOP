@@ -17,3 +17,11 @@ and open the template in the editor.
     -fx-font-family: "Milliard";
     -fx-font-size : 21px;
 }
+.progress-bar .bar {
+    -fx-background-color:
+        -fx-box-border,
+        linear-gradient(to bottom, derive(-fx-accent,95%), derive(-fx-accent,10%)),
+         #AC005D ; /* this line is the background color of the bar */
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.416667em; /* 5 */
+}

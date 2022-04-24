@@ -12,20 +12,33 @@ update status
 ##########################################
 whats done : recherche dynamique , tri , time, notification , login , signup 
  , affichage user ,supression , ajout , ctrl de saisie , reduire+close , animation , forget password
-backend +- ,total recl , total user , 
+backend +- ,total recl , total user , welcome to energym voice, ctrl de saisie dynamique , age >18 , status
+idn +216
 ##########################################
-to do :  front (reclamation) , age calculator, 
-suppression produit suite 3 reclamation , login attempts , music , status
+to do :  front (reclamation) ,suppression produit suite 3 reclamation , login attempts , fcb  
+
 slim.ayadi@esprit.tn
-// ajout prog front fiha check box control de saisie
+
+
+// ajout produit gui fiha stat pie chart w line chart
+// dark mode
+
+// yasmine web view gestion restau don controller
+
+
+
+ #F4F4FC colour 
+ 500050 radius
+
+
+omar : like , map , nbr de place 
 
 
 
 
++++++ ++ ++ + ++  
 
 
 
 
-
-
-omar : like , map , nbr de place
+voulez vous vraiement supprimer , etat , image , 

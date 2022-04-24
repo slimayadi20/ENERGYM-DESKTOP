@@ -1,93 +1,133 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/** *****************************************************************************
+ * Controller class and logic implementation for movies.fxml
+ ***************************************************************************** */
 package GUI;
 
 import Entities.Reclamation;
+import GUI.*;
 import Entities.User;
 import Services.ReclamationService;
 import Services.UserService;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import static energym.desktop.MainClass.UserconnectedC;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
+import java.time.temporal.ChronoUnit;
+
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.util.Callback;
-import javafx.util.Duration;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
-/**
- * FXML Controller class
- *
- * @author MSI
- */
 public class ReclamationController implements Initializable {
 
     @FXML
-    private Button btnOverview;
+    private JFXButton closebtn;
     @FXML
-    private Button btnCustomers;
+    private JFXButton minimisebtn;
     @FXML
-    private Button btnReclamation;
+    private JFXButton logoutbtn;
     @FXML
-    private Button btnSettings;
+    private JFXButton homebtn;
+    private JFXButton addbtn;
+
+    private JFXTextField searchfield;
     @FXML
-    private Button btnOrders;
+    private AnchorPane mainmoviespane;
     @FXML
-    private Button btnSignout;
+    private AnchorPane leftpane;
     @FXML
-    private Pane pnlCustomer;
+    private AnchorPane toppane;
     @FXML
-    private Pane pnlOrders;
+    private AnchorPane moviepane;
+    private AnchorPane tablepane;
+    private ImageView movieimage;
     @FXML
-    private Pane pnlMenus;
+    private Label movietitle;
+    private Label movierating;
+    private Label movieduration;
     @FXML
-    private Pane pnlOverview;
+    private Label userlabel;
+
+    private String[] movienames;
+    private boolean faded = false, showingall = false;
+    public static String currentmovie = "";
+    private int currentslots = 0;
+    public static int slotseatNo = -1;
+
     @FXML
-    private TextField recherchetf;
+    private ImageView userimage;
+    @FXML
+    private JFXTextField recherchetf;
+    private Label emaillabel;
+    private Label dn;
+    private Label role;
+    private Label createdat;
+    ObservableList<String> ss = FXCollections.observableArrayList();
+    ObservableList<Reclamation> data = FXCollections.observableArrayList();
+    UserService us = new UserService();
+    private TableColumn<?, ?> createdat_col;
+    @FXML
+    private JFXButton btnProfile;
+    @FXML
+    private JFXButton btnUsers;
+    @FXML
+    private JFXButton btnReclamation;
+    @FXML
+    private JFXButton btnReply;
+    ReclamationService rs = new ReclamationService();
+    Reclamation reclamation = null;
+    ObservableList<Reclamation> ReclamationList = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Reclamation, String> produit_col1;
+    @FXML
+    private Label senderlabel;
+    @FXML
+    private Label titrelabel;
+    @FXML
+    private Label contenulabel;
+    @FXML
+    private Label produitlabel;
     @FXML
     private TableColumn<User, String> sender_col;
     @FXML
@@ -103,59 +143,25 @@ public class ReclamationController implements Initializable {
     @FXML
     private TableView<Reclamation> tableviewreclamation;
     @FXML
-    private AnchorPane DashboardUtilis;
-    @FXML
-    private Label currentTimeTF1;
-    ReclamationService rs = new ReclamationService();
-    Reclamation reclamation = null;
-    ObservableList<Reclamation> data = FXCollections.observableArrayList();
-    @FXML
-    private ImageView add;
-    ObservableList<Reclamation> ReclamationList = FXCollections.observableArrayList();
-    @FXML
-    private TableColumn<Reclamation, String> produit_col1;
-    @FXML
     private Label repondufid;
     @FXML
     private Label encoursfid;
     @FXML
-    private Button btnProfile;
-    private ImageView image;
-    @FXML
-    private Label emailtf;
-    @FXML
-    private Circle circleu1;
-    UserService us = new UserService();
+    private AnchorPane name_last_name;
 
     /**
-     * Initializes the controller class.
+     * Initialise method required for implementing initializable and, sets up
+     * and applies all effects and animations to nodes in logout.fxml
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL location, ResourceBundle resources) {
         repondufid.setText((Integer.toString(rs.affichernumber("repondu"))));
         encoursfid.setText((Integer.toString(rs.affichernumber("encours"))));
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
 
-        try {
-            circleu1.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        emailtf.setText(UserconnectedC.getNom() + " " + UserconnectedC.getPrenom());
         loadDate();
         recherche_avance();
-        initClock();
-    }
+        setCellValueFromTableToTextField();
 
-    private void initClock() {
-
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-            currentTimeTF1.setText(LocalDateTime.now().format(formatter));
-        }), new KeyFrame(Duration.seconds(1)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        clock.play();
     }
 
     public void refreshlist() {
@@ -163,9 +169,9 @@ public class ReclamationController implements Initializable {
         data = FXCollections.observableArrayList(rs.afficher());
         repondufid.setText((Integer.toString(rs.affichernumber("repondu"))));
         encoursfid.setText((Integer.toString(rs.affichernumber("encours"))));
-      //  sender_col.setCellValueFactory(cellData -> new SimpleStringProperty(us.findById(cellData.getValue().getId())));
+        //  sender_col.setCellValueFactory(cellData -> new SimpleStringProperty(us.findById(cellData.getValue().getId())));
 
-         sender_col.setCellValueFactory(new PropertyValueFactory<>("NomUser"));
+        sender_col.setCellValueFactory(new PropertyValueFactory<>("NomUser"));
         titre_col.setCellValueFactory(new PropertyValueFactory<>("titre"));
 
         contenu_col.setCellValueFactory(new PropertyValueFactory<>("contenu"));
@@ -173,6 +179,35 @@ public class ReclamationController implements Initializable {
         created_at_col_rec.setCellValueFactory(new PropertyValueFactory<>("date"));
         statut_col.setCellValueFactory(new PropertyValueFactory<>("statut"));
         tableviewreclamation.setItems(data);
+    }
+
+    @FXML
+    public void handleClicks(ActionEvent actionEvent) throws IOException {
+        if (actionEvent.getSource() == btnUsers) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            //  pnlCustomer.setStyle("-fx-background-color : #1620A1");
+            //  pnlCustomer.toFront();
+        }
+        if (actionEvent.getSource() == btnReclamation) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Reclamation.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            //    btnReclamation.setStyle("-fx-background-color :#02030A");
+            //    pnlMenus.toFront();
+        }
+        if (actionEvent.getSource() == btnProfile) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Profile.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (actionEvent.getSource() == btnReply) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Reply.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (actionEvent.getSource() == homebtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("home.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+
     }
 
     @FXML
@@ -207,27 +242,23 @@ public class ReclamationController implements Initializable {
     }
 
     @FXML
-    private void handleClicks(ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btnCustomers) {
-            AnchorPane panee = FXMLLoader.load(getClass().getResource("User.fxml"));
-            DashboardUtilis.getChildren().setAll(panee);
-            //  pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            //  pnlCustomer.toFront();
-        }
-        if (actionEvent.getSource() == btnReclamation) {
-            AnchorPane panee = FXMLLoader.load(getClass().getResource("Reclamation.fxml"));
-            DashboardUtilis.getChildren().setAll(panee);
-            //    btnReclamation.setStyle("-fx-background-color :#02030A");
-            //    pnlMenus.toFront();
-        }
-        if (actionEvent.getSource() == btnProfile) {
-            AnchorPane panee = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-            DashboardUtilis.getChildren().setAll(panee);
-        }
-    }
+    private void logOut(ActionEvent event) {
+        try {
+            Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-    @FXML
-    private void getAddView(MouseEvent event) {
+            stageclose.close();
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
+            Stage stage = new Stage();
+
+            Scene scene = new Scene(root);
+
+            stage.setTitle("Login");
+            stage.setScene(scene);
+            stage.show();
+            UserconnectedC = null;
+        } catch (IOException ex) {
+            System.err.println("Erreur");
+        }
     }
 
     private void loadDate() {
@@ -235,7 +266,7 @@ public class ReclamationController implements Initializable {
         data = FXCollections.observableArrayList(rs.afficher());
         sender_col.setCellValueFactory(new PropertyValueFactory<>("NomUser"));
         titre_col.setCellValueFactory(new PropertyValueFactory<>("titre"));
-     //   sender_col.setCellValueFactory(cellData -> new SimpleStringProperty(us.findById(cellData.getValue().getId())));
+        //   sender_col.setCellValueFactory(cellData -> new SimpleStringProperty(us.findById(cellData.getValue().getId())));
 
         contenu_col.setCellValueFactory(new PropertyValueFactory<>("contenu"));
 //String age =calculateAge(new PropertyValueFactory<>("birthday")) ;
@@ -274,10 +305,25 @@ public class ReclamationController implements Initializable {
 
                             try {
                                 reclamation = tableviewreclamation.getSelectionModel().getSelectedItem();
-                                ReclamationService rs = new ReclamationService();
-                                rs.supprimer((int) reclamation.getId());
+                                Alert alert = new Alert(AlertType.CONFIRMATION);
+                                alert.setTitle("Confirmation Dialog");
+                                alert.setContentText("Etes vous sure de supprimer cette element ?");
+                                Optional<ButtonType> result = alert.showAndWait();
+                                if (result.get() == ButtonType.OK) {
 
-                                refreshlist();
+                                    ReclamationService rs = new ReclamationService();
+                                    rs.supprimer((int) reclamation.getId());
+
+                                    refreshlist();
+                                } else {
+
+                                    Alert alert1 = new Alert(AlertType.WARNING);
+                                    alert1.setTitle("Information Dialog");
+                                    alert1.setHeaderText(null);
+                                    alert1.setContentText("Veuillez sélectionner un element à supprimer.");
+
+                                    alert1.showAndWait();
+                                }
                             } catch (Exception ex) {
                                 System.out.println(ex.getMessage());
                             }
@@ -287,15 +333,15 @@ public class ReclamationController implements Initializable {
 
                             reclamation = tableviewreclamation.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/GUI/addReclamation.fxml"));
+                            loader.setLocation(getClass().getResource("/GUI/ReplyReclamation.fxml"));
                             try {
                                 loader.load();
                             } catch (Exception ex) {
                                 ex.getMessage();
                             }
 
-                            AddReclamationController addReclamationController = loader.getController();
-                            addReclamationController.parameter(reclamation.getId(), reclamation.getNomUser());
+                            ReplyReclamationController addReclamationController = loader.getController();
+                            addReclamationController.parameter((int) reclamation.getId(), reclamation.getNomUser());
                             Parent parent = loader.getRoot();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(parent));
@@ -325,6 +371,39 @@ public class ReclamationController implements Initializable {
     }
 
     @FXML
-    private void logout(MouseEvent event) {
+    private void minimiseWindow(ActionEvent event) {
     }
+
+    @FXML
+    private void handleClose(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnExit(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnHover(MouseEvent event) {
+    }
+
+    private void setCellValueFromTableToTextField() {
+        tableviewreclamation.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Reclamation u = tableviewreclamation.getItems().get(tableviewreclamation.getSelectionModel().getSelectedIndex());
+                UserService us = new UserService();
+                String email = us.findById(u.getNomUser());
+                String image = us.findByIdimage(u.getNomUser());
+                User user = us.findByUsername(email);
+                movietitle.setText(user.getNom() + " " + user.getPrenom());
+                senderlabel.setText(email);
+                titrelabel.setText(u.getTitre());
+                contenulabel.setText(u.getContenu());
+                produitlabel.setText("produit");
+                userimage.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+
+            }
+        });
+    }
+
 }

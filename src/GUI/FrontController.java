@@ -25,12 +25,14 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -53,6 +55,24 @@ public class FrontController implements Initializable {
     private Label home_id;
     @FXML
     private VBox affich_produit;
+    @FXML
+    private HBox home;
+    @FXML
+    private HBox salle;
+    @FXML
+    private HBox evenement;
+    @FXML
+    private HBox produit;
+    @FXML
+    private HBox panier;
+    @FXML
+    private HBox blog;
+    @FXML
+    private HBox reclamation;
+    @FXML
+    private HBox profile;
+    @FXML
+    private HBox signout;
 
     /**
      * Initializes the controller class.
@@ -137,5 +157,74 @@ public class FrontController implements Initializable {
         return image;
     }
 
- 
+    @FXML
+    private void handlehome(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        salle.getStyleClass().removeAll("addBobOk");
+        home.getStyleClass().add("addBobOk");
+
+    }
+
+    @FXML
+    private void handleHome(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Front.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
+    @FXML
+    private void handleClicks(MouseEvent event) {
+    }
+
+    @FXML
+    private void handleSalle(MouseEvent event) {
+    }
+
+    @FXML
+    private void handleEvenement(MouseEvent event) {
+    }
+
+    @FXML
+    private void HandleProduit(MouseEvent event) {
+    }
+
+    @FXML
+    private void handlePanier(MouseEvent event) {
+    }
+
+    @FXML
+    private void handleBlog(MouseEvent event) {
+    }
+
+    @FXML
+    private void handleReclamation(MouseEvent event) {
+    }
+
+    @FXML
+    private void handleProfile(MouseEvent event) throws IOException {
+           Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("ProfileFront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
+    @FXML
+    private void handlesignout(MouseEvent event) {
+    }
+
 }

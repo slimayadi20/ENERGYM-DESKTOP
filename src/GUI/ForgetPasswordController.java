@@ -10,7 +10,7 @@ import Services.CryptWithMD5;
 import Services.UserService;
 import Tools.Smsapi;
 import com.jfoenix.controls.JFXButton;
-import static energym.desktop.MainClass.UserconnectedC;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;

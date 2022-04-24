@@ -12,14 +12,23 @@ import Tools.JavaMailUtilUser;
 import com.jfoenix.controls.JFXButton;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-import static energym.desktop.MainClass.UserconnectedC;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.math.RoundingMode;
 import java.net.MalformedURLException;
+import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -27,12 +36,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,18 +53,26 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
+import org.controlsfx.control.Notifications;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+import org.json.JSONException;
+import org.json.JSONObject;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -169,23 +188,83 @@ public class FXMLController implements Initializable {
     @FXML
     private Label e_prenom1;
     private static final String VOICENAME = "kevin16";
+    String AIP = null;
+    String pays;
+    String region;
+    String idn;
+    String lon;
+    String lat;
+    int etatrecaptcha = 0;
+    @FXML
+    private ProgressBar progressPersonal;
+    @FXML
+    private Label lblComplete;
+    private static double progress1 = 0;
+    private static double progress2 = 0;
+    private static double progress3 = 0;
+    private static double progress4 = 0;
+    private static double progress5 = 0;
+    private static double progress6 = 0;
+    StringBuilder errors = new StringBuilder();
+    boolean containsDigit = false;
+    boolean containsLowerCaseLetter = false;
+    boolean containsUpperCaseLetter = false;
+    boolean containsSpecialCharacter = false;
+    boolean length = false;
+    private boolean verificationUserpasword = true;
+    @FXML
+    private ImageView imgProgress;
+    WebView webView2;
+    WebEngine webEngine;
 
     @Override
+
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+        
+// idn 
+        try {
+            URL url_name = new URL("http://checkip.amazonaws.com/");
+            BufferedReader bf = new BufferedReader(new InputStreamReader(url_name.openStream()));
+            AIP = bf.readLine().trim();
+            System.out.println(AIP);
+        } catch (Exception e) {
+            AIP = "IP Prob";
+        }
 
+        JSONObject json = null;
+        try {
+            json = readJsonFromUrl("https://api.ipgeolocation.io/ipgeo?apiKey=e3f347b989f34e239402188106fbdf4c&ip=" + AIP);
+        } catch (IOException ex) {
+            System.out.println("ezfzezfzfzz");
+        } catch (JSONException ex) {
+            System.out.println("ezfzezfzfzz");
+        }
+
+        System.out.println(json.toString());
+        //System.out.println(json.get("country_name"));
+        pays = json.get("country_name").toString();
+        region = json.get("city").toString();
+        idn = json.get("calling_code").toString();
+
+        System.out.println("pays" + pays);
+        System.out.println("region" + region);
+        System.out.println(idn);
+        numTelTF.setText(idn);
+
+        // ********* voice entry 
         Voice voice;
         VoiceManager vm = VoiceManager.getInstance();
         voice = vm.getVoice(VOICENAME);
 
         voice.allocate();
         try {
-            //voice.speak("Welcome Back to Energym");
+            //   voice.speak("Welcome Back to Energym");
             System.out.println("welcome");
         } catch (Exception e) {
 
         }
+
         System.out.println("form swapped");
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.7));
@@ -233,6 +312,12 @@ public class FXMLController implements Initializable {
         slide.setOnFinished((e -> {
 
         }));
+        DecimalFormat decimalFormat = new DecimalFormat("###.#");
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+
+        progressPersonal.setProgress(0.00);
+        double sum_progress = progress1 + progress2 + progress3 + progress4 + progress5 + progress6;
+
         emailTF.textProperty().addListener((observable, oldValue, newValue) -> {
             String masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
                     + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
@@ -240,23 +325,31 @@ public class FXMLController implements Initializable {
             Matcher controler = pattern.matcher(newValue);
             if (controler.matches()) {
                 e_mail.setText("");
+                progress1 = 0.166;
 
             } else {
                 e_mail.setText("*mail invalide ");
+                progress1 = 0.0;
+
             }
+            double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6);
+            progressPersonal.setProgress(sum);
+            lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
         });
         numTelTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            String masque = "[0-9]*";
-            Pattern pattern = Pattern.compile(masque);
-            Matcher controler = pattern.matcher(newValue);
-            if (controler.matches()) {
-                if (newValue.length() == 8) {
-                    e_phone.setText("");
-                }
+
+            if (newValue.length() >= 8) {
+                e_phone.setText("");
+                progress2 = 0.166;
 
             } else {
                 e_phone.setText("*le numero du telephone est invalid");
+                progress2 = 0.0;
+
             }
+            double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6);
+            progressPersonal.setProgress(sum);
+            lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
         });
         nameTF.textProperty().addListener((observable, oldValue, newValue) -> {
             String masque = "[a-zA-Z]*";
@@ -264,9 +357,16 @@ public class FXMLController implements Initializable {
             Matcher controler = pattern.matcher(newValue);
             if (controler.matches()) {
                 e_nom.setText("");
+                progress3 = 0.166;
+
             } else {
                 e_nom.setText("*votre nom est invalid");
+                progress3 = 0.0;
+
             }
+            double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6);
+            progressPersonal.setProgress(sum);
+            lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
         });
         prenomtf.textProperty().addListener((observable, oldValue, newValue) -> {
             String masque = "[a-zA-Z]*";
@@ -274,18 +374,52 @@ public class FXMLController implements Initializable {
             Matcher controler = pattern.matcher(newValue);
             if (controler.matches()) {
                 e_prenom.setText("");
+                progress4 = 0.166;
 
             } else {
                 e_prenom.setText("*votre prenom est invalid");
+                progress4 = 0.0;
+
             }
+            double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6);
+            progressPersonal.setProgress(sum);
+            lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
         });
         passwordPF.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() >= 5) {
-                e_password.setText("");
-            } else {
-                e_password.setText("*Votre mot de passe est invalid");
-            }
 
+            if (newValue.length() < 8) {
+                e_password.setText("the password must be 8 character or longer " + "\n");
+                progress5 = 0.0;
+
+            } else {
+                e_password.setText("");
+                progress5 = 0.166;
+
+            }
+            double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6);
+            progressPersonal.setProgress(sum);
+            lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+
+        });
+        dpdate.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            LocalDate dateBefore18years = LocalDate.now(ZoneId.of("Europe/Paris")).minusDays(6570);
+
+            boolean cond = (newValue.isBefore(dateBefore18years));
+            System.out.println(cond);
+            if (cond) {
+                e_prenom1.setText("");
+                progress6 = 0.166;
+
+            } else {
+                e_prenom1.setText("*vous devez avoir au moins 18 ans");
+                errors.append("- Vous devez avoir au moins 18 ans \n");//string s --- s+="erreur"
+                progress6 = 0.0;
+
+            }
+            double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6);
+            progressPersonal.setProgress(sum);
+            lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
         });
     }
 
@@ -344,6 +478,10 @@ public class FXMLController implements Initializable {
         e_nom.setVisible(state);
         e_prenom.setVisible(state);
         e_password.setVisible(state);
+        lblComplete.setVisible(state);
+        progressPersonal.setVisible(state);
+        imgProgress.setVisible(false);
+
     }
 
     @FXML
@@ -381,6 +519,8 @@ public class FXMLController implements Initializable {
             e_nom.setVisible(false);
             e_prenom.setVisible(false);
             e_password.setVisible(false);
+            lblComplete.setVisible(false);
+            progressPersonal.setVisible(false);
             //Login and password TF
             userIcon.setVisible(true);
             passwordIcon.setVisible(true);
@@ -388,6 +528,7 @@ public class FXMLController implements Initializable {
             passwordTF.setVisible(true);
             valSignInBtn.setVisible(true);
             btnfp.setVisible(true);
+            imgProgress.setVisible(false);
 
             slide.setToX(689);
             slide.play();
@@ -422,6 +563,11 @@ public class FXMLController implements Initializable {
             helloLB.setVisible(true);
             upload.setVisible(true);
             image.setVisible(true);
+            lblComplete.setVisible(true);
+            progressPersonal.setVisible(true);
+            imgProgress.setVisible(false);
+
+            numTelTF.setText(idn);
 
             loginTF.setVisible(false);
             passwordTF.setVisible(false);
@@ -444,8 +590,25 @@ public class FXMLController implements Initializable {
 
     }
 
-    private void makeStageDragable() {
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
 
+    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+        InputStream is = new URL(url).openStream();
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            String jsonText = readAll(rd);
+            JSONObject json = new JSONObject(jsonText);
+            return json;
+        } finally {
+            is.close();
+        }
     }
 
     @FXML
@@ -469,7 +632,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void performeSignup(MouseEvent event) {
-        StringBuilder errors = new StringBuilder();
+        //   numTelTF.setLabelFloat(true);
         if (nameTF.getText().trim().isEmpty()) {
             errors.append("- Please enter a First Name\n");//string s --- s+="erreur"
         }
@@ -487,6 +650,7 @@ public class FXMLController implements Initializable {
         if (passwordPF.getText().trim().isEmpty()) {
             errors.append("- Please enter a Password\n");
         }
+
         if (isSpace(passwordPF.getText())) {
             errors.append("- Please enter a Password without space \n");
         }
@@ -536,38 +700,37 @@ public class FXMLController implements Initializable {
             u.setImageFile(path);
             u.setCreated_at(date);
             u.setRoles("ROLE_GERANT");
-            u.setActivation_token( UUID.randomUUID().toString());
-          
-            
-              JavaMailUtilUser mail = new JavaMailUtilUser();
+            u.setActivation_token(UUID.randomUUID().toString());
+
+            JavaMailUtilUser mail = new JavaMailUtilUser();
             try {
                 String content = "Activation de votre compte\n"
                         + "veuillez clicker sur le lien ci-dessus pour l'activer  votre compte\n"
                         + "http://127.0.0.1:8000/activation/" + u.getActivation_token();
                 u.setActivation_token(null);
                 mail.sendMail("Mail Verification", content, emailTF.getText());
-                 try {
-            Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                try {
+                    Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stageclose.close();
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
-            Stage stage = new Stage();
+                    stageclose.close();
+                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
+                    Stage stage = new Stage();
 
-            Scene scene = new Scene(root);
+                    Scene scene = new Scene(root);
 
-            stage.setTitle("Login");
-            stage.setScene(scene);
-            stage.show();
-            UserconnectedC = null;
-        } catch (IOException ex) {
-            System.err.println("Erreur");
-        }
+                    stage.setTitle("Login");
+                    stage.setScene(scene);
+                    stage.show();
+                    UserconnectedC = null;
+                } catch (IOException ex) {
+                    System.err.println("Erreur");
+                }
 
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
-              us.ajouter(u);
-            
+            us.ajouter(u);
+
             TrayNotification tray = new TrayNotification();
 
             AnimationType type = AnimationType.POPUP;
@@ -583,88 +746,111 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void performLogIn(MouseEvent event) throws ParseException {
-        
+
         User lu = us.findByUsername(loginTF.getText());
+        imgProgress.setVisible(false);
 
         if (us.checklogin(loginTF.getText(), CryptWithMD5.cryptWithMD5(passwordTF.getText()))) {
             //7ell interface
-                if ("null".equals(lu.getActivation_token())) {
-                    System.out.println("activated");
-            User u = us.findByUsername(loginTF.getText());
-            UserconnectedC = u;
-            u.toString();
-            switch (u.getRoles()) {
-                case "ROLE_ADMIN":
-                    try {
-                        Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            if ("null".equals(lu.getActivation_token())) {
+                System.out.println("activated");
+                User u = us.findByUsername(loginTF.getText());
+                UserconnectedC = u;
+                u.toString();
+                switch (u.getRoles()) {
+                    case "ROLE_ADMIN":
+                        imgProgress.setVisible(true);
+                        PauseTransition pauseTransition = new PauseTransition();
+                        pauseTransition.setDuration(Duration.seconds(3));
+                        pauseTransition.setOnFinished(ev -> {
+                            System.out.println("bienveunue Passager");
+                            try {
 
-                        stageclose.close();
-                        Parent root = FXMLLoader.load(getClass().getResource("/GUI/User.fxml"));
-                        Stage stage = new Stage();
+                                Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                        Scene scene = new Scene(root);
+                                stageclose.close();
+                                Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
+                                Stage stage = new Stage();
 
-                        stage.setTitle("Dashbord Admin");
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    break;
-                case "ROLE_GERANT":
-                    System.out.println("bienveunue Passager");
-                    try {
+                                Scene scene = new Scene(root);
 
-                        Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setTitle("ENERGYM APP");
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                        pauseTransition.play();
 
-                        stageclose.close();
-                        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Reclamation.fxml"));
-                        Stage stage = new Stage();
+                        break;
+                    case "ROLE_GERANT":
+                        imgProgress.setVisible(true);
+                        PauseTransition pauseTransition1 = new PauseTransition();
+                        pauseTransition1.setDuration(Duration.seconds(3));
+                        pauseTransition1.setOnFinished(ev -> {
+                            System.out.println("bienveunue Passager");
+                            try {
 
-                        Scene scene = new Scene(root);
+                                Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                        stage.setTitle("ENERGYM APP");
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (IOException ex) {
-                        //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    break;
-                case "ROLE_CLIENT":
-                    System.out.println("bienveunue EMPLOYE");
-                    try {
+                                stageclose.close();
+                                Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
+                                Stage stage = new Stage();
 
-                        Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                Scene scene = new Scene(root);
 
-                        stageclose.close();
-                        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Reclamation.fxml"));
-                        Stage stage = new Stage();
+                                stage.setTitle("ENERGYM APP");
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                        pauseTransition1.play();
 
-                        Scene scene = new Scene(root);
+                        break;
+                    case "ROLE_CLIENT":
+                        imgProgress.setVisible(true);
+                        PauseTransition pauseTransition2 = new PauseTransition();
+                        pauseTransition2.setDuration(Duration.seconds(3));
+                        pauseTransition2.setOnFinished(ev -> {
+                            System.out.println("bienveunue Passager");
+                            try {
 
-                        stage.setTitle("ENERGYM APP");
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (IOException ex) {
-                        //  Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    break;
-                default:
-                    break;
+                                Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                                stageclose.close();
+                                Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front.fxml"));
+                                Stage stage = new Stage();
+
+                                Scene scene = new Scene(root);
+
+                                stage.setTitle("ENERGYM APP");
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                        pauseTransition2.play();
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Login fail");
+                alert.setContentText("activate your account");
+                alert.showAndWait();
             }
-                }
-                else {
-                      Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Login fail");
-            alert.setContentText("activate your account");
-            alert.showAndWait();
-                }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Login fail");
             alert.setContentText("Username or password invalid");
             alert.showAndWait();
         }
+
     }
 
     @FXML
@@ -725,4 +911,5 @@ public class FXMLController implements Initializable {
 
         }
     }
+
 }

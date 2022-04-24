@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<!-- #B8124E; -->
+
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReplyReclamationController">
+   <children>
+      <AnchorPane layoutX="250.0" prefHeight="700.0" prefWidth="950.0">
+         <children>
+            <AnchorPane fx:id="selectPane" layoutX="24.0" layoutY="77.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #F5F5F5;" styleClass="tiles">
+               <children>
+                  <Label alignment="CENTER" layoutX="49.0" layoutY="173.0" prefHeight="47.0" prefWidth="155.0" text="Message : " textFill="#020438">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="checkoutbtn" buttonType="RAISED" layoutX="290.0" layoutY="490.0" onMouseClicked="#send" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #73A800; -fx-background-radius: 20;" text="Send" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label fx:id="ticketPriceLabel" layoutX="165.0" layoutY="340.0" prefHeight="47.0" prefWidth="250.0" textFill="#020438">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="errorlabel" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="397.0" prefHeight="89.0" prefWidth="520.0" textAlignment="CENTER" textFill="#d21a1a" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="25.0" layoutY="21.0" text="Reply Reclamation" textFill="#020438" underline="true">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="27.0" />
+                     </font>
+                  </Label>
+                  <JFXCheckBox fx:id="checkbox" checkedColor="#73a800" disable="true" layoutX="367.0" layoutY="364.0" style="-fx-opacity: 1;" text="Selected Seats" textFill="#0d2c54" unCheckedColor="#ac005d" visible="false" />
+                  <JFXButton fx:id="resetbtn" buttonType="RAISED" layoutX="100.0" layoutY="490.0" onAction="#resetPage" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #AC005D; -fx-background-radius: 20;" text="Reset" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXTextField fx:id="titlefxid" layoutX="28.0" layoutY="126.0" prefHeight="31.0" prefWidth="487.0" />
+                  <JFXTextArea fx:id="messagefxd" layoutX="15.0" layoutY="242.0" prefHeight="211.0" prefWidth="520.0" />
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="70.0" prefHeight="47.0" prefWidth="155.0" text="Title : " textFill="#020438">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="moviePane" layoutX="570.0" layoutY="77.0" prefHeight="580.0" prefWidth="356.0" style="-fx-background-color: #e7e6e1;" styleClass="tiles">
+               <children>
+                  <Label layoutX="40.0" layoutY="251.0" prefHeight="40.0" prefWidth="195.0" text="Select Reclamation" textFill="#020438">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="datelabel" layoutX="41.0" layoutY="380.0" prefHeight="27.0" prefWidth="62.0" text="Sender:" textFill="#020438">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timelabel" layoutX="41.0" layoutY="420.0" prefHeight="27.0" prefWidth="46.0" text="Time:" textFill="#020438">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="movieImage" fitHeight="212.0" fitWidth="155.0" layoutX="45.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../cserv1_a/soc_ug/ll15n3d/Desktop/project/client/src/sample/images/blackpanther.jpg" />
+                     </image>
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" color="#574d4d" height="20.0" radius="9.5" width="20.0" />
+                     </effect>
+                  </ImageView>
+                  <JFXComboBox fx:id="movieCombo" focusColor="#ac005d" layoutX="40.0" layoutY="290.0" onAction="#movieDetails" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #E7E6E1;" unFocusColor="#3a0088" value="0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList" />
+                     </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXComboBox>
+                  <JFXButton fx:id="viewscreensbtn" buttonType="RAISED" layoutX="105.0" layoutY="490.0" onAction="#checkTimeslots" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #00A6ED; -fx-background-radius: 20;" text="Reclamation" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Line endX="170.0" layoutX="141.0" layoutY="414.0" startX="-100.0" stroke="#ac005d" strokeWidth="1.5" />
+                  <Line endX="170.0" layoutX="141.0" layoutY="455.0" startX="-100.0" stroke="#ac005d" strokeWidth="1.5" />
+                  <Rectangle fx:id="startImage" arcHeight="5.0" arcWidth="5.0" fill="#e7e6e1" height="222.0" layoutX="39.0" layoutY="17.0" stroke="#00043c" strokeType="INSIDE" styleClass="tiles" width="161.0" />
+                  <Label fx:id="timelabel1" layoutX="43.0" layoutY="350.0" prefHeight="27.0" prefWidth="46.0" text="Title :" textFill="#020438">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Line endX="170.0" layoutX="144.0" layoutY="377.0" startX="-100.0" stroke="#ac005d" strokeWidth="1.5" />
+                  <Label fx:id="sender" layoutX="114.0" layoutY="383.0" prefHeight="21.0" prefWidth="195.0" text="Label" />
+                  <Label fx:id="time" layoutX="114.0" layoutY="429.0" prefHeight="21.0" prefWidth="195.0" text="Label" />
+                  <Label fx:id="title" layoutX="114.0" layoutY="353.0" prefHeight="21.0" prefWidth="195.0" text="Label" />
+                  <ImageView fx:id="image" fitHeight="222.0" fitWidth="161.0" layoutX="37.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="toppane" prefHeight="35.0" prefWidth="950.0" style="-fx-background-color: #AC005D;">
+               <children>
+                  <Label layoutX="411.0" layoutY="7.0" text="Reply Reclamation" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="TICKET" size="20" />
+                     </graphic>
+                  </Label>
+                  <HBox layoutX="880.0" prefHeight="35.0">
+                     <children>
+                        <JFXButton fx:id="minimisebtn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#minimiseWindow" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" textFill="WHITE" />
+                        <JFXButton fx:id="closebtn" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleClose" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="leftpane" prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: #AC005D;">
+         <children>
+            <JFXButton fx:id="homebtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="186.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnProfile" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="236.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Profile" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnUsers" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="286.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Users" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="logoutbtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="553.0" onAction="#logOut" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="POWER" size="20" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="73.0" layoutY="31.0" text="ENERGYM" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Line endX="230.0" fill="WHITE" layoutX="10.0" layoutY="62.0" opacity="0.85" stroke="WHITE" strokeLineCap="ROUND" />
+            <Label fx:id="userlabel" graphicTextGap="10.0" layoutX="25.0" layoutY="141.0" text="Logged in as: Najm Dost" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_CIRCLE" size="20" />
+               </graphic>
+            </Label>
+            <JFXButton fx:id="btnReclamation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="333.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" prefHeight="40.0" prefWidth="230.0" text="Reclamation" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnReply" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="379.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reply" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

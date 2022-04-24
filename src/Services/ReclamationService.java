@@ -6,6 +6,7 @@
 package Services;
 
 import Entities.Reclamation;
+import Entities.Reply;
 import static Services.CryptWithMD5.cryptWithMD5;
 import Tools.MyConnexion;
 import java.sql.Connection;
@@ -18,8 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-public class ReclamationService  {
+public class ReclamationService {
 
     Connection cnx;
 
@@ -33,7 +33,7 @@ public class ReclamationService  {
             Statement st;
             st = cnx.createStatement();
             String query = "INSERT INTO `reclamation`( `titre`, `date_creation`, `contenu`, `statut`,`nom_user_id`) "
-                    + "VALUES ('" + t.getTitre()+ "','" + t.getDate()+ "','" + t.getContenu()+ "','" + "encours"+  "','" + t.getNomUser()+ "')";
+                    + "VALUES ('" + t.getTitre() + "','" + t.getDate() + "','" + t.getContenu() + "','" + "encours" + "','" + t.getNomUser() + "')";
             st.executeUpdate(query);
             System.out.println("Reclamation ajouter avec success");
         } catch (SQLException ex) {
@@ -41,17 +41,72 @@ public class ReclamationService  {
         }
     }
 
-    public void ajouterReply(Reclamation t) {
+    public void ajouterReply(Reply t,int id) {
         try {
             Statement st;
             st = cnx.createStatement();
-            String query = "INSERT INTO `reclamation`( `titre`, `date_creation`, `contenu`, `statut`,`nom_user_id`) "
-                    + "VALUES ('" + t.getTitre()+ "','" + t.getDate()+ "','" + t.getContenu()+ "','" + "encours"+  "','" + t.getNomUser()+ "')";
+                        PreparedStatement pt;
+
+            String query = "INSERT INTO `reply`( `contenu`, `email_receiver`, `email_sender`, `reclamation_id`) "
+                    + "VALUES ('" + t.getContenu() + "','" + t.getEmail_receiver() + "','" + t.getEmail_sender() + "','" + t.getReclamation() + "')";
+            pt = cnx.prepareStatement("UPDATE `reclamation` SET `statut`=? WHERE id=?");
+            String etat= "traite" ;
+            pt.setString(1, etat);
+            pt.setInt(2,id);
+            if (pt.executeUpdate() == 1) {
+                System.out.println("Reclamation modifier avec success");
+            } else {
+                System.out.println("Reclamation n'existe pas");
+            }
             st.executeUpdate(query);
-            System.out.println("Reclamation ajouter avec success");
+            System.out.println("reponse ajouter avec success");
         } catch (SQLException ex) {
             Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Reply> afficherReply() {
+        List<Reply> lu = new ArrayList<>();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from reply";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                //  System.out.println(rs);
+                Reply u = new Reply();
+                u.setEmail_receiver(rs.getString("email_receiver"));
+                u.setEmail_sender(rs.getString("email_sender"));
+                u.setContenu(rs.getString("contenu"));
+                u.setReclamation(rs.getInt("reclamation_id"));
+                u.setId(rs.getInt("id"));
+
+                lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+
+    public Reclamation afficherbyid(int id) {
+        Reclamation u = new Reclamation();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from reclamation where id='" + id + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                //  System.out.println(rs);
+                u.setTitre(rs.getString("titre"));
+                u.setDate(rs.getDate("date_creation"));
+                u.setContenu(rs.getString("contenu"));
+                u.setStatut(rs.getString("statut"));
+                u.setId(rs.getInt("id"));
+                u.setNomUser(rs.getInt("nom_user_id"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
     }
 
     public void modifier(long id_amodifier, Reclamation t) {
@@ -64,7 +119,7 @@ public class ReclamationService  {
 
             st.setString(1, t.getTitre());
             st.setString(2, t.getContenu());
-     
+
             st.setLong(3, id_amodifier);
             if (st.executeUpdate() == 1) {
                 System.out.println("Reclamation modifier avec success");
@@ -92,16 +147,29 @@ public class ReclamationService  {
 
     }
 
-    
+    public void supprimerReply(int id) {
+        try {
+            Statement st = cnx.createStatement();
+            String query = "delete from reply where id=" + id;
+            if (st.executeUpdate(query) == 1) {
+                System.out.println("suppression avec success");
+            } else {
+                System.out.println("Reclamation n'existe pas");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-   public List<Reclamation> afficher() {
+    }
+
+    public List<Reclamation> afficher() {
         List<Reclamation> lu = new ArrayList<>();
         try {
             Statement st = cnx.createStatement();
             String query = "select * from Reclamation";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-              //  System.out.println(rs);
+                //  System.out.println(rs);
                 Reclamation u = new Reclamation();
                 u.setTitre(rs.getString("titre"));
                 u.setDate(rs.getDate("date_creation"));
@@ -109,7 +177,7 @@ public class ReclamationService  {
                 u.setStatut(rs.getString("statut"));
                 u.setId(rs.getInt("id"));
                 u.setNomUser(rs.getInt("nom_user_id"));
-               
+
                 lu.add(u);
             }
         } catch (SQLException ex) {
@@ -117,7 +185,8 @@ public class ReclamationService  {
         }
         return lu;
     }
-  public int affichernumber(String role) {
+
+    public int affichernumber(String role) {
         if (role.equals("encours")) {
             try {
                 Statement st = cnx.createStatement();
@@ -148,8 +217,7 @@ public class ReclamationService  {
             }
         }
 
-       
-            return 0;
+        return 0;
     }
 
 }

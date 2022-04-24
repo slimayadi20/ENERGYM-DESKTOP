@@ -24,7 +24,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1290.0" style="-fx-background-color: #F4F4FC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontController">    <left>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="175.0" spacing="20.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" style=": ;">
+            <HBox fx:id="home" alignment="CENTER" onMouseClicked="#handleHome" prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: #F4F4FC; -fx-background-radius: 500050;" stylesheets="@../css/style.css">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,14 +33,14 @@
                   </ImageView>
                   <HBox />
          
-                  <Label fx:id="home_id" prefHeight="21.0" prefWidth="103.0" text=" Home" textFill="#5a5a5a">
+                  <Label fx:id="home_id" onMouseClicked="#handlehome" prefHeight="21.0" prefWidth="103.0" text=" Home" textFill="#5a5a5a">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: #F4F4FC; -fx-background-radius: 500050;">
+            <HBox fx:id="salle" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSalle" prefHeight="55.0" prefWidth="200.0" stylesheets="@../css/style.css">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -48,14 +48,14 @@
                      </image>
                   </ImageView>
                
-                  <Label prefHeight="21.0" prefWidth="103.0" style="-fx-background-color: #F4F4FC;" text=" Nos salles" textFill="#5a5a5a">
+                  <Label prefHeight="21.0" prefWidth="103.0" text=" Nos salles" textFill="#5a5a5a">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="55.0" prefWidth="200.0">
+            <HBox fx:id="evenement" alignment="CENTER" layoutX="10.0" layoutY="65.0" onMouseClicked="#handleEvenement" prefHeight="55.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,9 +70,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="120.0" prefHeight="55.0" prefWidth="200.0">
+            <HBox fx:id="produit" alignment="CENTER" layoutX="10.0" layoutY="120.0" onMouseClicked="#HandleProduit" prefHeight="55.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleClicks" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8-maillot-de-basket-50.png" />
                      </image>
@@ -85,9 +85,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="175.0" prefHeight="55.0" prefWidth="200.0">
+            <HBox fx:id="panier" alignment="CENTER" layoutX="10.0" layoutY="175.0" onMouseClicked="#handlePanier" prefHeight="55.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleClicks" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8-caddie-50.png" />
                      </image>
@@ -100,7 +100,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="230.0" prefHeight="55.0" prefWidth="200.0">
+            <HBox fx:id="blog" alignment="CENTER" layoutX="10.0" layoutY="230.0" onMouseClicked="#handleBlog" prefHeight="55.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -115,9 +115,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="285.0" prefHeight="55.0" prefWidth="200.0">
+            <HBox fx:id="reclamation" alignment="CENTER" layoutX="10.0" layoutY="285.0" onMouseClicked="#handleReclamation" prefHeight="55.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleClicks" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8-alarmes-50.png" />
                      </image>
@@ -130,7 +130,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="340.0" prefHeight="55.0" prefWidth="200.0">
+            <HBox fx:id="profile" alignment="CENTER" layoutX="10.0" layoutY="340.0" onMouseClicked="#handleProfile" prefHeight="55.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -145,7 +145,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="20.0" layoutY="680.0" prefHeight="55.0" prefWidth="200.0">
+            <HBox fx:id="signout" alignment="CENTER" layoutX="20.0" layoutY="680.0" onMouseClicked="#handlesignout" prefHeight="55.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>

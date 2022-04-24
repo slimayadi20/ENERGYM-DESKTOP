@@ -1,199 +1,213 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="DashboardUtilis" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationController">
+<AnchorPane fx:id="mainmoviespane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationController">
    <children>
-     <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="leftpane" prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: #AC005D;">
          <children>
-            <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="65.0" style="-fx-background-color: transparent;;" />
-            <Circle fx:id="circleu1" fill="WHITE" radius="37.0" stroke="#ababab" strokeType="INSIDE" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" />
-            <Label fx:id="emailtf" text="Jimmy Fallon" textFill="#e7e5e5">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
+            <JFXButton fx:id="homebtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="186.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="20" />
+               </graphic>
+           
+            </JFXButton>
+            <JFXButton fx:id="btnProfile" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="236.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Profile" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+         
+            </JFXButton>
+            <JFXButton fx:id="btnUsers" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="286.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Users" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
+               </graphic>
+              
+            </JFXButton>
+            <JFXButton fx:id="logoutbtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="553.0" onAction="#logOut" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="POWER" size="20" />
+               </graphic>
+           
+            </JFXButton>
+            <Label layoutX="73.0" layoutY="31.0" text="ENERGYM" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Label>
-            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Home">
+            <Line endX="230.0" fill="WHITE" layoutX="10.0" layoutY="62.0" opacity="0.85" stroke="WHITE" strokeLineCap="ROUND" />
+            <Label fx:id="userlabel" graphicTextGap="10.0" layoutX="25.0" layoutY="141.0" text="Logged in as: Najm Dost" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
                <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Home_32px.png" />
-                     </image>
-                  </ImageView>
+                  <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_CIRCLE" size="20" />
                </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Users">
+            </Label>
+            <JFXButton fx:id="btnReclamation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="333.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" prefHeight="40.0" prefWidth="230.0" text="Reclamation" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
                <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Person_32px.png" />
-                     </image>
-                  </ImageView>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
                </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnReclamation" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Reclamation">
+            
+            </JFXButton>
+            <JFXButton fx:id="btnReply" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="379.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reply" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
                <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Xbox_Menu_32px.png" />
-                     </image>
-                  </ImageView>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
                </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnProfile" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Profile">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Person_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Settings">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Slider__32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Orders">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Open_Envelope_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Sign_Out_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
+         
+            </JFXButton>
          </children>
-      </VBox>
-      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
+      </AnchorPane>
+      <AnchorPane layoutX="250.0" prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: FFFFFF;">
          <children>
-            <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
+            <AnchorPane fx:id="toppane" layoutY="-1.0" prefHeight="36.0" prefWidth="950.0" style="-fx-background-color: #AC005D;">
                <children>
-                  <TextField fx:id="recherchetf" layoutX="590.0" layoutY="47.0" onKeyTyped="#recherche_avance" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
-                  <Label layoutX="57.0" layoutY="25.0" text="Reclamation list" textFill="#e7e5e5">
+                  <Label layoutX="425.0" layoutY="4.0" text="Reclamation" textFill="WHITE">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
+                     </graphic>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="72.0" prefHeight="92.0" prefWidth="661.0" spacing="50.0">
+               </children>
+            </AnchorPane>
+            <HBox layoutX="880.0" prefHeight="35.0">
+               <children>
+                  <JFXButton fx:id="minimisebtn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#minimiseWindow" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" textFill="WHITE" />
+                  <JFXButton fx:id="closebtn" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleClose" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" />
+               </children>
+            </HBox>
+            <AnchorPane fx:id="moviepane" layoutX="15.0" layoutY="45.0" prefHeight="229.0" prefWidth="920.0" style="-fx-background-color: FFFFFF;" styleClass="tiles">
+               <children>
+                  <AnchorPane layoutX="175.0" layoutY="15.0" prefHeight="200.0" prefWidth="420.0" styleClass="tiles">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="92.0" prefWidth="246.0">
+                        <AnchorPane fx:id="name_last_name" prefHeight="35.0" prefWidth="420.0" style="-fx-background-color: #AC005D; -fx-background-radius: 5;">
                            <children>
-                              <Label fx:id="repondufid" text="22000" textFill="#2a73ff">
+                              <Label fx:id="movietitle" layoutX="10.0" layoutY="4.0" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="26.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="21.0" prefWidth="221.0" text="Total Reclamation Repondu" textFill="#e7e5e5" />
                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="92.0" prefWidth="283.0">
-                           <children>
-                              <Label fx:id="encoursfid" text="1500" textFill="#26bfbc">
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Total Reclamation non Repondu" textFill="#e7e5e5" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fx:id="add" fitHeight="35.0" fitWidth="52.0" onMouseClicked="#getAddView" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/plus-icon-orange-plus-icon-logo-symbol-trademark-first-aid-transparent-png-2765180.png" />
-                                 </image>
-                              </ImageView>
-                           </children></VBox>
+                        </AnchorPane>
+                        <Line endX="400.0" layoutX="10.0" layoutY="70.0" stroke="#009688" strokeWidth="0.6" />
+                        <Line endX="400.0" layoutX="10.0" layoutY="110.0" stroke="#009688" strokeWidth="0.6" />
+                        <Line endX="400.0" layoutX="10.0" layoutY="150.0" stroke="#009688" strokeWidth="0.6" />
+                        <Line endX="400.0" layoutX="10.0" layoutY="190.0" stroke="#009688" strokeWidth="0.6" />
+                        <Label layoutX="20.0" layoutY="46.0" text="Sender">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="86.0" text="Titre">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="126.0" text="Contenu">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="166.0" text="Produit">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="senderlabel" layoutX="250.0" layoutY="46.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="titrelabel" layoutX="250.0" layoutY="86.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="contenulabel" layoutX="250.0" layoutY="126.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="produitlabel" layoutX="250.0" layoutY="166.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </HBox>
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                  </AnchorPane>
+                  <ImageView fx:id="userimage" fitHeight="198.0" fitWidth="163.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Search_52px.png" />
+                        <Image url="@../Resources/Icons/icons8-nom-100.png" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="tableviewreclamation" layoutX="27.0" layoutY="224.0" prefHeight="237.0" prefWidth="747.0">
-                    <columns>
-                      <TableColumn fx:id="sender_col" prefWidth="75.0" style="-fx-alignement: center;" text="Sender" />
-                      <TableColumn fx:id="titre_col" prefWidth="75.0" style="-fx-alignement: center;" text="titre" />
-                        <TableColumn fx:id="created_at_col_rec" prefWidth="130.0" style="-fx-alignement: center;" text="date creation" />
-                        <TableColumn fx:id="contenu_col" prefWidth="130.0" style="-fx-alignement: center;" text="Contenu" />
-                        <TableColumn fx:id="statut_col" prefWidth="130.0" style="-fx-alignement: center;" text="Statut" />
-                        <TableColumn fx:id="produit_col" prefWidth="99.0" style="-fx-alignement: center;" text="Produit" />
-                        <TableColumn fx:id="produit_col1" prefWidth="105.0" style="-fx-alignement: center;" text="Action" />
-                    </columns>
-                  </TableView>
-                  <Label fx:id="currentTimeTF1" layoutX="616.0" layoutY="8.0" prefHeight="21.0" prefWidth="235.0" text="Current Time" textFill="WHITE" />
+                  <JFXTextField fx:id="recherchetf" layoutX="611.0" layoutY="15.0" onKeyTyped="#recherche_avance" prefHeight="31.0" prefWidth="270.0" promptText="Search" />
+                  <VBox alignment="CENTER" layoutX="638.0" layoutY="70.0" prefHeight="59.0" prefWidth="246.0">
+                     <children>
+                        <Label fx:id="repondufid" text="22000" textFill="#2a73ff">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="21.0" prefWidth="221.0" text="Total Reclamation Repondu" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="619.0" layoutY="149.0" prefHeight="59.0" prefWidth="283.0">
+                     <children>
+                        <Label fx:id="encoursfid" text="1500" textFill="#26bfbc">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label text="Total Reclamation non Repondu" />
+                     </children>
+                  </VBox>
                </children>
-            </Pane>
+            </AnchorPane>
+            <TableView fx:id="tableviewreclamation" layoutX="33.0" layoutY="282.0" prefHeight="401.0" prefWidth="892.0">
+               <columns>
+                  <TableColumn fx:id="sender_col" prefWidth="75.0" style="-fx-alignement: center;" text="Sender" />
+                  <TableColumn fx:id="titre_col" prefWidth="141.0" style="-fx-alignement: center;" text="titre" />
+                  <TableColumn fx:id="created_at_col_rec" prefWidth="104.0" style="-fx-alignement: center;" text="date creation" />
+                  <TableColumn fx:id="contenu_col" prefWidth="236.0" style="-fx-alignement: center;" text="Contenu" />
+                  <TableColumn fx:id="statut_col" prefWidth="93.0" style="-fx-alignement: center;" text="Statut" />
+                  <TableColumn fx:id="produit_col" prefWidth="135.0" style="-fx-alignement: center;" text="Produit" />
+                  <TableColumn fx:id="produit_col1" prefWidth="107.0" style="-fx-alignement: center;" text="Action" />
+               </columns>
+            </TableView>
          </children>
-      </StackPane>
+      </AnchorPane>
    </children>
-   <effect>
-      <DropShadow color="#1b1eeb" />
-   </effect>
 </AnchorPane>
