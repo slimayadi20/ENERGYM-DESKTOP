@@ -20,10 +20,8 @@ public class User {
     private String email;
     private String imageFile;
     private String roles;
-    private String birthday;
     private int status;
     private Date created_at;
-    private String activation_token ; 
 
     public User() {
     }
@@ -94,7 +92,7 @@ public class User {
         this.imageFile = imageFile;
     }
 
-    public User(String nom, String prenom, String password, String phone, String email, String imageFile, String roles, int status, Date created_at,String activation_token) {
+    public User(String nom, String prenom, String password, String phone, String email, String imageFile, String roles, int status, Date created_at) {
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
@@ -104,8 +102,6 @@ public class User {
         this.roles = roles;
         this.status = status;
         this.created_at = created_at;
-        this.activation_token = activation_token;
-        
     }
 
     public String getPhone() {
@@ -132,25 +128,4 @@ public class User {
         this.created_at = created_at;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getActivation_token() {
-        return activation_token;
-    }
-
-    public void setActivation_token(String activation_token) {
-        this.activation_token = activation_token;
-    }
-    
-   @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", created_at=" + created_at + ", email=" + email + ", phone=" + phone + ", password=" + password + ", imageFile=" + imageFile + ", role=" + roles + ", status=" + status +  ", birthday=" + birthday + '}'+"\n";
-    }
-    
 }

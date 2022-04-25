@@ -4,20 +4,18 @@
  */
 package energym.desktop;
 
-import Services.ReclamationService;
+import Entities.User;
+import Entities.Salle;
+import Entities.Cours;
 import Services.UserService;
-import java.io.IOException;
-import java.util.Date;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import Services.SalleService;
+import Services.CoursService;
+import Services.PDFSalle;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import java.time.Month;
 
 /**
  *
@@ -28,44 +26,30 @@ public class ENERGYMDESKTOP {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ParseException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException, InterruptedException {
-        UserService us = new UserService();
-        ReclamationService rs = new ReclamationService();
-        // Date date = new Date(System.currentTimeMillis());
-        //LocalDate d = LocalDate.(date); 
-        // ************************************ age calculator *************************************
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-        String firstdate = "02/05/2000";
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
-
-        Calendar cal = Calendar.getInstance();
-        Date date = cal.getTime();
-        String todaysdate = dateFormat.format(date);
-        String seconddate = todaysdate;
-        System.out.println(todaysdate);
-        LocalDate date1 = LocalDate.parse(firstdate, formatter);
-        LocalDate date2 = LocalDate.parse(todaysdate, formatter);
-        long yearsBetween = ChronoUnit.YEARS.between(date1, date2);
-        System.out.println(yearsBetween);
-        // ************************************ age calculator *************************************
-
-        //Smsapi.sendSMS("hello");
-        //    System.out.println(us.sortByDate());
-        // System.out.println(us.checklogin("slim.ayadii@esprit.tn", "azertyuiop"));
-        //  System.out.println(us.countRecentLoginAttempts("slim.ayadi@esprit.tn"));
-        //   User u = new User("slim", "ayadi", "azertyuiop", "95590010", "slim.ayadii@esprit.tn", "admiinnslm1", "ROLE_ADMIN", 1, date);
-        // user
-        // us.ajouter(u);
-        // User um = new User(11, "yasmine", "bettaieb", "hhh", "95590010", "slim.ayadii@esprit.tn", "ooo");
-        //us.modifier(11, um);
-        //us.supprimer(12);
-        // System.out.println(us.sortByDate());
-// reclamation 
-        //   public Reclamation(String titre, String contenu, User NomUser, Date date) {
-//Reclamation r= new Reclamation("mezz","med",11,date) ;
-//rs.ajouter(r);
-     //   System.out.println(rs.afficher());
+    public static void main(String[] args) throws FileNotFoundException, DocumentException {
+        //TEST SALLE
         
+      // SalleService us = new SalleService();
+       
+     //Salle u = new Salle("slim", "sfax", "97431155", "omar@esprit.tn", "test test test", "admiinnslm1","40","50","60","dd","dd");
+     //us.ajouter(u);
+     //Salle um = new Salle(1, "giga gym", "sfax", "6452187", "omargg@esprit.tn", "testetste","11","20","20","ee","dd","ee");
+     // us.modifier(1, um);
+    // us.supprimer(2);
+    //System.out.println(us.afficher()); 
+    //***************************************************
+   //System.out.println(us.findByNom("teseet"));
+      // PDFSalle a=new PDFSalle() ;
+       // a.liste_SallePDF();
+    // TEST COURS
+   CoursService us = new CoursService();
+     Cours u = new Cours("test", 13, "hamdi", 50, "tes tes tes", "image","lundi","8","30");
+    
+    us.ajouter(u);
+     //Cours um = new Cours(12,"osssimato", 12, "hamdi", 50, "tes tes tes", "aaaa","bbb","dd","dd");
+     // us.modifier(12, um);
+       //us.supprimer(13);
+    //System.out.println(us.afficher()); 
     }
 
 }

@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class MyConnexion {
     
-    private final String URL="jdbc:mysql://127.0.0.1:3306/energym3" ;
+    private final String URL="jdbc:mysql://127.0.0.1:3306/energym" ;
     private final String USER="root";
     private final String PWD="";
     
@@ -38,7 +38,7 @@ public class MyConnexion {
         if (instance==null){
             instance=new MyConnexion();
         }else{
-           // System.out.println("deja connecte");
+            System.out.println("deja connecte");
         }
         return instance;
     }

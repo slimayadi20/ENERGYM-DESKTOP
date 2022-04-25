@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" spacing="7.0" styleClass="btn" stylesheets="@tableview.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddSalleController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="584.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout salle">
+               <font>
+                  <Font name="Bauhaus 93" size="32.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutnomfx" alignment="TOP_CENTER" promptText="Nom de la salle" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="55.0" prefHeight="15.0" prefWidth="584.0">
+         <children>
+            <Button fx:id="btn_localiser" mnemonicParsing="false" onAction="#Localiser" prefHeight="8.0" prefWidth="96.0" stylesheets="@../../../pi/PI-Dev-GestionEvents/Event/src/GUI/sous-titres.css" text="Localiser" textAlignment="CENTER" />
+         </children>
+      </HBox>
+      <Text fx:id="Location" fill="#655f5f" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="184.99999475479126">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Text>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="91.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajouttelfx" alignment="TOP_CENTER" promptText="Numero de telephone " />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="127.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutmailfx" alignment="TOP_CENTER" promptText="E-mail de la Salle" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="163.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutdescriptionfx" alignment="TOP_CENTER" promptText="Description" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="199.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutimagefx" alignment="CENTER" promptText="Image" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="235.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutprix1fx" alignment="TOP_CENTER" promptText="prix Gold" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="271.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutprix2fx" alignment="CENTER" promptText="prix Silver" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="307.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutprix3fx" alignment="TOP_CENTER" promptText="Prix Bronze" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="343.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <JFXTimePicker fx:id="ajoutheureofx" defaultColor="#5f6b6a" promptText="Ouvre à" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="379.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <JFXTimePicker fx:id="ajoutheureffx" defaultColor="#5f6b6a" promptText="Ferme à" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="18.0" layoutY="415.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <Button fx:id="send" mnemonicParsing="false" onMouseClicked="#savetf" text="Enregistrer" textAlignment="CENTER" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+   <opaqueInsets>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </opaqueInsets>
+</VBox>
