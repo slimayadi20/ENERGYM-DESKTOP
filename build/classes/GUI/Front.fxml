@@ -1,89 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="833.0" prefWidth="1300.0" styleClass="dark-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontController">
-   <top>
-      <HBox prefHeight="125.0" prefWidth="200.0" styleClass="border-bottom" stylesheets="@style.css" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1000.0" stylesheets="@style.css">
          <children>
-            <HBox alignment="CENTER" prefHeight="150.0" prefWidth="152.0">
+            <HBox prefHeight="100.0" prefWidth="115.0">
                <children>
-                  <ImageView fitHeight="96.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0">
+                     <children>
+                        <ImageView fitHeight="78.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/fidi.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
+               <children>
+                  <Label text="Salle" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="88.0">
+               <children>
+                  <Label text="Event" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
+               <children>
+                  <Label text="Reclamation" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Home_32px.png" />
+                        <Image url="@../images/—Pngtree—red%20shopping%20cart%20icon%20png_4480557.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
                   </ImageView>
+                  <Circle fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
                </children>
             </HBox>
-            <Pane prefHeight="125.0" prefWidth="74.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Home" textFill="WHITE">
-                     <font>
-                        <Font size="39.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="162.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Salle" textFill="WHITE">
-                     <font>
-                        <Font size="39.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="362.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Event" textFill="WHITE">
-                     <font>
-                        <Font size="39.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="562.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Product" textFill="WHITE">
-                     <font>
-                        <Font size="39.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Pane prefHeight="125.0" prefWidth="109.0" />
-            <VBox alignment="CENTER" prefHeight="94.0" prefWidth="132.0">
-               <children>
-                  <ImageView fitHeight="69.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/plus-icons-163246.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
          </children>
+         <styleClass>
+            <String fx:value="dark-background" />
+            <String fx:value="border-bottom" />
+         </styleClass>
       </HBox>
-   </top>
-   <center>
-      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" styleClass="dark-background" stylesheets="@style.css" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="228.0" prefHeight="464.0" prefWidth="980.0" style="-fx-background-color: #000000;" styleClass="dark-background" stylesheets="@style.css">
          <content>
-            <GridPane fx:id="grid" prefHeight="3.0" prefWidth="5.0">
+            <GridPane fx:id="grid" prefHeight="465.0" prefWidth="978.0" styleClass="dark-background" stylesheets="@style.css">
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                </rowConstraints>
             </GridPane>
          </content>
       </ScrollPane>
-   </center>
-</BorderPane>
+      <Label layoutX="410.0" layoutY="129.0" prefHeight="58.0" prefWidth="188.0" text="Nos produits" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="25.0" />
+         </font>
+      </Label>
+      <HBox layoutX="457.0" layoutY="185.0" prefHeight="4.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" />
+   </children>
+   <styleClass>
+      <String fx:value="border-bottom" />
+      <String fx:value="dark-background" />
+   </styleClass>
+</AnchorPane>
