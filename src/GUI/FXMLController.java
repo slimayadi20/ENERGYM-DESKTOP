@@ -5,10 +5,12 @@
  */
 package GUI;
 
+import Entities.LoginAttempt;
 import Entities.User;
 import Services.CryptWithMD5;
 import Services.UserService;
 import Tools.JavaMailUtilUser;
+import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
@@ -60,6 +62,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -216,12 +220,17 @@ public class FXMLController implements Initializable {
     private ImageView imgProgress;
     WebView webView2;
     WebEngine webEngine;
+    @FXML
+    private Pane webcamPane;
+    @FXML
+    private ImageView imgPrevWeb;
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        loginTF.setText("slim.ayadi@esprit.tn");
+        passwordTF.setText("azertyuiop");
 // idn 
         try {
             URL url_name = new URL("http://checkip.amazonaws.com/");
@@ -305,6 +314,8 @@ public class FXMLController implements Initializable {
         passwordIcon.setVisible(true);
         loginTF.setVisible(true);
         passwordTF.setVisible(true);
+        loginTF.setText("slim.ayadi@esprit.tn");
+        passwordTF.setText("azertyuiop");
         valSignInBtn.setVisible(true);
         btnfp.setVisible(true);
         slide.setToX(689);
@@ -338,7 +349,7 @@ public class FXMLController implements Initializable {
         });
         numTelTF.textProperty().addListener((observable, oldValue, newValue) -> {
 
-            if (newValue.length() >= 8) {
+            if (newValue.length() >= 11) {
                 e_phone.setText("");
                 progress2 = 0.166;
 
@@ -587,6 +598,8 @@ public class FXMLController implements Initializable {
             }));
             x = false;
         }
+        loginTF.setText("slim.ayadi@esprit.tn");
+        passwordTF.setText("azertyuiop");
 
     }
 
@@ -632,6 +645,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void performeSignup(MouseEvent event) {
+
         //   numTelTF.setLabelFloat(true);
         if (nameTF.getText().trim().isEmpty()) {
             errors.append("- Please enter a First Name\n");//string s --- s+="erreur"
@@ -664,11 +678,7 @@ public class FXMLController implements Initializable {
         if (dpdate.getValue() == null) {
             errors.append("- Please enter a Birthday\n");
         }
-        try {
-            Integer.parseInt(numTelTF.getText());
-        } catch (NumberFormatException e) {
-            errors.append("- Please enter a valid number\n");
-        }
+
         if (us.emailExist(emailTF.getText())) {
             errors.append("- email already exist");
         }
@@ -750,111 +760,165 @@ public class FXMLController implements Initializable {
         User lu = us.findByUsername(loginTF.getText());
         imgProgress.setVisible(false);
 
-        if (us.checklogin(loginTF.getText(), CryptWithMD5.cryptWithMD5(passwordTF.getText()))) {
-            //7ell interface
-            if ("null".equals(lu.getActivation_token())) {
-                System.out.println("activated");
-                User u = us.findByUsername(loginTF.getText());
-                UserconnectedC = u;
-                u.toString();
-                switch (u.getRoles()) {
-                    case "ROLE_ADMIN":
-                        imgProgress.setVisible(true);
-                        PauseTransition pauseTransition = new PauseTransition();
-                        pauseTransition.setDuration(Duration.seconds(3));
-                        pauseTransition.setOnFinished(ev -> {
-                            System.out.println("bienveunue Passager");
-                            try {
+        if (us.countRecentLoginAttempts(loginTF.getText()) < 4) {
+            System.out.println(us.countRecentLoginAttempts(loginTF.getText()));
+            if (us.checklogin(loginTF.getText(), CryptWithMD5.cryptWithMD5(passwordTF.getText()))) {
+                //7ell interface
+                if ("null".equals(lu.getActivation_token())) {
+                    System.out.println("activated");
+                    User u = us.findByUsername(loginTF.getText());
+                    UserconnectedC = u;
+                    u.toString();
+                    switch (u.getRoles()) {
+                        case "ROLE_ADMIN":
+                            imgProgress.setVisible(true);
+                            PauseTransition pauseTransition = new PauseTransition();
+                            pauseTransition.setDuration(Duration.seconds(3));
+                            pauseTransition.setOnFinished(ev -> {
+                                System.out.println("bienveunue Passager");
+                                try {
 
-                                Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                                stageclose.close();
-                                Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
-                                Stage stage = new Stage();
+                                    stageclose.close();
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
+                                    Stage stage = new Stage();
 
-                                Scene scene = new Scene(root);
+                                    Scene scene = new Scene(root);
 
-                                stage.setTitle("ENERGYM APP");
-                                stage.setScene(scene);
-                                stage.show();
-                            } catch (IOException ex) {
-                                //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        });
-                        pauseTransition.play();
+                                    stage.setTitle("ENERGYM APP");
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException ex) {
+                                    //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            });
+                            pauseTransition.play();
 
-                        break;
-                    case "ROLE_GERANT":
-                        imgProgress.setVisible(true);
-                        PauseTransition pauseTransition1 = new PauseTransition();
-                        pauseTransition1.setDuration(Duration.seconds(3));
-                        pauseTransition1.setOnFinished(ev -> {
-                            System.out.println("bienveunue Passager");
-                            try {
+                            break;
+                        case "ROLE_GERANT":
+                            imgProgress.setVisible(true);
+                            PauseTransition pauseTransition1 = new PauseTransition();
+                            pauseTransition1.setDuration(Duration.seconds(3));
+                            pauseTransition1.setOnFinished(ev -> {
+                                System.out.println("bienveunue Passager");
+                                try {
 
-                                Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                                stageclose.close();
-                                Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
-                                Stage stage = new Stage();
+                                    stageclose.close();
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
+                                    Stage stage = new Stage();
 
-                                Scene scene = new Scene(root);
+                                    Scene scene = new Scene(root);
 
-                                stage.setTitle("ENERGYM APP");
-                                stage.setScene(scene);
-                                stage.show();
-                            } catch (IOException ex) {
-                                //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        });
-                        pauseTransition1.play();
+                                    stage.setTitle("ENERGYM APP");
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException ex) {
+                                    //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            });
+                            pauseTransition1.play();
 
-                        break;
-                    case "ROLE_CLIENT":
-                        imgProgress.setVisible(true);
-                        PauseTransition pauseTransition2 = new PauseTransition();
-                        pauseTransition2.setDuration(Duration.seconds(3));
-                        pauseTransition2.setOnFinished(ev -> {
-                            System.out.println("bienveunue Passager");
-                            try {
+                            break;
+                        case "ROLE_CLIENT":
+                            imgProgress.setVisible(true);
+                            PauseTransition pauseTransition2 = new PauseTransition();
+                            pauseTransition2.setDuration(Duration.seconds(3));
+                            pauseTransition2.setOnFinished(ev -> {
+                                System.out.println("bienveunue Passager");
+                                try {
 
-                                Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                                stageclose.close();
-                                Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front.fxml"));
-                                Stage stage = new Stage();
+                                    stageclose.close();
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front.fxml"));
+                                    Stage stage = new Stage();
 
-                                Scene scene = new Scene(root);
+                                    Scene scene = new Scene(root);
 
-                                stage.setTitle("ENERGYM APP");
-                                stage.setScene(scene);
-                                stage.show();
-                            } catch (IOException ex) {
-                                //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        });
-                        pauseTransition2.play();
-                        break;
-                    default:
-                        break;
+                                    stage.setTitle("ENERGYM APP");
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException ex) {
+                                    //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            });
+                            pauseTransition2.play();
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Login fail");
+                    alert.setContentText("activate your account");
+                    alert.showAndWait();
                 }
+
             } else {
+                java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+                LoginAttempt t = new LoginAttempt("127.0.0.1", date, loginTF.getText(), "");
+                us.ajouterLoginAttempt(t);
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Login fail");
-                alert.setContentText("activate your account");
+                alert.setContentText("Username or password invalid");
                 alert.showAndWait();
             }
         } else {
+            PauseTransition pauseTransition3 = new PauseTransition();
+            pauseTransition3.setDuration(Duration.seconds(15));
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Login fail");
-            alert.setContentText("Username or password invalid");
+            alert.setContentText("verif your account");
             alert.showAndWait();
+            valSignInBtn.setDisable(true); //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+            String image = openWebcam();
+            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+            LoginAttempt t = new LoginAttempt("127.0.0.1", date, loginTF.getText(), image);
+            us.ajouterLoginAttempt(t);
+            pauseTransition3.setOnFinished(ev -> {
+                valSignInBtn.setDisable(false);
+
+            });
+            pauseTransition3.play();
+
         }
 
     }
 
+    private String openWebcam() {
+
+        Webcam wb = Webcam.getWebcams().get(0);
+
+        wb.open();
+        String name = UUID.randomUUID().toString().substring(1, 8) + ".jpg";
+        File f = new File("src/images/" + name);
+        try {
+            ImageIO.write(wb.getImage(), "JPG", f);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println("Ok");
+
+        //  Image i = new Image(f.toURI().toString());
+        //  imgPrevWeb.setImage(i);
+        String chemin = f.getAbsolutePath();
+        System.out.println(chemin);
+
+        //  paneNoir.setVisible(false);
+        webcamPane.setVisible(false);
+
+        return name;
+
+    }
+
     @FXML
-    private void signUpForm(MouseEvent event) {
+    private void signUpForm(MouseEvent event
+    ) {
 
     }
 

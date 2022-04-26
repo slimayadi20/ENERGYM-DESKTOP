@@ -54,3 +54,17 @@
         -fx-background-radius: 500050 ;
      
 }
+.gradient{
+    -fx-background-color : linear-gradient(to top, #676767,transparent)
+}
+.shadow{
+    -fx-effect : dropshadow(three-pass-box, rgba(0,0,0,0.2,10,0,0,10));
+}
+.dark-background{
+    -fx-background-color : #222222 ; 
+}
+.border-bottom{
+    -fx-border-width : 0 0 2 0 ;
+    -fx-border-color : #676767;
+        
+}

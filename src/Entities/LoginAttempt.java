@@ -15,6 +15,7 @@ public class LoginAttempt {
 private String ipaddress ; 
 private Date date ; 
 private String email ; 
+String image ; 
 
     public LoginAttempt(int id, String ipaddress, Date date, String email) {
         this.id = id;
@@ -23,10 +24,14 @@ private String email ;
         this.email = email;
     }
 
-    public LoginAttempt(String ipaddress, Date date, String email) {
+    public LoginAttempt(String ipaddress, Date date, String email, String image) {
         this.ipaddress = ipaddress;
         this.date = date;
         this.email = email;
+        this.image= image ; 
+    }
+
+    public LoginAttempt() {
     }
 
     public int getId() {
@@ -60,9 +65,20 @@ private String email ;
     public void setEmail(String email) {
         this.email = email;
     }
-   @Override
-    public String toString() {
-        return "login_attempt{" + "id=" + id + ", ip_adress=" + ipaddress + ", date=" + date + ", email=" + email + ", email=" + email  + '}'+"\n";
+
+    public String getImage() {
+        return image;
     }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginAttempt{" + "id=" + id + ", ipaddress=" + ipaddress + ", date=" + date + ", email=" + email + ", image=" + image + '}';
+    }
+    
+ 
 
 }

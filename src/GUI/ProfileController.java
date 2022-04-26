@@ -14,6 +14,7 @@ import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.lowagie.text.DocumentException;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import static energym.desktop.MainFX.UserconnectedC;
@@ -464,6 +465,18 @@ public class ProfileController implements Initializable {
         webcamPane.setVisible(false);
         tf_image.setText(f.toURI().toString());
 
+    }
+
+    @FXML
+    private void historique(MouseEvent event) {
+        UserService u = new UserService();
+        try {
+            us.RapportHCbyUser(UserconnectedC);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -9,24 +9,34 @@ import Entities.LoginAttempt;
 import Entities.User;
 import static Services.CryptWithMD5.cryptWithMD5;
 import Tools.MyConnexion;
-import java.security.MessageDigest;
+import com.lowagie.text.Chunk;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import org.apache.http.client.utils.DateUtils;
 
 public class UserService {
 
@@ -41,8 +51,8 @@ public class UserService {
         try {
             Statement st;
             st = cnx.createStatement();
-            String query = "INSERT INTO `user`( `nom`, `prenom`, `email`, `roles`, `phone`, `password`, `created_at`, `status`, `image_file` ,`activation_token`) "
-                    + "VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getRoles() + "','" + t.getPhone() + "','" + cryptWithMD5(t.getPassword()) + "','" + t.getCreated_at() + "','" + t.getStatus() + "','" + t.getImageFile() + "','" + t.getActivation_token()+ "')";
+            String query = "INSERT INTO `user`( `nom`, `prenom`, `email`, `roles`, `phone`, `password`, `created_at`, `status`, `image_file` ,`activation_token`,`birthday`) "
+                    + "VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getRoles() + "','" + t.getPhone() + "','" + cryptWithMD5(t.getPassword()) + "','" + t.getCreated_at() + "','" + t.getStatus() + "','" + t.getImageFile() + "','" + t.getActivation_token() +  "','" + t.getBirthday()+ "')";
             st.executeUpdate(query);
             System.out.println("user ajouter avec success");
         } catch (SQLException ex) {
@@ -92,31 +102,18 @@ public class UserService {
 
     }
 
-    public boolean checkloginbyAttempts(String email, String password) throws ParseException, SQLException {
-
-        Statement st = cnx.createStatement();
-        String query = "SELECT * FROM `user` WHERE `email`='" + email + "' AND `password`='" + password + "'";
-        ResultSet rs = st.executeQuery(query);
-        if (countRecentLoginAttempts(email) < 3) {
-            System.out.println("ooo");
-            return rs.next();
-        } else {
-            // neksa date time immutable wel condition besh mayodkholch 
-            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-            LoginAttempt t = new LoginAttempt("127.0.0.1", date, email);
-            ajouterLoginAttempt(t);
-            return false;
-        }
-
-    }
-
-    public void ajouterLoginAttempt(LoginAttempt t) {
+    public void ajouterLoginAttempt(LoginAttempt t) throws ParseException {
         try {
             Statement st;
             st = cnx.createStatement();
-            String query = "INSERT INTO `login_attempt`( `ip_address`, `date`, `username`) "
-                    + "VALUES ('" + t.getIpaddress() + "','" + t.getDate() + "','" + t.getEmail() + "')";
+            String query = "INSERT INTO `login_attempt`( `ip_address`, `date`, `username`,`fail`,`image`) "
+                    + "VALUES ('" + t.getIpaddress() + "','" + t.getDate() + "','" + t.getEmail() + "','" + 1 + "','" + t.getImage() + "')";
             st.executeUpdate(query);
+            if (countRecentLoginAttempts(t.getEmail()) > 4) {
+                Statement stm = cnx.createStatement();
+                String queryy = "UPDATE login_attempt SET fail= '" + 0 + "' WHERE username='" + t.getEmail() + "'";
+                stm.executeUpdate(queryy);
+            }
             System.out.println("login attempt ajouter avec success");
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,6 +124,7 @@ public class UserService {
         try {
             Statement st = cnx.createStatement();
             String query = "SELECT * FROM `user` WHERE `email`='" + username + "' AND `password`='" + password + "'";
+
             ResultSet rs = st.executeQuery(query);
             return rs.next();
         } catch (SQLException ex) {
@@ -136,31 +134,9 @@ public class UserService {
 
     }
 
-    public boolean checklogina(String email, String password) throws ParseException {
-        try {
-            Statement st = cnx.createStatement();
-            String query = "SELECT * FROM `user` WHERE `email`='" + email + "' AND `password`='" + password + "'";
-            ResultSet rs = st.executeQuery(query);
-            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-            LoginAttempt t = new LoginAttempt("127.0.0.1", date, email);
-            ajouterLoginAttempt(t);
-            if (countRecentLoginAttempts(email) < 3) {
-                System.out.println("ooo");
-                return rs.next();
-            } else {
-                return false;
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return false;
-    }
-
     public int countRecentLoginAttempts(String email) throws ParseException {
-        Date date = new Date(System.currentTimeMillis());
-        final String current = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+        /*  Date date = new Date(System.currentTimeMillis());
+        final String current = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date d = df.parse(current);
         Calendar cal = Calendar.getInstance();
@@ -168,11 +144,11 @@ public class UserService {
         cal.add(Calendar.MINUTE, 3);
         String after = df.format(cal.getTime());
         //    System.out.println("Current time now : " + current);
-        //  System.out.println("After adding 3 mins : " + after);
+        //  System.out.println("After adding 3 mins : " + after);*/
 
         try {
             Statement st = cnx.createStatement();
-            String query = "SELECT count(*) FROM `login_attempt` WHERE `date` BETWEEN'" + "2022-04-11 00:00:00" + "' AND'" + after + "' AND `username`='" + email + "'";
+            String query = "SELECT count(*) FROM `login_attempt` WHERE `username`='" + email + "' AND `fail`='" + 1 + "'";
             //  System.out.println(query);
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
@@ -205,6 +181,27 @@ public class UserService {
                 u.setPrenom(rs.getString("prenom"));
                 u.setRoles(rs.getString("roles"));
                 u.setBirthday(rs.getString("birthday"));
+                lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+
+    public List<LoginAttempt> afficherloginattempt(String email) {
+        List<LoginAttempt> lu = new ArrayList<>();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from login_attempt WHERE `username`='" + email + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                LoginAttempt u = new LoginAttempt();
+                u.setIpaddress(rs.getString("ip_address"));
+                u.setDate(rs.getDate("date"));
+                u.setEmail(rs.getString("username"));
+                u.setImage(rs.getString("image"));
+
                 lu.add(u);
             }
         } catch (SQLException ex) {
@@ -258,34 +255,36 @@ public class UserService {
         }
         return u;
     }
+
     public String findById(int username) {
         User u = new User();
-        String email = " " ;
+        String email = " ";
         try {
             Statement st = cnx.createStatement();
             String query = "select * from user where id='" + username + "'";
             ResultSet rs = st.executeQuery(query);
             if (rs.next()) {
-        
-              email = rs.getString("email");
-             
+
+                email = rs.getString("email");
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return email;
     }
+
     public String findByIdimage(int username) {
         User u = new User();
-        String email = " " ;
+        String email = " ";
         try {
             Statement st = cnx.createStatement();
             String query = "select * from user where id='" + username + "'";
             ResultSet rs = st.executeQuery(query);
             if (rs.next()) {
-        
-              email = rs.getString("image_file");
-             
+
+                email = rs.getString("image_file");
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -348,4 +347,87 @@ public class UserService {
         return 0;
     }
 
+    public void RapportHCbyUser(User us) throws IOException, DocumentException, IOException {
+        List<LoginAttempt> lHc = afficherloginattempt(us.getEmail());
+        String filename = "";
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("src/css/test1.pdf"));
+        document.open();
+
+        Font f24 = FontFactory.getFont(FontFactory.HELVETICA, 24f);
+        Font f16 = FontFactory.getFont(FontFactory.HELVETICA, 14f);
+        Font f12 = FontFactory.getFont(FontFactory.HELVETICA, 10f);
+
+        try {
+            document.add(new Paragraph("Votre Historique de Connexion \n\n", f24));
+            document.add(new Paragraph("Monsieur/Madame " + us.getNom() + " identifant " + us.getId() + " suite a votre demande voici votre historique de connexion :  \n ", f16));
+            document.add(new Paragraph("Nombre Total de connexion : " + lHc.size() + "\n ", f16));
+
+        } catch (DocumentException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        PdfPTable table = new PdfPTable(4);
+        try {
+            table.setWidths(new float[]{8, 35, 35, 35});
+        } catch (DocumentException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        table.addCell("");
+        table.addCell("Ip Adresse");
+        table.addCell("Image");
+        table.addCell("Date");
+
+        for (int i = 0; i < lHc.size(); i++) {
+            table.addCell("" + (i + 1));
+            table.addCell(lHc.get(i).getIpaddress());
+            // System.out.println(lHc.get(i).getImage());
+            // Image img = Image.getInstance("src\\images\\" + lHc.get(i).getImage());
+            if (lHc.get(i).getImage().isEmpty()) {
+                filename = "src\\images\\images.jpg";
+                System.out.println(filename);
+                Image img = Image.getInstance(filename);
+                img.scalePercent(1);// Creating an Image object 
+                PdfPCell cell = new PdfPCell();
+                cell.addElement(new Chunk(img, 5, -5));
+
+                table.addCell(cell);
+            } else {
+                filename = "src\\images\\" + lHc.get(i).getImage();
+                System.out.println(filename);
+                Image img = Image.getInstance(filename);
+                img.scalePercent(28);// Creating an Image object 
+                PdfPCell cell = new PdfPCell();
+                cell.addElement(new Chunk(img, 5, -5));
+
+                cell.setFixedHeight(80);
+                 cell.setPaddingTop(50);
+                table.addCell(cell);
+            }
+
+            table.addCell(lHc.get(i).getDate().toString());
+        }
+
+        try {
+
+            document.add(table);
+        } catch (DocumentException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            document.add(new Paragraph("\nPour assurer une meilleur transparence entre nous ENERGYM vous donne accés a tous vos données , et ceci on conformité avec la loi de vie privéé ", f12));
+
+        } catch (DocumentException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        document.close();
+        try {
+            Desktop.getDesktop().open(new File("src/css/test1.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

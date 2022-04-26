@@ -266,7 +266,7 @@ public class ForgetPasswordController implements Initializable {
 
                         Scene scene = new Scene(root);
 
-                        stage.setTitle("INVICTUS APP");
+                        stage.setTitle("energym APP");
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException ex) {
@@ -285,7 +285,7 @@ public class ForgetPasswordController implements Initializable {
 
                         Scene scene = new Scene(root);
 
-                        stage.setTitle("INVICTUS APP");
+                        stage.setTitle("energym APP");
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException ex) {
