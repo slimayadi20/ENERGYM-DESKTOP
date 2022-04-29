@@ -5,7 +5,9 @@
  */
 package GUI;
 
+import Entities.Event;
 import Entities.User;
+import Services.EventService;
 import Services.UserService;
 import java.io.IOException;
 import java.net.URL;
@@ -47,13 +49,13 @@ public class FrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      UserService ths= new UserService();
-        List<User> listTH = ths.afficher();
+      EventService ths= new EventService();
+        List<Event> listTH = ths.afficher();
         
         int colonne=0;
         int row=1;
         try {
-            for (User t : listTH) {
+            for (Event t : listTH) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ThematiqueItem.fxml"));
 

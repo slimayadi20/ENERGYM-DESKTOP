@@ -897,6 +897,7 @@ public class FXMLController implements Initializable {
         String name = UUID.randomUUID().toString().substring(1, 8) + ".jpg";
         File f = new File("src/images/" + name);
         try {
+            
             ImageIO.write(wb.getImage(), "JPG", f);
         } catch (IOException ex) {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);

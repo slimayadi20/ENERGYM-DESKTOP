@@ -110,6 +110,7 @@ public class ForgetPasswordController implements Initializable {
     public static String cc;
     public static String c;
     String code = String.valueOf(randomcode);
+    
 
     /**
      * Initializes the controller class.

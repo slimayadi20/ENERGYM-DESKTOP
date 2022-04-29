@@ -10,7 +10,9 @@ import Services.ReclamationService;
 import Services.UserService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import static energym.desktop.MainFX.UserconnectedC;
@@ -69,6 +71,7 @@ public class ReclamationController implements Initializable {
     private JFXButton logoutbtn;
     @FXML
     private JFXButton homebtn;
+    @FXML
     private JFXButton addbtn;
 
     private JFXTextField searchfield;
@@ -118,36 +121,79 @@ public class ReclamationController implements Initializable {
     ReclamationService rs = new ReclamationService();
     Reclamation reclamation = null;
     ObservableList<Reclamation> ReclamationList = FXCollections.observableArrayList();
-    @FXML
     private TableColumn<Reclamation, String> produit_col1;
-    @FXML
     private Label senderlabel;
-    @FXML
     private Label titrelabel;
-    @FXML
     private Label contenulabel;
-    @FXML
     private Label produitlabel;
-    @FXML
     private TableColumn<User, String> sender_col;
-    @FXML
     private TableColumn<?, ?> titre_col;
-    @FXML
     private TableColumn<?, ?> created_at_col_rec;
-    @FXML
     private TableColumn<?, ?> contenu_col;
-    @FXML
     private TableColumn<?, ?> statut_col;
-    @FXML
-    private TableColumn<?, ?> produit_col;
-    @FXML
     private TableView<Reclamation> tableviewreclamation;
-    @FXML
     private Label repondufid;
-    @FXML
     private Label encoursfid;
     @FXML
     private AnchorPane name_last_name;
+    @FXML
+    private JFXTextField nomfxid;
+    @FXML
+    private JFXTextField categfxid;
+    @FXML
+    private JFXTextField lieufxid;
+    @FXML
+    private JFXTextField nbrfxid;
+    @FXML
+    private JFXTextField descriptionfxid;
+    @FXML
+    private JFXDatePicker datefxid;
+    @FXML
+    private ImageView nomCheckmark;
+    @FXML
+    private ImageView nombreCheckmark;
+    @FXML
+    private ImageView dateCheckmark;
+    @FXML
+    private ImageView DescriptionCheckmark;
+    @FXML
+    private ImageView adressecheck;
+    @FXML
+    private ImageView categcheck;
+    @FXML
+    private Label labelnom;
+    @FXML
+    private Label labelnbr;
+    @FXML
+    private Label labeldate;
+    @FXML
+    private Label labeldescription;
+    @FXML
+    private Label labeladdresse;
+    @FXML
+    private Label labelcateg;
+    @FXML
+    private JFXToggleButton btnEditMode;
+    @FXML
+    private JFXButton excel;
+    @FXML
+    private TableView<?> tableviewevent;
+    @FXML
+    private TableColumn<?, ?> nomevent_col;
+    @FXML
+    private TableColumn<?, ?> Categorie_col;
+    @FXML
+    private TableColumn<?, ?> dateevent_col;
+    @FXML
+    private TableColumn<?, ?> lieuevent_col;
+    @FXML
+    private TableColumn<?, ?> nbrplaceevent_col;
+    @FXML
+    private TableColumn<?, ?> nbrplaceevent_col11;
+    @FXML
+    private TableColumn<?, ?> nbrplaceevent_col1;
+    @FXML
+    private TableColumn<?, ?> action_col;
 
     /**
      * Initialise method required for implementing initializable and, sets up
@@ -404,6 +450,18 @@ public class ReclamationController implements Initializable {
 
             }
         });
+    }
+
+    @FXML
+    private void btnEditModeToggle(MouseEvent event) {
+    }
+
+    @FXML
+    private void add(ActionEvent event) {
+    }
+
+    @FXML
+    private void excel(ActionEvent event) {
     }
 
 }

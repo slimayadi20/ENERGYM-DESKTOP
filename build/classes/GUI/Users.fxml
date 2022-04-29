@@ -3,8 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -24,7 +22,6 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="20" />
                </graphic>
            
             </JFXButton>
@@ -33,7 +30,6 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
                </graphic>
          
             </JFXButton>
@@ -42,7 +38,6 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
                </graphic>
               
             </JFXButton>
@@ -51,7 +46,6 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="POWER" size="20" />
                </graphic>
            
             </JFXButton>
@@ -66,7 +60,6 @@
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_CIRCLE" size="20" />
                </graphic>
             </Label>
             <JFXButton fx:id="btnReclamation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="333.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reclamation" textFill="WHITE">
@@ -74,7 +67,6 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
                </graphic>
             
             </JFXButton>
@@ -83,7 +75,6 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
                </graphic>
          
             </JFXButton>
@@ -98,7 +89,6 @@
                         <Font size="18.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
                      </graphic>
                   </Label>
                </children>

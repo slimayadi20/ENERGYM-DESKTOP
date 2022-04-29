@@ -30,9 +30,10 @@
                   </Label>
                </children>
             </VBox>
-            <Pane prefHeight="240.0" prefWidth="173.0" />
-            <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="240.0" prefWidth="140.0">
+            <Pane fx:id="pane" prefHeight="240.0" prefWidth="173.0" />
+            <VBox fx:id="idE" alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="240.0" prefWidth="140.0">
                <children>
+                  <Label fx:id="idEvent" prefHeight="0.0" prefWidth="0.0" textFill="TRANSPARENT" />
                   <Label alignment="BOTTOM_CENTER" prefHeight="35.0" prefWidth="125.0" text="Place" textFill="WHITE">
                      <font>
                         <Font size="23.0" />
