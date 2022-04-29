@@ -170,7 +170,6 @@ public class ReclamationController implements Initializable {
         repondufid.setText((Integer.toString(rs.affichernumber("repondu"))));
         encoursfid.setText((Integer.toString(rs.affichernumber("encours"))));
         //  sender_col.setCellValueFactory(cellData -> new SimpleStringProperty(us.findById(cellData.getValue().getId())));
-
         sender_col.setCellValueFactory(new PropertyValueFactory<>("NomUser"));
         titre_col.setCellValueFactory(new PropertyValueFactory<>("titre"));
 

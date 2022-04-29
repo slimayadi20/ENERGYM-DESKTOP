@@ -12,6 +12,9 @@ import Services.UserService;
 import Tools.JavaMailUtilUser;
 import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXTextField;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import static energym.desktop.MainFX.UserconnectedC;
@@ -50,6 +53,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -57,6 +61,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -210,10 +215,7 @@ public class FXMLController implements Initializable {
     private static double progress5 = 0;
     private static double progress6 = 0;
     StringBuilder errors = new StringBuilder();
-    boolean containsDigit = false;
-    boolean containsLowerCaseLetter = false;
-    boolean containsUpperCaseLetter = false;
-    boolean containsSpecialCharacter = false;
+
     boolean length = false;
     private boolean verificationUserpasword = true;
     @FXML
@@ -224,11 +226,22 @@ public class FXMLController implements Initializable {
     private Pane webcamPane;
     @FXML
     private ImageView imgPrevWeb;
+    @FXML
+    private JFXCheckBox chkPasswordMask;
+    @FXML
+    private JFXTextField txtPasswordShown;
+    @FXML
+    private ProgressBar strength;
+    private static double progressp1 = 0;
+    private static double progressp2 = 0;
+    private static double progressp3 = 0;
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        tooltip();
+
         loginTF.setText("slim.ayadi@esprit.tn");
         passwordTF.setText("azertyuiop");
 // idn 
@@ -305,9 +318,13 @@ public class FXMLController implements Initializable {
         image.setVisible(false);
         e_mail.setVisible(false);
         e_phone.setVisible(false);
+        strength.setVisible(false);
         e_nom.setVisible(false);
         e_prenom.setVisible(false);
         e_password.setVisible(false);
+        e_password.setVisible(false);
+        chkPasswordMask.setVisible(true);
+        txtPasswordShown.setVisible(true);
 
         //Login and password TF
         userIcon.setVisible(true);
@@ -328,7 +345,8 @@ public class FXMLController implements Initializable {
 
         progressPersonal.setProgress(0.00);
         double sum_progress = progress1 + progress2 + progress3 + progress4 + progress5 + progress6;
-
+        strength.setProgress(0.00);
+        double sump = progressp1 + progressp2 + progressp3;
         emailTF.textProperty().addListener((observable, oldValue, newValue) -> {
             String masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
                     + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
@@ -397,18 +415,35 @@ public class FXMLController implements Initializable {
             lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
         });
         passwordPF.textProperty().addListener((observable, oldValue, newValue) -> {
+            boolean hasLetter = false;
+            boolean hasDigit = false;
+            for (int i = 0; i < newValue.length(); i++) {
+                char x = newValue.charAt(i);
+                if (Character.isLetter(x)) {
+                    progressp1 = 0.333;
+                    hasLetter = true;
+                    System.out.println("true");
+                } else if (Character.isDigit(x)) {
+                    progressp2 = 0.333;
+                    System.out.println("false");
+                    hasDigit = true;
+                }
+
+            }
 
             if (newValue.length() < 8) {
                 e_password.setText("the password must be 8 character or longer " + "\n");
                 progress5 = 0.0;
-
             } else {
                 e_password.setText("");
+                progressp3 = 0.333;
                 progress5 = 0.166;
-
             }
             double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6);
             progressPersonal.setProgress(sum);
+            double sumpp = (progressp1 + progressp2 + progressp3);
+            strength.setProgress(sumpp);
+
             lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
 
         });
@@ -492,6 +527,10 @@ public class FXMLController implements Initializable {
         lblComplete.setVisible(state);
         progressPersonal.setVisible(state);
         imgProgress.setVisible(false);
+        chkPasswordMask.setVisible(state);
+        txtPasswordShown.setVisible(state);
+        strength.setVisible(state);
+        chkPasswordMask.setVisible(state);
 
     }
 
@@ -515,6 +554,7 @@ public class FXMLController implements Initializable {
             swapbtn.setText("SignUp");
             settingLB1.setText("Login");
             nameTF.setVisible(false);
+            strength.setVisible(false);
             numTelTF.setVisible(false);
             dpdate.setVisible(false);
             emailTF.setVisible(false);
@@ -540,6 +580,8 @@ public class FXMLController implements Initializable {
             valSignInBtn.setVisible(true);
             btnfp.setVisible(true);
             imgProgress.setVisible(false);
+            txtPasswordShown.setVisible(true);
+            chkPasswordMask.setVisible(true);
 
             slide.setToX(689);
             slide.play();
@@ -574,6 +616,9 @@ public class FXMLController implements Initializable {
             helloLB.setVisible(true);
             upload.setVisible(true);
             image.setVisible(true);
+            strength.setVisible(true);
+            chkPasswordMask.setVisible(false);
+
             lblComplete.setVisible(true);
             progressPersonal.setVisible(true);
             imgProgress.setVisible(false);
@@ -586,8 +631,9 @@ public class FXMLController implements Initializable {
             btnfp.setVisible(false);
             userIcon.setVisible(false);
             passwordIcon.setVisible(false);
-            //fileName.setVisible(true);
+            txtPasswordShown.setVisible(false);
 
+            //fileName.setVisible(true);
             //applyValidators();
             slide.setToX(0);
 
@@ -602,7 +648,10 @@ public class FXMLController implements Initializable {
         passwordTF.setText("azertyuiop");
 
     }
-
+private void tooltip(){
+  /*  Tooltip passwordTip = new ToolTip("password requires 1 digit \n password >8 \n "
+            + "password requires letters");*/
+}
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -687,6 +736,7 @@ public class FXMLController implements Initializable {
             alert.setTitle("Errors");
             alert.setContentText(errors.toString());
             alert.showAndWait();
+            errors.setLength(0);
         } else {
             User u = new User();
             if (selectedFile != null) {
@@ -759,6 +809,7 @@ public class FXMLController implements Initializable {
 
         User lu = us.findByUsername(loginTF.getText());
         imgProgress.setVisible(false);
+        strength.setVisible(false);
 
         if (us.countRecentLoginAttempts(loginTF.getText()) < 4) {
             System.out.println(us.countRecentLoginAttempts(loginTF.getText()));
@@ -833,7 +884,7 @@ public class FXMLController implements Initializable {
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                                     stageclose.close();
-                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/ReclamationFront.fxml"));
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
@@ -973,6 +1024,20 @@ public class FXMLController implements Initializable {
             image.setFitWidth(250);
             upload.setText(path);
 
+        }
+
+    }
+
+    @FXML
+    private void chkPasswordMaskAction(MouseEvent event) {
+        if (chkPasswordMask.isSelected()) {
+            txtPasswordShown.setText(passwordTF.getText());
+            txtPasswordShown.setVisible(true);
+            passwordTF.setVisible(false);
+        } else {
+            passwordTF.setText(txtPasswordShown.getText());
+            passwordTF.setVisible(true);
+            txtPasswordShown.setVisible(false);
         }
     }
 

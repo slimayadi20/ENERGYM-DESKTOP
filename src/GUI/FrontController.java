@@ -47,38 +47,7 @@ public class FrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      UserService ths= new UserService();
-        List<User> listTH = ths.afficher();
-        
-        int colonne=0;
-        int row=1;
-        try {
-            for (User t : listTH) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ThematiqueItem.fxml"));
-
-                Pane anchorPane = fxmlLoader.load();
-                
-                ThematiqueItemController controller = fxmlLoader.getController();
-                controller.setData(t);
-                if(colonne==3){
-                    colonne=0;
-                    row++;
-                }
-                grid.add(anchorPane,colonne++,row);
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);                
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);                
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-                GridPane.setMargin(anchorPane, new Insets(12));
-                //break;
-            }
-        } catch (IOException ex) {
-           ex.printStackTrace();
-        }
-
+   
     }
 
     private void handleHome(MouseEvent event) throws IOException {

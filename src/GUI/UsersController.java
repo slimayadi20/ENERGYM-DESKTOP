@@ -1,6 +1,6 @@
-/*******************************************************************************
-            Controller class and logic implementation for movies.fxml
- ******************************************************************************/
+/** *****************************************************************************
+ * Controller class and logic implementation for movies.fxml
+ ***************************************************************************** */
 package GUI;
 
 import Entities.User;
@@ -44,7 +44,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-public class UsersController  implements Initializable{
+
+public class UsersController implements Initializable {
 
     @FXML
     private JFXButton closebtn;
@@ -75,10 +76,10 @@ public class UsersController  implements Initializable{
     private Label userlabel;
 
     private String[] movienames;
-    private boolean faded=false,showingall=false;
-    public static String currentmovie="";
-    private int currentslots=0;
-    public static int slotseatNo =-1 ;
+    private boolean faded = false, showingall = false;
+    public static String currentmovie = "";
+    private int currentslots = 0;
+    public static int slotseatNo = -1;
     @FXML
     private JFXComboBox<String> combotri;
     @FXML
@@ -110,7 +111,7 @@ public class UsersController  implements Initializable{
     private Label createdat;
     ObservableList<String> ss = FXCollections.observableArrayList();
     ObservableList<User> data = FXCollections.observableArrayList();
-        UserService us = new UserService();
+    UserService us = new UserService();
     @FXML
     private TableColumn<?, ?> createdat_col;
     @FXML
@@ -125,25 +126,23 @@ public class UsersController  implements Initializable{
     private JFXButton btntri;
 
     /**
-     *  Initialise method required for implementing initializable and,
-     *  sets up and applies all effects and animations to nodes in logout.fxml
+     * Initialise method required for implementing initializable and, sets up
+     * and applies all effects and animations to nodes in logout.fxml
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-           ss.add("Par role");
+        ss.add("Par role");
         ss.add("Par date");
         ss.add("Par status");
         //   userlabel.setText(UserconnectedC.getNom() + "  " + UserconnectedC.getPrenom());
-          combotri.setItems(ss);
+        combotri.setItems(ss);
         refreshlist();
         recherche_avance();
         setCellValueFromTableToTextField();
-       
-     
+
     }
-    
-    
-      public void refreshlist() {
+
+    public void refreshlist() {
         data.clear();
         data = FXCollections.observableArrayList(us.afficher());
         nom_col.setCellValueFactory(new PropertyValueFactory<>("Nom"));
@@ -204,14 +203,13 @@ public class UsersController  implements Initializable{
                         } else {
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
                             DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
-                       
+
                             try {
                                 Calendar cal = Calendar.getInstance();
                                 java.util.Date date = cal.getTime();
-                                String todaysdate = dateFormat.format(date);   
+                                String todaysdate = dateFormat.format(date);
 
-                                
-                              //  String db = dateFormat.format(item);
+                                //  String db = dateFormat.format(item);
                                 System.out.println(todaysdate);
                                 System.out.println(item);
                                 System.out.println("up");
@@ -234,8 +232,9 @@ public class UsersController  implements Initializable{
         role_col.setCellValueFactory(new PropertyValueFactory<>("Roles"));
         tableviewuser.setItems(data);
         tableviewuser.setStyle("-fx-font-weight: bold; -fx-font-size: 1.05em; ");
- 
+
     }
+
     @FXML
     public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnUsers) {
@@ -264,6 +263,7 @@ public class UsersController  implements Initializable{
         }
 
     }
+
     @FXML
     private void trilist(ActionEvent event) {
         if (combotri.getValue().equals("Par role")) {
@@ -281,8 +281,7 @@ public class UsersController  implements Initializable{
             tableviewuser.setItems(tri3);
         }
     }
-    
-    
+
     @FXML
     public void recherche_avance() {
         System.out.println("*******************");
@@ -320,13 +319,9 @@ public class UsersController  implements Initializable{
         tableviewuser.setItems(filtereddata);
     }
 
-  
-
-
-
     @FXML
     private void logOut(ActionEvent event) {
-              try {
+        try {
             Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stageclose.close();
@@ -352,7 +347,6 @@ public class UsersController  implements Initializable{
     private void handleClose(ActionEvent event) {
     }
 
-
     @FXML
     private void btnExit(MouseEvent event) {
     }
@@ -361,25 +355,24 @@ public class UsersController  implements Initializable{
     private void btnHover(MouseEvent event) {
     }
 
-private void setCellValueFromTableToTextField(){
-    tableviewuser.setOnMouseClicked(new EventHandler<MouseEvent>(){
-        @Override 
-        public void handle(MouseEvent event){
-            User u = tableviewuser.getItems().get(tableviewuser.getSelectionModel().getSelectedIndex());
-            movietitle.setText(u.getNom()+u.getPrenom());
-            emaillabel.setText(u.getEmail());
-            dn.setText(u.getBirthday());
-            role.setText(u.getRoles());
-            createdat.setText(u.getCreated_at().toString());
-                        userimage.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + u.getImageFile()));
+    private void setCellValueFromTableToTextField() {
+        tableviewuser.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                User u = tableviewuser.getItems().get(tableviewuser.getSelectionModel().getSelectedIndex());
+                movietitle.setText(u.getNom() + u.getPrenom());
+                emaillabel.setText(u.getEmail());
+                dn.setText(u.getBirthday());
+                role.setText(u.getRoles());
+                createdat.setText(u.getCreated_at().toString());
+                userimage.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + u.getImageFile()));
 
-        }
-    });
-}
+            }
+        });
+    }
 
     @FXML
     private void fillforum(MouseEvent event) {
     }
-
 
 }

@@ -313,7 +313,7 @@ public class ForgetPasswordController implements Initializable {
     private void envoyercode(MouseEvent event) {
         cc = phoneTF.getText();
         if (us.emailExist(cc)) {
-            // Smsapi.sendSMS("verification code" + randomcode);
+            Smsapi.sendSMS("verification code" + randomcode);
             System.out.println(randomcode);
             TrayNotification tray = new TrayNotification();
             AnimationType type = AnimationType.POPUP;

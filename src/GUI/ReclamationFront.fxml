@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationFrontController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1000.0" stylesheets="@style.css">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="115.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0">
+                     <children>
+                        <ImageView fitHeight="78.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/fidi.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
+               <children>
+                  <Label opacity="0.8" text="Salle" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="88.0">
+               <children>
+                  <Label opacity="0.8" text="Event" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">
+               <children>
+                  <Label opacity="0.8" prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
+               <children>
+                  <Label text="Reclamation" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
+               <children>
+                  <Circle fx:id="image" fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button fx:id="name" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
+                  <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/—Pngtree—red%20shopping%20cart%20icon%20png_4480557.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="dark-background" />
+            <String fx:value="border-bottom" />
+         </styleClass>
+      </HBox>
+      <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="228.0" prefHeight="464.0" prefWidth="557.0" style="-fx-background-color: #000000;" styleClass="dark-background" stylesheets="@style.css">
+         <content>
+            <GridPane fx:id="grid" prefHeight="465.0" prefWidth="536.0" styleClass="dark-background" stylesheets="@style.css">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Label layoutX="388.0" layoutY="129.0" prefHeight="58.0" prefWidth="237.0" text="Les reclamations" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="25.0" />
+         </font>
+      </Label>
+      <HBox layoutX="457.0" layoutY="185.0" prefHeight="4.0" prefWidth="80.0" style="-fx-background-color: #B80000;" />
+      <JFXTextField fx:id="titrefxid" layoutX="684.0" layoutY="291.0" prefHeight="31.0" prefWidth="262.0" promptText="Titre : " />
+      <Label layoutX="594.0" layoutY="299.0" prefHeight="21.0" prefWidth="88.0" text="Titre : " textFill="WHITE" />
+      <JFXComboBox fx:id="produitfxid" focusColor="WHITE" layoutX="682.0" layoutY="229.0" prefHeight="31.0" prefWidth="262.0" promptText="Choisir un produit" style="-fx-background-color: white;" unFocusColor="WHITE" />
+      <Label layoutX="594.0" layoutY="234.0" prefHeight="21.0" prefWidth="88.0" text="Produits : " textFill="WHITE" />
+      <Label layoutX="594.0" layoutY="361.0" prefHeight="21.0" prefWidth="88.0" text="Contenu :" textFill="WHITE" />
+      <TextArea fx:id="contenufxid" layoutX="684.0" layoutY="360.0" prefHeight="182.0" prefWidth="262.0" promptText="Contenu : " wrapText="true" />
+      <JFXButton fx:id="send" layoutX="711.0" layoutY="563.0" onMouseClicked="#sendreclamation" prefHeight="31.0" prefWidth="200.0" ripplerFill="WHITE" style="-fx-background-color: F94242; -fx-background-radius: 8;" text="Envoyer Reclamation" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXButton>
+   </children>
+   <styleClass>
+      <String fx:value="border-bottom" />
+      <String fx:value="dark-background" />
+   </styleClass>
+</AnchorPane>

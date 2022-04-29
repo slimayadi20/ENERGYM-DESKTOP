@@ -18,6 +18,16 @@ public class Reclamation {
     String statut;
     Date date;
     int NomUser;
+    int produit;
+
+    public Reclamation(String titre, String contenu, String statut, Date date, int NomUser, int produit) {
+        this.titre = titre;
+        this.contenu = contenu;
+        this.statut = statut;
+        this.date = date;
+        this.NomUser = NomUser;
+        this.produit = produit;
+    }
 
     public Reclamation(String titre, String contenu, int NomUser, Date date) {
         this.titre = titre;
@@ -87,6 +97,14 @@ public class Reclamation {
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
+    }
+
+    public int getProduit() {
+        return produit;
+    }
+
+    public void setProduit(int produit) {
+        this.produit = produit;
     }
 
     @Override

@@ -32,6 +32,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -103,7 +104,7 @@ public class ReplyReclamationController implements Initializable {
     @FXML
     private JFXTextField titlefxid;
     @FXML
-    private JFXTextArea messagefxd;
+    private HTMLEditor messagefxd;
     int id;
     int nomUser;
     @FXML
@@ -120,7 +121,7 @@ public class ReplyReclamationController implements Initializable {
 
     @FXML
     private void resetPage(ActionEvent event) {
-        messagefxd.setText("");
+        messagefxd.setHtmlText("");
         titlefxid.setText("");
     }
 
@@ -192,7 +193,7 @@ public class ReplyReclamationController implements Initializable {
 
     @FXML
     private void send(MouseEvent event) {
-        String contenu = messagefxd.getText();
+        String contenu = messagefxd.getHtmlText();
         String title = titlefxid.getText();
         Date date = new Date(System.currentTimeMillis());
         ReclamationService rs = new ReclamationService();

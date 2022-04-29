@@ -32,8 +32,8 @@ public class ReclamationService {
         try {
             Statement st;
             st = cnx.createStatement();
-            String query = "INSERT INTO `reclamation`( `titre`, `date_creation`, `contenu`, `statut`,`nom_user_id`) "
-                    + "VALUES ('" + t.getTitre() + "','" + t.getDate() + "','" + t.getContenu() + "','" + "encours" + "','" + t.getNomUser() + "')";
+            String query = "INSERT INTO `reclamation`( `titre`, `date_creation`, `contenu`, `statut`,`nom_user_id`,`produit`) "
+                    + "VALUES ('" + t.getTitre() + "','" + t.getDate() + "','" + t.getContenu() + "','" + "encours" + "','" + t.getNomUser() + "','" + t.getProduit() + "')";
             st.executeUpdate(query);
             System.out.println("Reclamation ajouter avec success");
         } catch (SQLException ex) {
@@ -41,18 +41,18 @@ public class ReclamationService {
         }
     }
 
-    public void ajouterReply(Reply t,int id) {
+    public void ajouterReply(Reply t, int id) {
         try {
             Statement st;
             st = cnx.createStatement();
-                        PreparedStatement pt;
+            PreparedStatement pt;
 
             String query = "INSERT INTO `reply`( `contenu`, `email_receiver`, `email_sender`, `reclamation_id`) "
                     + "VALUES ('" + t.getContenu() + "','" + t.getEmail_receiver() + "','" + t.getEmail_sender() + "','" + t.getReclamation() + "')";
             pt = cnx.prepareStatement("UPDATE `reclamation` SET `statut`=? WHERE id=?");
-            String etat= "traite" ;
+            String etat = "traite";
             pt.setString(1, etat);
-            pt.setInt(2,id);
+            pt.setInt(2, id);
             if (pt.executeUpdate() == 1) {
                 System.out.println("Reclamation modifier avec success");
             } else {
@@ -86,6 +86,27 @@ public class ReclamationService {
             Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lu;
+    }
+
+    public Reply afficherReplybyid(float id) {
+        Reply u = new Reply();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from reply where reclamation_id=" + id;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                //  System.out.println(rs);
+                u.setEmail_receiver(rs.getString("email_receiver"));
+                u.setEmail_sender(rs.getString("email_sender"));
+                u.setContenu(rs.getString("contenu"));
+                u.setReclamation(rs.getInt("reclamation_id"));
+                u.setId(rs.getInt("id"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
     }
 
     public Reclamation afficherbyid(int id) {
@@ -176,6 +197,31 @@ public class ReclamationService {
                 u.setContenu(rs.getString("contenu"));
                 u.setStatut(rs.getString("statut"));
                 u.setId(rs.getInt("id"));
+                u.setProduit(rs.getInt("produit"));
+                u.setNomUser(rs.getInt("nom_user_id"));
+
+                lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+    public List<Reclamation> afficherbyuser(int id) {
+        List<Reclamation> lu = new ArrayList<>();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from Reclamation where nom_user_id="+id;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                //  System.out.println(rs);
+                Reclamation u = new Reclamation();
+                u.setTitre(rs.getString("titre"));
+                u.setDate(rs.getDate("date_creation"));
+                u.setContenu(rs.getString("contenu"));
+                u.setStatut(rs.getString("statut"));
+                u.setId(rs.getInt("id"));
+                u.setProduit(rs.getInt("produit"));
                 u.setNomUser(rs.getInt("nom_user_id"));
 
                 lu.add(u);
