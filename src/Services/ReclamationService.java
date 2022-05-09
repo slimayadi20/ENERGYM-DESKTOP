@@ -198,6 +198,7 @@ public class ReclamationService {
                 u.setStatut(rs.getString("statut"));
                 u.setId(rs.getInt("id"));
                 u.setProduit(rs.getInt("produit"));
+                System.out.println("service produit  = "+rs.getInt("produit"));
                 u.setNomUser(rs.getInt("nom_user_id"));
 
                 lu.add(u);
@@ -207,11 +208,12 @@ public class ReclamationService {
         }
         return lu;
     }
+
     public List<Reclamation> afficherbyuser(int id) {
         List<Reclamation> lu = new ArrayList<>();
         try {
             Statement st = cnx.createStatement();
-            String query = "select * from Reclamation where nom_user_id="+id;
+            String query = "select * from Reclamation where nom_user_id=" + id;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 //  System.out.println(rs);

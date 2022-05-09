@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="414.0" spacing="17.0" style="-fx-background-radius: 10; -fx-background-color: #ffff;" styleClass="btn" stylesheets="@tableview.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIBACK.AddCoursController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="394.0" style="-fx-background-color: #AC005D;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutnomfx" alignment="TOP_CENTER" promptText="Nom du cours" style="-fx-background-radius: 10;" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Separator prefHeight="1.0" prefWidth="333.0" />
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="55.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutcoachfx" alignment="CENTER" promptText="Nom du Coach" style="-fx-background-radius: 10;" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="91.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutnombrefx" alignment="TOP_CENTER" promptText="Nombre" style="-fx-background-radius: 10;" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="127.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <TextField fx:id="ajoutdescriptionfx" alignment="TOP_CENTER" promptText="Description" style="-fx-background-radius: 10;" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="163.0" prefHeight="36.0" prefWidth="282.0">
+         <children>
+            <Button fx:id="upload" mnemonicParsing="false" onMouseClicked="#uploadimage" prefHeight="31.0" prefWidth="112.0" style="-fx-background-radius: 10;" text="choisr image" textFill="#ac005d" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="271.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <ComboBox fx:id="ajoutsalleassocié" prefHeight="31.0" prefWidth="193.0" promptText="Salle associé" style="-fx-background-radius: 10; -fx-background-color: #AC005D;" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="307.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <ComboBox fx:id="ajoutjourfx" prefHeight="31.0" prefWidth="195.0" promptText="Jour" style="-fx-background-radius: 10; -fx-background-color: #AC005D;" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="343.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <JFXTimePicker fx:id="ajoutheuredfx" defaultColor="#ac005d" prefHeight="31.0" prefWidth="189.0" promptText="Heure de debut" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="379.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <JFXTimePicker fx:id="ajoutheureffx" defaultColor="#ac005d" prefHeight="31.0" prefWidth="188.0" promptText="Heure de fin" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="18.0" layoutY="415.0" prefHeight="36.0" prefWidth="584.0">
+         <children>
+            <Button fx:id="send" mnemonicParsing="false" onMouseClicked="#savetf" style="-fx-background-radius: 10;" text="Enregistrer" textAlignment="CENTER" textFill="#ac005d" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+   <opaqueInsets>
+      <Insets top="10.0" />
+   </opaqueInsets>
+</VBox>

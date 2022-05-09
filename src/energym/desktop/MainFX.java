@@ -30,9 +30,9 @@ public class MainFX extends Application {
     public void start(Stage primaryStage) {
           try {
 
-            //     Parent root = FXMLLoader.load(getClass().getResource("/GUI/ReclamationFront.fxml"));
-                Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
-            //   Parent root = FXMLLoader.load(getClass().getResource("/GUI/User.fxml"));
+          //       Parent root = FXMLLoader.load(getClass().getResource("/GUI/HomeFront.fxml"));
+               Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
+           //  Parent root = FXMLLoader.load(getClass().getResource("/GUIBACK/Article.fxml"));
 
             Scene scene = new Scene(root);
 

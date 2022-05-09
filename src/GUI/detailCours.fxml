@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainmoviespane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="960.0" styleClass="dark-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DetailCoursController">
+   <children>
+      <AnchorPane prefHeight="777.0" prefWidth="956.0" style="-fx-background-color: #E8E8E8;" styleClass="dark-background">
+         <children>
+            <HBox layoutX="880.0" prefHeight="35.0">
+               <children>
+                  <JFXButton fx:id="minimisebtn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#minimiseWindow" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" textFill="WHITE">
+                     
+                  </JFXButton>
+                  <JFXButton fx:id="closebtn" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleClose" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE">
+                    
+                  </JFXButton>
+               </children>
+            </HBox>
+            <AnchorPane fx:id="tablepane" layoutX="-2.0" prefHeight="777.0" prefWidth="960.0" styleClass="dark-background">
+               <children>
+                  <AnchorPane fx:id="SCREEN1" layoutX="21.0" layoutY="87.0" onMouseEntered="#tileHover" onMouseExited="#tileExit" prefHeight="71.0" prefWidth="123.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" styleClass="tiles">
+                     <children>
+                        <Label layoutX="29.0" prefHeight="70.0" prefWidth="80.0" text="Lundi" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Line endX="680.0" layoutX="232.0" layoutY="174.0" startX="-216.0" stroke="WHITE" strokeWidth="0.6" />
+                  <Line endX="680.0" layoutX="234.0" layoutY="274.0" startX="-217.0" stroke="WHITE" strokeWidth="0.6" />
+                  <Line endX="680.0" layoutX="234.0" layoutY="368.0" startX="-217.0" stroke="WHITE" strokeMiterLimit="0.0" strokeWidth="0.6" />
+                  <Line endX="687.0" endY="-1.0" layoutX="227.0" layoutY="472.0" startX="-208.0" stroke="WHITE" strokeWidth="0.6" />
+                  <Line endX="684.0" layoutX="230.0" layoutY="568.0" startX="-208.0" stroke="WHITE" strokeWidth="0.6" />
+                  <AnchorPane fx:id="SCREEN16" layoutX="21.0" layoutY="187.0" onMouseEntered="#tileHover" onMouseExited="#tileExit" prefHeight="71.0" prefWidth="112.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" styleClass="tiles">
+                     <children>
+                        <Label layoutX="33.0" prefHeight="70.0" prefWidth="90.0" text="Mardi" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Line endX="687.0" layoutX="230.0" layoutY="669.0" startX="-208.0" stroke="WHITE" strokeWidth="0.6" />
+                  <Label layoutX="369.0" layoutY="28.0" prefHeight="35.0" prefWidth="220.0" text="Planning des cours" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="SCREEN161" layoutX="21.0" layoutY="287.0" onMouseEntered="#tileHover" onMouseExited="#tileExit" prefHeight="71.0" prefWidth="112.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" styleClass="tiles">
+                     <children>
+                        <Label prefHeight="70.0" prefWidth="123.0" text="   Mercredi" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="SCREEN1614" layoutX="21.0" layoutY="389.0" onMouseEntered="#tileHover" onMouseExited="#tileExit" prefHeight="71.0" prefWidth="112.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" styleClass="tiles">
+                     <children>
+                        <Label layoutX="33.0" prefHeight="70.0" prefWidth="90.0" text="Jeudi" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="SCREEN1613" layoutX="21.0" layoutY="584.0" onMouseEntered="#tileHover" onMouseExited="#tileExit" prefHeight="71.0" prefWidth="112.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" styleClass="tiles">
+                     <children>
+                        <Label layoutX="24.0" prefHeight="70.0" prefWidth="99.0" text="Samedi" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="SCREEN1612" layoutX="21.0" layoutY="685.0" onMouseEntered="#tileHover" onMouseExited="#tileExit" prefHeight="71.0" prefWidth="112.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" styleClass="tiles">
+                     <children>
+                        <Label layoutX="11.0" prefHeight="70.0" prefWidth="112.0" text="Dimanche" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="SCREEN1611" layoutX="21.0" layoutY="486.0" onMouseEntered="#tileHover" onMouseExited="#tileExit" prefHeight="71.0" prefWidth="112.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" styleClass="tiles">
+                     <children>
+                        <Label layoutX="11.0" prefHeight="70.0" prefWidth="112.0" text="Vendredi" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <GridPane fx:id="mardi" layoutX="157.0" layoutY="179.0" prefHeight="87.0" prefWidth="790.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="mercredi" layoutX="157.0" layoutY="279.0" prefHeight="87.0" prefWidth="756.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="jeudi" layoutX="157.0" layoutY="372.0" prefHeight="96.0" prefWidth="756.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="vendredi" layoutX="157.0" layoutY="478.0" prefHeight="87.0" prefWidth="756.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="samedi" layoutX="157.0" layoutY="576.0" prefHeight="87.0" prefWidth="756.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="dimanche" layoutX="162.0" layoutY="677.0" prefHeight="87.0" prefWidth="756.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="lundi" layoutX="157.0" layoutY="79.0" prefHeight="48.0" prefWidth="5.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <ImageView fitHeight="59.0" fitWidth="70.0" layoutX="35.0" layoutY="16.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   </children>
+</AnchorPane>

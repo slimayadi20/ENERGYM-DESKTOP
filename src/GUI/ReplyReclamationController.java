@@ -13,7 +13,6 @@ import Services.UserService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import static energym.desktop.MainFX.UserconnectedC;
 import java.io.IOException;
@@ -181,7 +180,7 @@ public class ReplyReclamationController implements Initializable {
             mainpane.getChildren().setAll(panee);
         }
         if (actionEvent.getSource() == homebtn) {
-            AnchorPane panee = FXMLLoader.load(getClass().getResource("home.fxml"));
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("HomeBack.fxml"));
             mainpane.getChildren().setAll(panee);
         }
 
@@ -202,7 +201,7 @@ public class ReplyReclamationController implements Initializable {
         Reply t = new Reply(contenu, email, UserconnectedC.getEmail(), id);
         rs.ajouterReply(t, id);
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/GUI/Reclamation.fxml"));
+        loader.setLocation(getClass().getResource("/GUIBACK/Reclamation.fxml"));
         try {
             loader.load();
         } catch (Exception ex) {
@@ -232,7 +231,7 @@ public class ReplyReclamationController implements Initializable {
         this.nomUser = nomUser;
     }
 
-    void parameter(int id, int nomUser) {
+    public void parameter(int id, int nomUser) {
         this.id = id;
         this.nomUser = nomUser;
     }

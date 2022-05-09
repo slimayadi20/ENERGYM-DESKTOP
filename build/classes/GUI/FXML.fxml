@@ -9,6 +9,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,7 +23,10 @@
     <children>
       <AnchorPane fx:id="mainLayer" layoutX="386.0" prefHeight="586.0" prefWidth="689.0" style="-fx-background-color: white;">
          <children>
-            <PasswordField fx:id="passwordPF" layoutX="68.0" layoutY="172.0" promptText="Password" />
+            <PasswordField fx:id="passwordPF" layoutX="68.0" layoutY="172.0" promptText="Password">
+               <tooltip>
+                  <Tooltip text="password requires 1 digit \npassword &gt;8 \n password requires letters " wrapText="true" />
+               </tooltip></PasswordField>
             <TextField fx:id="nameTF" layoutX="68.0" layoutY="297.0" promptText="Name " />
             <TextField fx:id="emailTF" layoutX="68.0" layoutY="100.0" promptText="Email" />
             <Label fx:id="e_mail" layoutX="68.0" layoutY="131.0" prefHeight="26.0" prefWidth="187.0" textFill="RED">
@@ -164,7 +168,7 @@
             </ImageView>
             <JFXDatePicker fx:id="dpdate" layoutX="383.0" layoutY="161.0" />
             <JFXCheckBox fx:id="chkPasswordMask" checkedColor="#109c56" layoutX="440.0" layoutY="238.0" onMouseClicked="#chkPasswordMaskAction" prefHeight="21.0" prefWidth="14.0" />
-            <JFXTextField fx:id="txtPasswordShown" layoutX="243.0" layoutY="233.0" prefHeight="31.0" prefWidth="187.0" />
+            <JFXTextField fx:id="txtPasswordShown" layoutX="243.0" layoutY="232.0" prefHeight="31.0" prefWidth="187.0" />
             <ProgressBar fx:id="strength" layoutX="70.0" layoutY="204.0" prefHeight="23.0" prefWidth="187.0" progress="0.0" />
          </children>
       </AnchorPane>

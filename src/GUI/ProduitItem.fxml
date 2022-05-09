@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="298.0" styleClass="shadow" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProduitItemController">
+   <children>
+      <Pane prefHeight="182.0" prefWidth="298.0" styleClass="gradient" stylesheets="@style.css" />
+      <ImageView fx:id="image" fitHeight="182.0" fitWidth="297.0" pickOnBounds="true" smooth="false" />
+      <Rating fx:id="rating" layoutX="64.0" layoutY="136.0" />
+      <Label fx:id="nom" layoutX="79.0" layoutY="98.0" text="Nom du produit" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="prix" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="59.0" text="12 $ " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="qte" layoutX="225.0" layoutY="14.0" prefHeight="30.0" prefWidth="59.0" text="qte : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

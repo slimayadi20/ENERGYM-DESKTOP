@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import GUIBACK.ProfileController;
 import Entities.LoginAttempt;
 import Entities.User;
 import Services.CryptWithMD5;
@@ -244,6 +245,8 @@ public class FXMLController implements Initializable {
 
         loginTF.setText("slim.ayadi@esprit.tn");
         passwordTF.setText("azertyuiop");
+        txtPasswordShown.setVisible(false);
+
 // idn 
         try {
             URL url_name = new URL("http://checkip.amazonaws.com/");
@@ -281,7 +284,7 @@ public class FXMLController implements Initializable {
 
         voice.allocate();
         try {
-            //   voice.speak("Welcome Back to Energym");
+            //    voice.speak("Welcome Back to Energym");
             System.out.println("welcome");
         } catch (Exception e) {
 
@@ -324,7 +327,6 @@ public class FXMLController implements Initializable {
         e_password.setVisible(false);
         e_password.setVisible(false);
         chkPasswordMask.setVisible(true);
-        txtPasswordShown.setVisible(true);
 
         //Login and password TF
         userIcon.setVisible(true);
@@ -582,6 +584,7 @@ public class FXMLController implements Initializable {
             imgProgress.setVisible(false);
             txtPasswordShown.setVisible(true);
             chkPasswordMask.setVisible(true);
+            txtPasswordShown.setVisible(false);
 
             slide.setToX(689);
             slide.play();
@@ -648,10 +651,12 @@ public class FXMLController implements Initializable {
         passwordTF.setText("azertyuiop");
 
     }
-private void tooltip(){
-  /*  Tooltip passwordTip = new ToolTip("password requires 1 digit \n password >8 \n "
+
+    private void tooltip() {
+        /*  Tooltip passwordTip = new ToolTip("password requires 1 digit \n password >8 \n "
             + "password requires letters");*/
-}
+    }
+
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -810,6 +815,7 @@ private void tooltip(){
         User lu = us.findByUsername(loginTF.getText());
         imgProgress.setVisible(false);
         strength.setVisible(false);
+        txtPasswordShown.setVisible(false);
 
         if (us.countRecentLoginAttempts(loginTF.getText()) < 4) {
             System.out.println(us.countRecentLoginAttempts(loginTF.getText()));
@@ -832,7 +838,7 @@ private void tooltip(){
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                                     stageclose.close();
-                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUIBACK/Users.fxml"));
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
@@ -858,7 +864,7 @@ private void tooltip(){
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                                     stageclose.close();
-                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Users.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("../GUIBACK/Users.fxml"));
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
@@ -884,7 +890,7 @@ private void tooltip(){
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                                     stageclose.close();
-                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/ReclamationFront.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/HomeFront.fxml"));
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
@@ -911,7 +917,7 @@ private void tooltip(){
 
             } else {
                 java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-                LoginAttempt t = new LoginAttempt("127.0.0.1", date, loginTF.getText(), "");
+                LoginAttempt t = new LoginAttempt(AIP, date, loginTF.getText(), "");
                 us.ajouterLoginAttempt(t);
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Login fail");
@@ -928,7 +934,7 @@ private void tooltip(){
             valSignInBtn.setDisable(true); //       Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
             String image = openWebcam();
             java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-            LoginAttempt t = new LoginAttempt("127.0.0.1", date, loginTF.getText(), image);
+            LoginAttempt t = new LoginAttempt(AIP, date, loginTF.getText(), image);
             us.ajouterLoginAttempt(t);
             pauseTransition3.setOnFinished(ev -> {
                 valSignInBtn.setDisable(false);
@@ -1030,6 +1036,8 @@ private void tooltip(){
 
     @FXML
     private void chkPasswordMaskAction(MouseEvent event) {
+        txtPasswordShown.setVisible(false);
+
         if (chkPasswordMask.isSelected()) {
             txtPasswordShown.setText(passwordTF.getText());
             txtPasswordShown.setVisible(true);

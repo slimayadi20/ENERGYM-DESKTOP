@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DetailSalleCoursController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1000.0" stylesheets="@style.css">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="115.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0">
+                     <children>
+                        <ImageView fitHeight="78.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/fidi.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
+               <children>
+                  <Label onMouseClicked="#salle" text="Salle" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="88.0">
+               <children>
+                  <Label onMouseClicked="#event" opacity="0.8" text="Event" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">
+               <children>
+                  <Label onMouseClicked="#produit" opacity="0.8" prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
+               <children>
+                  <Label onMouseClicked="#reclamation" opacity="0.79" text="Reclamation" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/—Pngtree—red%20shopping%20cart%20icon%20png_4480557.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Circle fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="dark-background" />
+            <String fx:value="border-bottom" />
+         </styleClass>
+      </HBox>
+      <Label fx:id="nomfrontfx" alignment="TOP_CENTER" layoutX="33.0" layoutY="124.0" prefHeight="41.0" prefWidth="162.0" text="Nom salle" textFill="#dd1010">
+         <font>
+            <Font name="Tahoma Bold" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imagefrontfx" fitHeight="295.0" fitWidth="439.0" layoutX="570.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: 4;" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="36.666656494140625" AnchorPane.topAnchor="134.0">
+         <image>
+            <Image url="@../../../ENERGYM-DESKTOP-Slim/src/images/edc0ab8.jpg" />
+         </image></ImageView>
+      <Separator layoutX="51.0" layoutY="158.0" prefHeight="15.0" prefWidth="418.0" />
+      <HBox layoutX="570.0" layoutY="534.0" prefHeight="31.0" prefWidth="393.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/email.png" />
+               </image></ImageView>
+            <Label fx:id="mailfrontfx" prefHeight="30.0" prefWidth="368.0" text="mail" />
+         </children>
+      </HBox>
+      <HBox layoutX="45.0" layoutY="215.0" prefHeight="31.0" prefWidth="430.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <Label fx:id="descriptionfrontfx" prefHeight="31.0" prefWidth="431.0" text="description" />
+         </children>
+      </HBox>
+      <Separator layoutX="536.0" layoutY="125.0" orientation="VERTICAL" prefHeight="548.0" prefWidth="5.0" />
+      <HBox layoutX="570.0" layoutY="597.0" prefHeight="31.0" prefWidth="393.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="31.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/location.png" />
+               </image></ImageView>
+            <Label fx:id="adressefrontfx" prefHeight="31.0" prefWidth="340.0" text="adresse" />
+         </children>
+      </HBox>
+      <HBox layoutX="570.0" layoutY="473.0" prefHeight="31.0" prefWidth="393.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/telefono.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="telfrontfx" prefHeight="31.0" prefWidth="377.0" text="   tel" />
+         </children>
+      </HBox>
+      <HBox layoutX="199.0" layoutY="335.0" prefHeight="31.0" prefWidth="162.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clock.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="heureofrontfx" prefHeight="31.0" prefWidth="48.0" text="Label" />
+            <Label prefHeight="31.0" prefWidth="13.0" text="-" />
+            <Label fx:id="heureffrontfx" prefHeight="31.0" prefWidth="70.0" text="Label" />
+         </children>
+      </HBox>
+      <HBox layoutX="45.0" layoutY="474.0" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="42.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gold-medal.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="prix1frontfx" prefHeight="25.0" prefWidth="34.0" text="prix 1" />
+            <Label prefHeight="26.0" prefWidth="33.0" text="DT" />
+         </children>
+      </HBox>
+      <Button fx:id="voirplanning" layoutX="22.0" layoutY="628.0" mnemonicParsing="false" style="-fx-background-radius: 15;" text="Voir le planning Des Cours" />
+      <Button layoutX="350.0" layoutY="628.0" mnemonicParsing="false" style="-fx-background-radius: 15;" text="Notre Page facebook" fx:id="x" />
+      <HBox layoutX="207.0" layoutY="474.0" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="42.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/silver-medal.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="prix2frontfx" prefHeight="25.0" prefWidth="40.0" text="prix 2" />
+            <Label prefHeight="26.0" prefWidth="33.0" text="DT" />
+         </children>
+      </HBox>
+      <HBox layoutX="369.0" layoutY="474.0" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="42.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bronze-medal.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="prix3frontfx" prefHeight="25.0" prefWidth="42.0" text="prix 3" />
+            <Label prefHeight="26.0" prefWidth="33.0" text="DT" />
+         </children>
+      </HBox>
+      <Separator layoutX="129.0" layoutY="429.0" prefHeight="15.0" prefWidth="274.0" />
+      <Label alignment="TOP_CENTER" layoutX="71.0" layoutY="399.0" prefHeight="41.0" prefWidth="393.0" text=" 3 types d'abonnement " textFill="#dd1010">
+         <font>
+            <Font name="Tahoma Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="salleidd" layoutX="112.0" layoutY="576.0" />
+      <Label alignment="TOP_CENTER" layoutX="82.0" layoutY="273.0" prefHeight="41.0" prefWidth="393.0" text="Nos horaires" textFill="#dd1010">
+         <font>
+            <Font name="Tahoma Bold" size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="134.0" layoutY="294.0" prefHeight="15.0" prefWidth="274.0" />
+      <Button fx:id="voirlocation" layoutX="251.0" layoutY="628.0" mnemonicParsing="false" style="-fx-background-radius: 15;" text="Location" />
+   </children>
+   <styleClass>
+      <String fx:value="border-bottom" />
+      <String fx:value="dark-background" />
+   </styleClass>
+</AnchorPane>

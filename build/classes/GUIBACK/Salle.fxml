@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainmoviespane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIBACK.SalleController">
+   <children>
+      <AnchorPane layoutX="250.0" prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: FFFFFF;">
+         <children>
+            <AnchorPane fx:id="toppane" layoutY="-1.0" prefHeight="36.0" prefWidth="950.0" style="-fx-background-color: #AC005D;">
+               <children>
+                  <Label layoutX="425.0" layoutY="4.0" text="Nos Salles de sport" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                    
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox layoutX="880.0" prefHeight="35.0">
+               <children>
+                  <JFXButton fx:id="minimisebtn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#minimiseWindow" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" textFill="WHITE" />
+                  <JFXButton fx:id="closebtn" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleClose" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" />
+               </children>
+            </HBox>
+            <AnchorPane fx:id="moviepane" layoutX="33.0" layoutY="45.0" prefHeight="296.0" prefWidth="902.0" style="-fx-background-color: FFFFFF;" styleClass="tiles">
+               <children>
+                  <AnchorPane layoutX="175.0" layoutY="15.0" prefHeight="246.0" prefWidth="420.0" styleClass="tiles">
+                     <children>
+                        <AnchorPane fx:id="name_last_name" prefHeight="35.0" prefWidth="420.0" style="-fx-background-color: #AC005D; -fx-background-radius: 5;">
+                           <children>
+                              <Label fx:id="movietitle" layoutX="10.0" layoutY="4.0" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Line endX="400.0" layoutX="10.0" layoutY="70.0" stroke="#009688" strokeWidth="0.6" />
+                        <Line endX="400.0" layoutX="10.0" layoutY="110.0" stroke="#009688" strokeWidth="0.6" />
+                        <Line endX="400.0" layoutX="10.0" layoutY="150.0" stroke="#009688" strokeWidth="0.6" />
+                        <Line endX="400.0" layoutX="10.0" layoutY="190.0" stroke="#009688" strokeWidth="0.6" />
+                        <Label layoutX="15.0" layoutY="46.0" prefHeight="20.0" prefWidth="75.0" text="Prix Gold">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="86.0" prefHeight="20.0" prefWidth="75.0" text="Prix Silver">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="166.0" prefHeight="20.0" prefWidth="122.0" text="Heure d'ouverture ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="prix1fx" layoutX="250.0" layoutY="46.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="prix2fx" layoutX="250.0" layoutY="86.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="prix3fx" layoutX="250.0" layoutY="126.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="heureofx" layoutX="250.0" layoutY="166.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="130.0" text="Prix Bronze">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="7.0" layoutY="202.0" prefHeight="20.0" prefWidth="122.0" text="Heure de fermeture">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="heureffx" layoutX="249.0" layoutY="205.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <ImageView fx:id="imagefx" fitHeight="198.0" fitWidth="163.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/Icons/icons8-nom-100.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField fx:id="recherchetf" layoutX="611.0" layoutY="15.0" onKeyTyped="#recherche_avance" prefHeight="31.0" prefWidth="270.0" promptText="Search" />
+                  <VBox alignment="CENTER" layoutX="612.0" layoutY="73.0" prefHeight="59.0" prefWidth="283.0">
+                     <children>
+                        <Label fx:id="encoursfid" text="1500" textFill="#26bfbc">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label text="Salles" />
+                     </children>
+                  </VBox>
+                  <Line endX="400.0" layoutX="185.0" layoutY="244.0" stroke="#009688" strokeWidth="0.6" />
+                  <JFXButton fx:id="add" alignment="TOP_LEFT" buttonType="RAISED" graphicTextGap="20.0" layoutX="629.0" layoutY="203.0" onMouseClicked="#add" prefHeight="42.0" prefWidth="246.0" style="-fx-background-color: #AC005D; -fx-background-radius: 5; -fx-translate-x: 2;" text="Ajouter une salle de sport" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </JFXButton>
+                  <ImageView fx:id="refresh" fitHeight="30.0" fitWidth="35.0" layoutX="648.0" layoutY="159.0" onMouseClicked="#refreshfct" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/refresh_mauve.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="48.0" layoutX="812.0" layoutY="156.0" onMouseClicked="#PDFSalle" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pdficonmauve.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tableviewsalle" layoutX="19.0" layoutY="365.0" prefHeight="315.0" prefWidth="913.0">
+               <columns>
+                  <TableColumn fx:id="nomfx" prefWidth="133.0" style="-fx-alignement: center;" text="Nom" />
+                  <TableColumn fx:id="adressefx" prefWidth="175.0" style="-fx-alignement: center;" text="Adresse" />
+                  <TableColumn fx:id="telfx" prefWidth="144.0" style="-fx-alignement: center;" text="Telephone" />
+                  <TableColumn fx:id="mailfx" prefWidth="134.0" style="-fx-alignement: center;" text="Mail" />
+                  <TableColumn fx:id="descriptionfx" prefWidth="209.0" style="-fx-alignement: center;" text="Description" />
+                  <TableColumn fx:id="actionsfx" prefWidth="117.0" style="-fx-alignement: center;" text="Actions" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="leftpane1" prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: #AC005D;">
+         <children>
+            <JFXButton fx:id="homebtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="81.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnProfile" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="123.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Profile" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnUsers" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="164.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Users" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="logoutbtn1" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="646.0" onAction="#logOut" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="POWER" size="20" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="73.0" layoutY="31.0" text="ENERGYM" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Line endX="230.0" fill="WHITE" layoutX="10.0" layoutY="62.0" opacity="0.85" stroke="WHITE" strokeLineCap="ROUND" />
+            <JFXButton fx:id="btnReclamation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="207.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reclamation" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnReply" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="248.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reply" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnsalle" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="289.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Salles de sport" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btncours" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="9.0" layoutY="329.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Cours" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnproduit" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="369.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Produits" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btncategories" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="9.0" layoutY="410.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Categories" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnevenement" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="9.0" layoutY="453.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Evenement" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btncategoriesevent" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="9.0" layoutY="497.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="CategoriesEvent" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnparticipation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="9.0" layoutY="537.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" prefHeight="40.0" prefWidth="230.0" text="Participation" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

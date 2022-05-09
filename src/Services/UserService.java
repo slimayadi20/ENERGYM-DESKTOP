@@ -52,7 +52,7 @@ public class UserService {
             Statement st;
             st = cnx.createStatement();
             String query = "INSERT INTO `user`( `nom`, `prenom`, `email`, `roles`, `phone`, `password`, `created_at`, `status`, `image_file` ,`activation_token`,`birthday`) "
-                    + "VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getRoles() + "','" + t.getPhone() + "','" + cryptWithMD5(t.getPassword()) + "','" + t.getCreated_at() + "','" + t.getStatus() + "','" + t.getImageFile() + "','" + t.getActivation_token() +  "','" + t.getBirthday()+ "')";
+                    + "VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getRoles() + "','" + t.getPhone() + "','" + cryptWithMD5(t.getPassword()) + "','" + t.getCreated_at() + "','" + t.getStatus() + "','" + t.getImageFile() + "','" + t.getActivation_token() + "','" + t.getBirthday() + "')";
             st.executeUpdate(query);
             System.out.println("user ajouter avec success");
         } catch (SQLException ex) {
@@ -401,7 +401,7 @@ public class UserService {
                 cell.addElement(new Chunk(img, 5, -5));
 
                 cell.setFixedHeight(80);
-                 cell.setPaddingTop(50);
+                cell.setPaddingTop(50);
                 table.addCell(cell);
             }
 

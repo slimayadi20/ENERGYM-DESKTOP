@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import GUIBACK.ProfileController;
 import Entities.Produit;
 import Entities.Reclamation;
 import Entities.User;
@@ -15,6 +16,7 @@ import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import com.lowagie.text.DocumentException;
 import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
@@ -33,6 +35,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,6 +58,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
@@ -78,9 +82,7 @@ public class ProfileFrontController implements Initializable {
     List<User> liste = new ArrayList<User>();
     UserService us = new UserService();
     ObservableList<String> ss = FXCollections.observableArrayList();
-    @FXML
     private Circle image;
-    @FXML
     private Button name;
     @FXML
     private Pane paneNoir;
@@ -119,6 +121,22 @@ public class ProfileFrontController implements Initializable {
     StringBuilder errors = new StringBuilder();
     @FXML
     private Hyperlink HyHistoCnx;
+    @FXML
+    private HBox hboxnavbar;
+    @FXML
+    private Label sallefxid;
+    @FXML
+    private Label eventfxid;
+    @FXML
+    private Label produitfxid;
+    @FXML
+    private Label reclamationfxid;
+    @FXML
+    private Button namefxid;
+    @FXML
+    private JFXToggleButton btnEditMode;
+    @FXML
+    private AnchorPane mainpane;
 
     /**
      * Initializes the controller class.
@@ -136,9 +154,18 @@ public class ProfileFrontController implements Initializable {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
         setUser();
+        mainpane.setOpacity(0);
+        makeFadeInTransition();
+    }
+   private void makeFadeInTransition() {
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(mainpane);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
 
     }
-
     private void logOut(ActionEvent event) {
         try {
             Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -345,15 +372,64 @@ public class ProfileFrontController implements Initializable {
         }
     }
 
-    @FXML
-    private void reclamation(MouseEvent event) throws IOException {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("ReclamationFront.fxml"));/* Exception */
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+    private void makeFadeOut(String a) {
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(mainpane);
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+        fadeTransition.setOnFinished((event) -> {
+            try {
+                Stage stage = (Stage) mainpane.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
 
-        stage.show();
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        fadeTransition.play();
     }
 
+  @FXML
+    private void reclamation(MouseEvent event) throws IOException {
+        makeFadeOut("ReclamationFront.fxml");
+
+    }
+
+    @FXML
+    private void event(MouseEvent event) throws IOException {
+        makeFadeOut("Evenement.fxml");
+
+    }
+
+    @FXML
+    private void home(MouseEvent event) {
+        makeFadeOut("HomeFront.fxml");
+
+    }
+
+    @FXML
+    private void salle(MouseEvent event) {
+        makeFadeOut("Salle.fxml");
+
+    }
+
+    @FXML
+    private void produit(MouseEvent event) {
+        makeFadeOut("Produit.fxml");
+
+    }
+
+    @FXML
+    private void profile(MouseEvent event) {
+        makeFadeOut("ProfileFront.fxml");
+
+    }
+
+    @FXML
+    private void btnEditModeToggle(MouseEvent event) {
+    }
 }
