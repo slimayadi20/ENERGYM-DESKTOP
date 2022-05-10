@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="1017.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SalleController">
@@ -32,13 +33,14 @@
          </font>
       </Label>
       <HBox layoutX="431.0" layoutY="182.0" prefHeight="7.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" />
-      <HBox fx:id="hboxnavbar" alignment="CENTER" layoutX="-7.0" prefHeight="118.0" prefWidth="1023.0" stylesheets="@style.css">
+      <Button fx:id="boutonimc" layoutX="697.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#boutomimc" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" text="Calculer IMC" />
+      <HBox fx:id="hboxnavbar" alignment="CENTER" layoutY="-8.0" prefHeight="118.0" prefWidth="1023.0" stylesheets="@style.css">
          <children>
             <HBox prefHeight="100.0" prefWidth="115.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0">
+                  <HBox alignment="CENTER" prefHeight="116.0" prefWidth="153.0">
                      <children>
-                        <ImageView fitHeight="78.0" fitWidth="93.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="78.0" fitWidth="110.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/fidi.jpg" />
                            </image>
@@ -48,6 +50,11 @@
                </children>
             </HBox>
             <Pane prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
+               <children>
+                  <Label fx:id="articlefxid" onMouseClicked="#article" opacity="0.8" text="Article" textFill="WHITE" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
                <children>
                   <Label fx:id="sallefxid" onMouseClicked="#salle" text="Salle" textFill="WHITE" />
@@ -71,7 +78,8 @@
             <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="boutonimc" mnemonicParsing="false" onMouseClicked="#boutomimc" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" text="Calculer IMC" />
+                  <Circle fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button fx:id="namefxid" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
                   <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/—Pngtree—red%20shopping%20cart%20icon%20png_4480557.png" />

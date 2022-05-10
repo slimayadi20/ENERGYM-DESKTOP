@@ -8,6 +8,7 @@ package Services;
 import Entities.Article;
 import Entities.Commentaire;
 import Tools.MyConnexion;
+import static com.sun.javafx.util.Utils.contains;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,8 +32,8 @@ public class CommentaireService {
         try {
             Statement st;
             st = cnx.createStatement();
-            String query = "INSERT INTO `commentaire`( `id`, `contenu`, `created_at`) "
-                    + "VALUES ('" + t.getId()+"','" + t.getContenu() + "','" + t.getCreated_at() + "')";
+            String query = "INSERT INTO `commentaire`( `id`,`article_id`,`user_id`, `contenu`, `date_creation`) "
+                    + "VALUES ('" + t.getId()+"','"+t.getArticle_id()+"','"+t.getUser_id()+"','" + badwords(t.getContenu()) + "','" + t.getCreated_at() + "')";
             st.executeUpdate(query);
             System.out.println("commentaire ajouté avec success");
         } catch (SQLException ex) {
@@ -87,8 +88,10 @@ public class CommentaireService {
             while (rs.next()) {
                 Commentaire u = new Commentaire();
                 u.setCreated_at(rs.getDate("date_creation"));
-                u.setContenu(rs.getString("description"));
+                u.setContenu(rs.getString("contenu"));
                 u.setId(rs.getInt("id"));
+                u.setUser_id(rs.getInt("user_id"));
+                u.setArticle_id(rs.getInt("article_id"));
                 lu.add(u);
             }
         } catch (SQLException ex) {
@@ -96,5 +99,40 @@ public class CommentaireService {
         }
         return lu;
     }
-
+   public List<Commentaire> afficherCommentaireByarticle(int id) {
+        List<Commentaire> lu = new ArrayList<>();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from commentaire where article_id="+id;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Commentaire u = new Commentaire();
+                u.setCreated_at(rs.getDate("date_creation"));
+                u.setContenu(rs.getString("contenu"));
+                u.setId(rs.getInt("id"));
+                u.setUser_id(rs.getInt("user_id"));
+                u.setArticle_id(rs.getInt("article_id"));
+                lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentaireService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+    //Métier BadWords
+    public String badwords(String comment){
+        
+        String result = comment;
+        String[] badwords = {"tuer","sang","con","merde","vomir","conne","putain"};
+        
+        for(String word : badwords){
+            //System.out.println(result);
+            if(contains(result,word)){
+                result=result.replace(word,"****");
+                //break;
+            }
+            //System.out.println(result);
+        }
+        return result;
+    }
 }

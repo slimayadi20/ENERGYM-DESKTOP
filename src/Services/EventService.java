@@ -139,6 +139,33 @@ public class EventService {
                 u.setImageFile(rs.getString("image"));
                 u.setEtatEvent(rs.getString("etat"));
                 u.setNbrPlacesEvent(rs.getString("nbr_participants_event"));
+                u.setTime(rs.getTimestamp("time"));
+                lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+    public List<Event> afficher2() {
+        List<Event> lu = new ArrayList<>();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select  * from evenement LIMIT 3";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Event u = new Event();
+
+                u.setDateEvent(rs.getDate("date_event"));
+                u.setCategories(rs.getInt("nom_categorie_id"));
+                u.setId(rs.getInt("id"));
+                u.setnomEvent(rs.getString("nom_event"));
+                u.setDescriptionEvent(rs.getString("description_event"));
+                u.setLieuEvent(rs.getString("lieu_event"));
+                u.setImageFile(rs.getString("image"));
+                u.setEtatEvent(rs.getString("etat"));
+                u.setNbrPlacesEvent(rs.getString("nbr_participants_event"));
+                u.setTime(rs.getTimestamp("time"));
                 lu.add(u);
             }
         } catch (SQLException ex) {
@@ -254,6 +281,7 @@ try {
                 u.setImageFile(rs.getString("image"));
                 u.setEtatEvent(rs.getString("etat"));
                 u.setNbrPlacesEvent(rs.getString("nbr_participants_event"));
+                u.setTime(rs.getTimestamp("time"));
 
             }
         } catch (SQLException ex) {

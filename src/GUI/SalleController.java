@@ -65,6 +65,10 @@ public class SalleController implements Initializable {
     private JFXToggleButton btnEditMode;
     @FXML
     private AnchorPane mainpane;
+    @FXML
+    private Label articlefxid;
+    @FXML
+    private Button namefxid;
 
     /**
      * Initializes the controller class.
@@ -102,7 +106,7 @@ public class SalleController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-         mainpane.setOpacity(0);
+        mainpane.setOpacity(0);
         makeFadeInTransition();
 
     }
@@ -115,12 +119,20 @@ public class SalleController implements Initializable {
         fadeTransition.play();
 
     }
-    private void handleHome(MouseEvent event) throws IOException {
-        makeFadeOut("HomeFront");
-    }
 
-    private void handleProfile(MouseEvent event) throws IOException {
-             makeFadeOut("ProfileFront") ;
+    private void makeFadeInTransition(String a) {
+
+        try {
+            Stage stage = (Stage) mainpane.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
@@ -142,39 +154,39 @@ public class SalleController implements Initializable {
         stage.show();
     }
 
- @FXML
+    @FXML
     private void reclamation(MouseEvent event) throws IOException {
-        makeFadeOut("ReclamationFront.fxml");
+        makeFadeInTransition("ReclamationFront.fxml");
 
     }
 
     @FXML
     private void event(MouseEvent event) throws IOException {
-        makeFadeOut("Evenement.fxml");
+        makeFadeInTransition("Evenement.fxml");
 
     }
 
     @FXML
     private void home(MouseEvent event) {
-        makeFadeOut("HomeFront.fxml");
+        makeFadeInTransition("HomeFront.fxml");
 
     }
 
     @FXML
     private void salle(MouseEvent event) {
-        makeFadeOut("Salle.fxml");
+        makeFadeInTransition("Salle.fxml");
 
     }
 
     @FXML
     private void produit(MouseEvent event) {
-        makeFadeOut("Produit.fxml");
+        makeFadeInTransition("Produit.fxml");
 
     }
 
     @FXML
     private void profile(MouseEvent event) {
-        makeFadeOut("ProfileFront.fxml");
+        makeFadeInTransition("ProfileFront.fxml");
 
     }
 
@@ -199,10 +211,14 @@ public class SalleController implements Initializable {
         fadeTransition.play();
     }
 
-
-
     @FXML
     private void btnEditModeToggle(MouseEvent event) {
+    }
+
+    @FXML
+    private void article(MouseEvent event) {
+                        makeFadeInTransition("Article.fxml");
+
     }
 
 }

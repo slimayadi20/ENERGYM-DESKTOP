@@ -8,6 +8,7 @@ package GUI;
 import Entities.Salle;
 import GUIBACK.WebViewCaptureMap;
 import Services.SalleService;
+import com.jfoenix.controls.JFXToggleButton;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -81,6 +82,22 @@ public class DetailSalleCoursController implements Initializable {
     private Pane paneMapa;
     @FXML
     private AnchorPane mainpane;
+    @FXML
+    private HBox hboxnavbar;
+    @FXML
+    private Label articlefxid;
+    @FXML
+    private Label sallefxid;
+    @FXML
+    private Label eventfxid;
+    @FXML
+    private Label produitfxid;
+    @FXML
+    private Label reclamationfxid;
+    @FXML
+    private Button namefxid;
+    @FXML
+    private JFXToggleButton btnEditMode;
 
     /**
      * Initializes the controller class.
@@ -169,7 +186,28 @@ public class DetailSalleCoursController implements Initializable {
         });
 
     }
+  private void makeFadeInTransition(String a) {
 
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(mainpane);
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+        fadeTransition.setOnFinished((event) -> {
+            try {
+                Stage stage = (Stage) mainpane.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        fadeTransition.play();
+
+    }
     public void map(Salle actividad) {
         paneMapa = new Pane();
         webView = new WebView();
@@ -222,37 +260,47 @@ public class DetailSalleCoursController implements Initializable {
 
     @FXML
     private void reclamation(MouseEvent event) throws IOException {
-        makeFadeOut("ReclamationFront.fxml");
+        makeFadeInTransition("ReclamationFront.fxml");
 
     }
 
     @FXML
     private void event(MouseEvent event) throws IOException {
-        makeFadeOut("Evenement.fxml");
+        makeFadeInTransition("Evenement.fxml");
 
     }
 
     @FXML
     private void home(MouseEvent event) {
-        makeFadeOut("HomeFront.fxml");
+        makeFadeInTransition("HomeFront.fxml");
 
     }
 
     @FXML
     private void salle(MouseEvent event) {
-        makeFadeOut("Salle.fxml");
+        makeFadeInTransition("Salle.fxml");
 
     }
 
     @FXML
     private void produit(MouseEvent event) {
-        makeFadeOut("Produit.fxml");
+        makeFadeInTransition("Produit.fxml");
 
     }
 
     @FXML
     private void profile(MouseEvent event) {
-        makeFadeOut("ProfileFront.fxml");
+        makeFadeInTransition("ProfileFront.fxml");
 
+    }
+
+    @FXML
+    private void article(MouseEvent event) {
+                makeFadeInTransition("Article.fxml");
+
+    }
+
+    @FXML
+    private void btnEditModeToggle(MouseEvent event) {
     }
 }

@@ -3,15 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/AddArticleController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Entities/Article.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Services/CommentaireService.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Services/ArticleService.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Services/PartageFb.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ArticleController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ArticleDetailController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/Calendar.fxml</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/CalendarController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/HomeFrontController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/SalleItemController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EventItemControllerHome.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Entities/EvenementCalendrier.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Services/EventService.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/energym/desktop/MainFX.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/AddCoursController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/AddArticle.fxml</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/ArticleController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/CoursController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EventDetailController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EvenementController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/edu/esprit/gui/CalendarController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EventItemHome.fxml</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Entities/Event.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/FXMLController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EventItemController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/DetailCoursController.java</file>
         </group>
     </open-files>
 </project-private>

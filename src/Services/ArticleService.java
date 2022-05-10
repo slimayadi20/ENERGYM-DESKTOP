@@ -102,9 +102,25 @@ public class ArticleService {
         }
         return lu;
     }
-
-    public void modifier(int id, Commentaire e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   public Article afficherdetail(int id) {
+                Article u = new Article();
+        try {
+            Statement st = cnx.createStatement();
+            String query = "select * from article where id="+id;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                u.setCreated_at(rs.getDate("date_creation"));
+                u.setContenu(rs.getString("description"));
+                u.setImageFile(rs.getString("image"));
+                            
+                u.setId(rs.getInt("id"));
+                u.setTitre(rs.getString("titre"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
     }
 
+  
 }

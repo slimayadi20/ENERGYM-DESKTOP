@@ -31,8 +31,8 @@ public class MainFX extends Application {
           try {
 
           //       Parent root = FXMLLoader.load(getClass().getResource("/GUI/HomeFront.fxml"));
-               Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
-           //  Parent root = FXMLLoader.load(getClass().getResource("/GUIBACK/Article.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
+          //  Parent root = FXMLLoader.load(getClass().getResource("/GUIBACK/Event.fxml"));
 
             Scene scene = new Scene(root);
 

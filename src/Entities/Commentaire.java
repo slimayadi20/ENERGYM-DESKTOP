@@ -4,7 +4,7 @@
  */
 package Entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -15,6 +15,8 @@ public class Commentaire {
     int id;
     private String contenu;
     private Date created_at;
+    private int user_id ; 
+    private int article_id ; 
     
     public Commentaire() {
     }
@@ -24,16 +26,38 @@ public class Commentaire {
         this.created_at = created_at;
     }
 
-    public Commentaire(int id, String contenu, Date created_at) {
+    public Commentaire(int id, String contenu, Date created_at, int user_id, int article_id) {
         this.id = id;
         this.contenu = contenu;
         this.created_at = created_at;
+        this.user_id = user_id;
+        this.article_id = article_id;
     }
 
-    public Commentaire(int id, String contenu) {
-        this.id = id;
+    public Commentaire(String contenu, Date created_at, int user_id, int article_id) {
         this.contenu = contenu;
+        this.created_at = created_at;
+        this.user_id = user_id;
+        this.article_id = article_id;
     }
+    
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getArticle_id() {
+        return article_id;
+    }
+
+    public void setArticle_id(int article_id) {
+        this.article_id = article_id;
+    }
+
 
     public int getId() {
         return id;

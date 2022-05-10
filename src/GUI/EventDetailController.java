@@ -123,6 +123,8 @@ public class EventDetailController implements Initializable {
     private JFXToggleButton btnEditMode;
     @FXML
     private AnchorPane mainpane;
+    @FXML
+    private Label articlefxid;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -169,12 +171,13 @@ public class EventDetailController implements Initializable {
         User u = new User(37, "slim", "ayadi", "azertyuiop", "95590010", "slim.ayadi@esprit.tn", "admiinnslm1");
         Event e = ths.EventDetailFront(Eventid);
         JavaMailEvent mail = new JavaMailEvent();
-
-        if (ths.check(Eventid, u.getId()) == true) {
+        System.out.println(ths.check(Eventid, u.getId()));
+        System.out.println("event"+Eventid);
+        System.out.println("user"+u.getId());
+        if (ths.check(Eventid, MainFX.UserconnectedC.getId()) == true) {
             errorfxid.setText("vous avez deja participé");
         } else {
-            //   System.out.println("event"+e);
-            // System.out.println("user"+e);
+    
             ths.Participer(e, MainFX.UserconnectedC, code);
             String content = "Bonjour mr/mme " + u.getNom() + "\n"
                     + "Merci pour votre participation et voici votre pass pour l'evenement\n"
@@ -228,64 +231,65 @@ public class EventDetailController implements Initializable {
 
     }
 
-    private void makeFadeOut(String a) {
-        FadeTransition fadeTransition = new FadeTransition();
-        fadeTransition.setDuration(Duration.millis(1000));
-        fadeTransition.setNode(mainpane);
-        fadeTransition.setFromValue(1);
-        fadeTransition.setToValue(0);
-        fadeTransition.setOnFinished((event) -> {
-            try {
-                Stage stage = (Stage) mainpane.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
 
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        fadeTransition.play();
+    private void makeFadeInTransition(String a) {
+
+        try {
+            Stage stage = (Stage) mainpane.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
  @FXML
     private void reclamation(MouseEvent event) throws IOException {
-        makeFadeOut("ReclamationFront.fxml");
+        makeFadeInTransition("ReclamationFront.fxml");
 
     }
 
     @FXML
     private void event(MouseEvent event) throws IOException {
-        makeFadeOut("Evenement.fxml");
+        makeFadeInTransition("Evenement.fxml");
 
     }
 
     @FXML
     private void home(MouseEvent event) {
-        makeFadeOut("HomeFront.fxml");
+        makeFadeInTransition("HomeFront.fxml");
 
     }
 
     @FXML
     private void salle(MouseEvent event) {
-        makeFadeOut("Salle.fxml");
+        makeFadeInTransition("Salle.fxml");
 
     }
 
     @FXML
     private void produit(MouseEvent event) {
-        makeFadeOut("Produit.fxml");
+        makeFadeInTransition("Produit.fxml");
 
     }
 
     @FXML
     private void profile(MouseEvent event) {
-        makeFadeOut("ProfileFront.fxml");
+        makeFadeInTransition("ProfileFront.fxml");
 
     }
 
     @FXML
     private void btnEditModeToggle(MouseEvent event) {
+    }
+
+    @FXML
+    private void article(MouseEvent event) {
+                        makeFadeInTransition("Article.fxml");
+
     }
 }

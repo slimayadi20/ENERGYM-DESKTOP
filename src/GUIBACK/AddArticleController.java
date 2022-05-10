@@ -40,6 +40,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 
 /**
  * FXML Controller class
@@ -178,8 +179,7 @@ public class AddArticleController implements Initializable {
                 new FileChooser.ExtensionFilter("JPG", "*.jpg")
         );
         selectedFile = fc.showOpenDialog(null);
-
-        if (selectedFile != null) {
+    if (selectedFile != null) {
 
             path = selectedFile.getName();
             path = selectedFile.toURI().toURL().toExternalForm();
@@ -188,6 +188,15 @@ public class AddArticleController implements Initializable {
             //  image.setFitWidth(250);
             pathh.setText(path);
 
+        }
+      if (selectedFile != null) {
+            try {
+                File source = new File(selectedFile.toString());
+                File dest = new File("C:\\xampp\\htdocs\\img");
+                FileUtils.copyFileToDirectory(source, dest);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

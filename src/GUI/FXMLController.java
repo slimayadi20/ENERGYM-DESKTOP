@@ -885,6 +885,7 @@ public class FXMLController implements Initializable {
                             pauseTransition2.setDuration(Duration.seconds(3));
                             pauseTransition2.setOnFinished(ev -> {
                                 System.out.println("bienveunue Passager");
+                                    System.out.println("userconnected"+UserconnectedC);
                                 try {
 
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -894,7 +895,6 @@ public class FXMLController implements Initializable {
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
-
                                     stage.setTitle("ENERGYM APP");
                                     stage.setScene(scene);
                                     stage.show();

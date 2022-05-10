@@ -67,13 +67,13 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <HBox fx:id="hboxnavbar" alignment="CENTER" layoutY="2.0" prefHeight="118.0" prefWidth="1033.0" stylesheets="@style.css">
+      <HBox fx:id="hboxnavbar" alignment="CENTER" layoutY="-8.0" prefHeight="118.0" prefWidth="1023.0" stylesheets="@style.css">
          <children>
             <HBox prefHeight="100.0" prefWidth="115.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0">
+                  <HBox alignment="CENTER" prefHeight="116.0" prefWidth="153.0">
                      <children>
-                        <ImageView fitHeight="78.0" fitWidth="93.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="78.0" fitWidth="110.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/fidi.jpg" />
                            </image>
@@ -85,12 +85,17 @@
             <Pane prefHeight="100.0" prefWidth="64.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
                <children>
+                  <Label fx:id="articlefxid" onMouseClicked="#article" opacity="0.8" text="Article" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
+               <children>
                   <Label fx:id="sallefxid" onMouseClicked="#salle" opacity="0.8" text="Salle" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="88.0">
                <children>
-                  <Label fx:id="eventfxid" onMouseClicked="#event" opacity="0.8" text="Event" textFill="WHITE" />
+                  <Label fx:id="eventfxid" onMouseClicked="#event" text="Event" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="317.0" styleClass="shadow" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ArticleItemController">
+   <children>
+      <ImageView fx:id="image" fitHeight="170.0" fitWidth="317.0" pickOnBounds="true" smooth="false" />
+      <AnchorPane fx:id="vboxfx" prefHeight="170.0" prefWidth="317.0" styleClass="gradient" stylesheets="@style.css">
+         <children>
+            <Label fx:id="salleid" layoutX="153.0" layoutY="92.0" />
+            <Label fx:id="name" alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="67.0" prefHeight="37.0" prefWidth="177.0" text="Slim" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

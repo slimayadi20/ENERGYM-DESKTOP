@@ -31,10 +31,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -72,6 +76,8 @@ public class EvenementController implements Initializable {
     private HBox hboxsport;
     @FXML
     private AnchorPane mainpane;
+    @FXML
+    private Label articlefxid;
 
     /**
      * Initializes the controller class.
@@ -137,6 +143,20 @@ public class EvenementController implements Initializable {
         fadeTransition.setFromValue(0);
         fadeTransition.setToValue(1);
         fadeTransition.play();
+    }
+
+    private void makeFadeInTransition(String a) {
+
+        try {
+            Stage stage = (Stage) mainpane.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -151,63 +171,52 @@ public class EvenementController implements Initializable {
 
     }
 
-       private void makeFadeOut(String a) {
+    private void makeFadeOut(String a) {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
         fadeTransition.setNode(mainpane);
-        fadeTransition.setFromValue(1);
+        fadeTransition.setFromValue(0);
         fadeTransition.setToValue(0);
-        fadeTransition.setOnFinished((event) -> {
-            try {
-                Stage stage = (Stage) mainpane.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
 
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
         fadeTransition.play();
     }
- @FXML
+
+    @FXML
     private void reclamation(MouseEvent event) throws IOException {
-        makeFadeOut("ReclamationFront");
+        makeFadeInTransition("ReclamationFront");
 
     }
-
-
 
     @FXML
     private void event(MouseEvent event) throws IOException {
-        makeFadeOut("Evenement.fxml");
+        makeFadeInTransition("Evenement.fxml");
 
     }
 
     @FXML
     private void home(MouseEvent event) {
-        makeFadeOut("HomeFront.fxml");
+        makeFadeInTransition("HomeFront.fxml");
 
     }
 
     @FXML
     private void salle(MouseEvent event) {
-        makeFadeOut("Salle.fxml");
+        makeFadeInTransition("Salle.fxml");
 
     }
 
     @FXML
     private void produit(MouseEvent event) {
-        makeFadeOut("Produit.fxml");
+        makeFadeInTransition("Produit.fxml");
 
     }
 
     @FXML
     private void profile(MouseEvent event) {
-        makeFadeOut("ProfileFront.fxml");
+        makeFadeInTransition("ProfileFront.fxml");
 
     }
+
     @FXML
     private void btnEditModeToggle(MouseEvent event) throws IOException {
         if (btnEditMode.isSelected()) {
@@ -237,6 +246,12 @@ public class EvenementController implements Initializable {
 
             stage.show();
         }
+    }
+
+    @FXML
+    private void article(MouseEvent event) {
+                        makeFadeInTransition("Article.fxml");
+
     }
 
 }

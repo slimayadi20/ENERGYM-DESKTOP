@@ -23,7 +23,7 @@ public class Event {
     String nbrPlacesEvent;
     String etatEvent;
     String imageFile;
-
+    private Timestamp time;
 
     public Event() {
     }
@@ -34,6 +34,14 @@ public class Event {
 
     public void setnomEvent(String nomEvent) {
         this.nomEvent = nomEvent;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 
     public int getId() {
@@ -108,7 +116,6 @@ public class Event {
         this.imageFile = imageFile;
     }
 
-
     public Event(int id, int categories, Date dateEvent, String nomEvent, String descriptionEvent, String lieuEvent, String nbrPlacesEvent, String imageFile) {
         this.id = id;
         this.categories = categories;
@@ -128,6 +135,7 @@ public class Event {
         this.lieuEvent = lieuEvent;
         this.nbrPlacesEvent = nbrPlacesEvent;
         this.imageFile = imageFile;
+
     }
 
     public Event(String nomEvent, int categories, Date dateEvent, String descriptionEvent, String lieuEvent, String nbrPlacesEvent, String etatEvent, String imageFile) {

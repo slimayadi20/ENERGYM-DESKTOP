@@ -46,7 +46,7 @@ public class SalleItemController {
     private Label name;
     private Label prename;
     @FXML
-    private VBox vboxfx;
+    private AnchorPane vboxfx;
     @FXML
     private Label salleid;
     @FXML
@@ -62,7 +62,7 @@ public class SalleItemController {
         name.setText(t.getNom());
         image.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\" + t.getImage()));
 
-        vboxfx.setOnMouseClicked((MouseEvent event) -> {
+        name.setOnMouseClicked((MouseEvent event) -> {
 //**************************
 
             try {
