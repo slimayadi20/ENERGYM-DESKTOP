@@ -8,10 +8,14 @@ package GUI;
 import Entities.Event;
 import Entities.User;
 import static GUI.HomeFrontController.status;
+import GUIBACK.ProfileController;
 import Services.EventService;
 import Services.UserService;
 import com.jfoenix.controls.JFXToggleButton;
+import static energym.desktop.MainFX.UserconnectedC;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -39,6 +44,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -78,12 +85,21 @@ public class EvenementController implements Initializable {
     private AnchorPane mainpane;
     @FXML
     private Label articlefxid;
+    @FXML
+    private Circle circle;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+            namefxid.setText(UserconnectedC.getNom());
+        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         EventService ths = new EventService();
         List<Event> listTH = ths.afficher();
 
@@ -130,6 +146,8 @@ public class EvenementController implements Initializable {
             namefxid.setStyle("-fx-background-color: #FFFFFF;");
             grid.setStyle("-fx-background-color: #FFFFFF;");
             scrollPane.setStyle("-fx-background-color: #FFFFFF;");
+            articlefxid.setStyle("-fx-text-fill: #000000;");
+
             //  namefxid.setStyle("-fx-text-fill: #000000;");
         }
         mainpane.setOpacity(0);
@@ -183,7 +201,7 @@ public class EvenementController implements Initializable {
 
     @FXML
     private void reclamation(MouseEvent event) throws IOException {
-        makeFadeInTransition("ReclamationFront");
+        makeFadeInTransition("ReclamationFront.fxml");
 
     }
 
@@ -230,6 +248,7 @@ public class EvenementController implements Initializable {
             produitfxid.setStyle("-fx-text-fill: #000000;");
             reclamationfxid.setStyle("-fx-text-fill: #000000;");
             titlefxid.setStyle("-fx-text-fill: #000000;");
+            articlefxid.setStyle("-fx-text-fill: #000000;");
             hboxsport.setStyle("-fx-background-color: #000000;");
             namefxid.setStyle("-fx-background-color: #FFFFFF;");
             grid.setStyle("-fx-background-color: #FFFFFF;");
@@ -250,7 +269,7 @@ public class EvenementController implements Initializable {
 
     @FXML
     private void article(MouseEvent event) {
-                        makeFadeInTransition("Article.fxml");
+        makeFadeInTransition("Article.fxml");
 
     }
 

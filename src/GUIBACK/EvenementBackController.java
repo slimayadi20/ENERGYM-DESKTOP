@@ -176,8 +176,6 @@ public class EvenementBackController implements Initializable {
     @FXML
     private AnchorPane leftpane1;
     @FXML
-    private JFXButton logoutbtn1;
-    @FXML
     private JFXButton btnsalle;
     @FXML
     private JFXButton btncours;
@@ -191,6 +189,16 @@ public class EvenementBackController implements Initializable {
     private JFXButton btncategoriesevent;
     @FXML
     private JFXButton btnparticipation;
+    @FXML
+    private JFXButton logoutbtn;
+    @FXML
+    private JFXButton btnarticle;
+    @FXML
+    private JFXButton btncommentaire;
+    @FXML
+    private JFXButton btncommande;
+    @FXML
+    private JFXButton btnlivraison;
 
     /**
      * Initialise method required for implementing initializable and, sets up
@@ -198,7 +206,10 @@ public class EvenementBackController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
+{
+    btnevenement.setDisable(true);
+}
         Collections.addAll(possibleWordSet, words);
         autoCompletionBinding = TextFields.bindAutoCompletion(lieufxid, possibleWordSet);
 
@@ -321,62 +332,78 @@ public class EvenementBackController implements Initializable {
     }
 
     @FXML
-    public void handleClicks(ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btnUsers) {
+    private void handleClicks(ActionEvent event) throws IOException {
+        if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);
 
         }
-        if (actionEvent.getSource() == btnReclamation) {
+        if (event.getSource() == btnReclamation) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Reclamation.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnProfile) {
+        if (event.getSource() == btnProfile) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Profile.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnReply) {
+        if (event.getSource() == btnReply) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Reply.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == homebtn) {
+        if (event.getSource() == homebtn) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("HomeBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == homebtn) {
+        if (event.getSource() == homebtn) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("HomeBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnsalle) {
+        if (event.getSource() == btnsalle) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Salle.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btncours) {
+        if (event.getSource() == btncours) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Cours.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btncategories) {
+        if (event.getSource() == btncategories) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Categories.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnproduit) {
+        if (event.getSource() == btnproduit) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Produit.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnevenement) {
+        if (event.getSource() == btnevenement) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("EvenementBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btncategoriesevent) {
+        if (event.getSource() == btncategoriesevent) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("CategoriesEventBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnparticipation) {
+        if (event.getSource() == btnparticipation) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Participation.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-
+        if (event.getSource() == btnarticle) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Article.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommentaire) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commentaire.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommande) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commande.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btnlivraison) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
     }
+
 
     @FXML
     public void recherche_avance() {

@@ -12,6 +12,7 @@ import Services.SalleService;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -123,8 +124,6 @@ public class CoursController implements Initializable {
     @FXML
     private AnchorPane leftpane1;
     @FXML
-    private JFXButton logoutbtn1;
-    @FXML
     private JFXButton btnReclamation;
     @FXML
     private JFXButton btnReply;
@@ -146,12 +145,29 @@ public class CoursController implements Initializable {
     private JFXButton btncategoriesevent;
     @FXML
     private JFXButton btnparticipation;
+    @FXML
+    private JFXButton logoutbtn;
+    @FXML
+    private JFXButton btnarticle;
+    @FXML
+    private JFXButton btncommentaire;
+    @FXML
+    private JFXButton btncommande;
+    @FXML
+    private JFXButton btnlivraison;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            btnevenement.setVisible(false);
+            btnproduit.setVisible(false);
+            btncategories.setVisible(false);
+            btncategoriesevent.setVisible(false);
+            btnparticipation.setVisible(false);
+        }
         // TODO
         tableviewsalle.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         // to load data 
@@ -364,7 +380,7 @@ public class CoursController implements Initializable {
     }
 
     @FXML
-    private void handleClicks(ActionEvent event) throws IOException {
+      private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);
@@ -418,6 +434,23 @@ public class CoursController implements Initializable {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Participation.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
+        if (event.getSource() == btnarticle) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Article.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommentaire) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commentaire.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommande) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commande.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btnlivraison) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
     }
+
 
 }

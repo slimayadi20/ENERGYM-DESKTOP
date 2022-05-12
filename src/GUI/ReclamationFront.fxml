@@ -31,17 +31,17 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Label layoutX="388.0" layoutY="129.0" prefHeight="58.0" prefWidth="237.0" text="Les reclamations" textFill="WHITE">
+      <Label fx:id="reclamation" layoutX="388.0" layoutY="129.0" prefHeight="58.0" prefWidth="237.0" text="Les reclamations" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="25.0" />
          </font>
       </Label>
       <HBox layoutX="457.0" layoutY="185.0" prefHeight="4.0" prefWidth="80.0" style="-fx-background-color: #B80000;" />
       <JFXTextField fx:id="titrefxid" layoutX="684.0" layoutY="291.0" prefHeight="31.0" prefWidth="262.0" promptText="Titre : " />
-      <Label layoutX="594.0" layoutY="299.0" prefHeight="21.0" prefWidth="88.0" text="Titre : " textFill="WHITE" />
+      <Label fx:id="titre" layoutX="594.0" layoutY="299.0" prefHeight="21.0" prefWidth="88.0" text="Titre : " textFill="WHITE" />
       <JFXComboBox fx:id="produitfxid" focusColor="WHITE" layoutX="682.0" layoutY="229.0" prefHeight="31.0" prefWidth="262.0" promptText="Choisir un produit" style="-fx-background-color: white;" unFocusColor="WHITE" />
-      <Label layoutX="594.0" layoutY="234.0" prefHeight="21.0" prefWidth="88.0" text="Produits : " textFill="WHITE" />
-      <Label layoutX="594.0" layoutY="361.0" prefHeight="21.0" prefWidth="88.0" text="Contenu :" textFill="WHITE" />
+      <Label fx:id="produit" layoutX="594.0" layoutY="234.0" prefHeight="21.0" prefWidth="88.0" text="Produits : " textFill="WHITE" />
+      <Label fx:id="contenu" layoutX="594.0" layoutY="361.0" prefHeight="21.0" prefWidth="88.0" text="Contenu :" textFill="WHITE" />
       <TextArea fx:id="contenufxid" layoutX="684.0" layoutY="360.0" prefHeight="182.0" prefWidth="262.0" promptText="Contenu : " wrapText="true" />
       <JFXButton fx:id="send" layoutX="711.0" layoutY="563.0" onMouseClicked="#sendreclamation" prefHeight="31.0" prefWidth="200.0" ripplerFill="WHITE" style="-fx-background-color: F94242; -fx-background-radius: 8;" text="Envoyer Reclamation" textAlignment="CENTER">
          <font>

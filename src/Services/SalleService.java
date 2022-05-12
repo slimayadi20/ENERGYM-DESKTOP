@@ -7,6 +7,7 @@ package Services;
 
 import Entities.Salle;
 import Tools.MyConnexion;
+import energym.desktop.MainFX;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,6 +38,9 @@ public class SalleService {
             String query = "INSERT INTO `Salle`( `nom`, `adresse`, `tel`, `mail`, `description`, `image`, `prix1`, `prix2`, `prix3`, `heureo`, `heuref`, `url`) "
                     + "VALUES ('" + t.getNom() + "','" + t.getAdresse() + "','" + t.getTel() + "','" + t.getMail() + "','" + t.getDescription() + "','" + t.getImage() + "','" + t.getPrix1() + "','" + t.getPrix2() + "','" + t.getPrix3() + "','" + t.getHeureo() + "','" + t.getHeuref() + "','" + t.getUrl() + "')";
             st.executeUpdate(query);
+            String query1 = "INSERT INTO `user_salle`( `user_id`, `salle_id`) "
+                    + "VALUES ('" + MainFX.UserconnectedC.getId() + "','" + getSalleassocie_id(t.getNom()) + "')";
+            st.executeUpdate(query1);
             System.out.println("Salle ajoutée avec succes");
         } catch (SQLException ex) {
             Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,6 +210,42 @@ public class SalleService {
                 u.setHeuref(rs.getString("heuref"));
                 u.setNblike(rs.getInt("like_count"));
                 lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+
+    public List<Salle> affichergerant() {
+        List<Salle> lu = new ArrayList<>();
+        try {
+            Statement st = cnx.createStatement();
+            Statement st1 = cnx.createStatement();
+            String query = "select * from user_salle where user_id=" + MainFX.UserconnectedC.getId() ;
+            ResultSet rs = st.executeQuery(query);
+            System.out.println(rs);
+            while (rs.next()) {
+                System.out.println(rs.getInt("salle_id"));
+                String query1 = "select * from salle where id=" + rs.getInt("salle_id");
+                ResultSet rss = st1.executeQuery(query1);
+                  while (rss.next()) {
+                Salle u = new Salle();
+                u.setId(rss.getInt("id"));
+                u.setNom(rss.getString("nom"));
+                u.setAdresse(rss.getString("adresse"));
+                u.setTel(rss.getString("tel"));
+                u.setMail(rss.getString("mail"));
+                u.setDescription(rss.getString("description"));
+                u.setImage(rss.getString("image"));
+                u.setPrix1(rss.getString("prix1"));
+                u.setPrix2(rss.getString("prix2"));
+                u.setPrix3(rss.getString("prix3"));
+                u.setHeureo(rss.getString("heureo"));
+                u.setHeuref(rss.getString("heuref"));
+                u.setNblike(rss.getInt("like_count"));
+                lu.add(u);
+                  }
             }
         } catch (SQLException ex) {
             Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);

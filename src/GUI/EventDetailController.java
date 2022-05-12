@@ -7,6 +7,7 @@ package GUI;
 
 import Entities.Event;
 import Entities.User;
+import GUIBACK.ProfileController;
 import Services.EventService;
 import Tools.JavaMailEvent;
 import Tools.JavaMailUtilUser;
@@ -15,6 +16,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import energym.desktop.MainFX;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -53,20 +55,27 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
+import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import net.glxn.qrgen.QRCode;
@@ -125,12 +134,28 @@ public class EventDetailController implements Initializable {
     private AnchorPane mainpane;
     @FXML
     private Label articlefxid;
+    @FXML
+    private Circle circle;
+    @FXML
+    private GridPane grid;
+    @FXML
+    private Label namefxid2;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         
+            namefxid.setText(UserconnectedC.getNom());
+        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         loadData();
         mainpane.setOpacity(0);
         makeFadeInTransition();
+        System.out.println("eventid"+Eventid);
+       
         // TODO
     }
 
@@ -151,6 +176,7 @@ public class EventDetailController implements Initializable {
     public void loadData() {
         //System.out.println("initData"+thematique_id);
         EventService ths = new EventService();
+        System.out.println("loaddata event id "+Eventid);
         Event e = ths.EventDetailFront(Eventid);
         namefxid.setText(e.getNomEvent());
         nbrfxid.setText(e.getNbrPlacesEvent());
@@ -162,7 +188,39 @@ public class EventDetailController implements Initializable {
         datefxid.setText(todayAsString);
         System.out.println(e.getDateEvent());*/
         imagefxid.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + e.getImageFile()));
+  EventService thss = new EventService();
+             Event ee = thss.EventDetailFront(Eventid);
+             System.out.println("id categ"+ee.getCategories());
+        List<Event> listTHH = thss.afficherbycategorie(ee.getCategories());
 
+        int colonne = 0;
+        int row = 1;
+        try {
+            for (Event t : listTHH) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("EventItem.fxml"));
+
+                Pane anchorPane = fxmlLoader.load();
+
+                EventItemController controller = fxmlLoader.getController();
+                controller.setData(t);
+                if (colonne == 6) {
+                    colonne = 0;
+                    row++;
+                }
+                grid.add(anchorPane, colonne++, row);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(12));
+                //break;
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML

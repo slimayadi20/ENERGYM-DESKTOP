@@ -4,6 +4,7 @@
  */
 package energym.desktop;
 
+import Services.PanierService;
 import Services.ReclamationService;
 import Services.UserService;
 import java.io.IOException;
@@ -29,6 +30,12 @@ public class ENERGYMDESKTOP {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException, InterruptedException {
+      PanierService ps = new PanierService();
+        ps.ajouterPanier(8,32);
+        ps.ajouterPanier(9,32);
+        ps.panier( 32);
+        
+        
         UserService us = new UserService();
         ReclamationService rs = new ReclamationService();
         // Date date = new Date(System.currentTimeMillis());

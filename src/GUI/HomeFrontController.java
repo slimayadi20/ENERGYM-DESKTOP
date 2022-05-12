@@ -7,11 +7,14 @@ package GUI;
 
 import Entities.EvenementCalendrier;
 import Entities.Event;
+import GUIBACK.ProfileController;
 import Services.EventService;
 import com.jfoenix.controls.JFXToggleButton;
 import energym.desktop.MainFX;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +34,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -44,6 +48,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -132,12 +138,24 @@ public class HomeFrontController implements Initializable {
     private Label a10;
     @FXML
     private Label a11;
+    @FXML
+    private AnchorPane anchor;
+    @FXML
+    private Circle circle;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+            namefxid.setText(UserconnectedC.getNom());
+        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // TODO
         file = new File("C:\\Users\\MSI\\Downloads\\opening.mp4");
         media = new Media(file.toURI().toString());
@@ -158,23 +176,47 @@ public class HomeFrontController implements Initializable {
             reclamationfxid.setStyle("-fx-text-fill: #000000;");
             titlefxid.setStyle("-fx-text-fill: #000000;");
             hboxsport.setStyle("-fx-background-color: #000000;");
+            hboxsport1.setStyle("-fx-background-color: #000000;");
+            hboxsport11.setStyle("-fx-background-color: #000000;");
             namefxid.setStyle("-fx-background-color: #FFFFFF;");
+            anchor.setStyle("-fx-background-color: #FFFFFF;");
+            participationfxid.setStyle("-fx-text-fill: #000000;");
+            evenementfxid.setStyle("-fx-text-fill: #000000;");
+            hboxsport.setStyle("-fx-background-color: #000000;");
+            line1.setStyle("-fx-stroke: #000000;");
+            line2.setStyle("-fx-stroke: #000000;");
+            line3.setStyle("-fx-stroke: #000000;");
+            line4.setStyle("-fx-stroke: #000000;");
+            line5.setStyle("-fx-stroke: #000000;");
+            a1.setStyle("-fx-text-fill:#000000;");
+            a2.setStyle("-fx-text-fill:#000000;");
+            a3.setStyle("-fx-text-fill:#000000;");
+            a4.setStyle("-fx-text-fill:#000000;");
+            a5.setStyle("-fx-text-fill:#000000;");
+            a6.setStyle("-fx-text-fill:#000000;");
+            a7.setStyle("-fx-text-fill:#000000;");
+            a8.setStyle("-fx-text-fill:#000000;");
+            a9.setStyle("-fx-text-fill:#000000;");
+            a10.setStyle("-fx-text-fill:#000000;");
+            a11.setStyle("-fx-text-fill:#000000;");
+            articlefxid.setStyle("-fx-text-fill: #000000;");
+
             //  namefxid.setStyle("-fx-text-fill: #000000;");
-            // changes
+            // changes 
         }
         mainpane.setOpacity(0);
         makeFadeInTransition();
-            VCalendar vCalendar = new VCalendar();
-    
-     Agenda a=new Agenda();
-     a.applyCss();
+        VCalendar vCalendar = new VCalendar();
+
+        Agenda a = new Agenda();
+        a.applyCss();
         List<EvenementCalendrier> elements = participationToAppoitments();
         a.appointments().addAll(elements);
-      /*ICalendarAgenda agenda = new ICalendarAgenda(vCalendar);
+        /*ICalendarAgenda agenda = new ICalendarAgenda(vCalendar);
         BorderPane root = new BorderPane();*/
-        
-       cell.setCenter(a);
-          EventService ths = new EventService();
+
+        cell.setCenter(a);
+        EventService ths = new EventService();
         List<Event> listTH = ths.afficher2();
 
         int colonne = 0;
@@ -206,12 +248,14 @@ public class HomeFrontController implements Initializable {
             ex.printStackTrace();
         }
     }
-    private  List<EvenementCalendrier> participationToAppoitments(){
-        EventService participationDao=new EventService();
-        List<Event> evenements=participationDao.fetchParticipationByUser(MainFX.UserconnectedC.getId());
+
+    private List<EvenementCalendrier> participationToAppoitments() {
+        EventService participationDao = new EventService();
+        List<Event> evenements = participationDao.fetchParticipationByUser(MainFX.UserconnectedC.getId());
         return EvenementCalendrier.appointmentsList(evenements);
-        
+
     }
+
     private void makeFadeInTransition() {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
@@ -288,9 +332,32 @@ public class HomeFrontController implements Initializable {
             reclamationfxid.setStyle("-fx-text-fill: #000000;");
             titlefxid.setStyle("-fx-text-fill: #000000;");
             hboxsport.setStyle("-fx-background-color: #000000;");
+            hboxsport1.setStyle("-fx-background-color: #000000;");
+            hboxsport11.setStyle("-fx-background-color: #000000;");
             namefxid.setStyle("-fx-background-color: #FFFFFF;");
-            //  namefxid.setStyle("-fx-text-fill: #000000;");
+            anchor.setStyle("-fx-background-color: #FFFFFF;");
+            participationfxid.setStyle("-fx-text-fill: #000000;");
+            evenementfxid.setStyle("-fx-text-fill: #000000;");
+            hboxsport.setStyle("-fx-background-color: #000000;");
+            line1.setStyle("-fx-stroke: #000000;");
+            line2.setStyle("-fx-stroke: #000000;");
+            line3.setStyle("-fx-stroke: #000000;");
+            line4.setStyle("-fx-stroke: #000000;");
+            line5.setStyle("-fx-stroke: #000000;");
+            a1.setStyle("-fx-text-fill:#000000;");
+            a2.setStyle("-fx-text-fill:#000000;");
+            a3.setStyle("-fx-text-fill:#000000;");
+            a4.setStyle("-fx-text-fill:#000000;");
+            a5.setStyle("-fx-text-fill:#000000;");
+            a6.setStyle("-fx-text-fill:#000000;");
+            a7.setStyle("-fx-text-fill:#000000;");
+            a8.setStyle("-fx-text-fill:#000000;");
+            a9.setStyle("-fx-text-fill:#000000;");
+            a10.setStyle("-fx-text-fill:#000000;");
+            a11.setStyle("-fx-text-fill:#000000;");
+            articlefxid.setStyle("-fx-text-fill: #000000;");
 
+            //  namefxid.setStyle("-fx-text-fill: #000000;");
         } else {
             status = false;
 
@@ -325,9 +392,8 @@ public class HomeFrontController implements Initializable {
 
     @FXML
     private void article(MouseEvent event) {
-                        makeFadeInTransition("Article.fxml");
+        makeFadeInTransition("Article.fxml");
 
     }
-
 
 }

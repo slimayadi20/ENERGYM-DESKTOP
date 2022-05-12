@@ -129,13 +129,21 @@ public class UsersController implements Initializable {
     @FXML
     private AnchorPane leftpane1;
     @FXML
-    private JFXButton logoutbtn1;
-    @FXML
     private JFXButton btnevenement;
     @FXML
     private JFXButton btncategoriesevent;
     @FXML
     private JFXButton btnparticipation;
+    @FXML
+    private JFXButton logoutbtn;
+    @FXML
+    private JFXButton btnarticle;
+    @FXML
+    private JFXButton btncommentaire;
+    @FXML
+    private JFXButton btncommande;
+    @FXML
+    private JFXButton btnlivraison;
 
     /**
      * Initialise method required for implementing initializable and, sets up
@@ -143,6 +151,16 @@ public class UsersController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
+{
+    btnevenement.setVisible(false);
+    btnproduit.setVisible(false);
+    btncategories.setVisible(false);
+    btncategoriesevent.setVisible(false);
+    btnparticipation.setVisible(false);
+}
+        
+        
         ss.add("Par role");
         ss.add("Par date");
         ss.add("Par status");
@@ -360,7 +378,7 @@ public class UsersController implements Initializable {
 
   
     @FXML
-    private void handleClicks(ActionEvent event) throws IOException {
+     private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);
@@ -394,7 +412,7 @@ public class UsersController implements Initializable {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Cours.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-          if (event.getSource() == btncategories) {
+        if (event.getSource() == btncategories) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Categories.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
@@ -402,7 +420,7 @@ public class UsersController implements Initializable {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Produit.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-          if (event.getSource() == btnevenement) {
+        if (event.getSource() == btnevenement) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("EvenementBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
@@ -414,6 +432,23 @@ public class UsersController implements Initializable {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Participation.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
+        if (event.getSource() == btnarticle) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Article.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommentaire) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commentaire.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommande) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commande.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btnlivraison) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
     }
+
 
 }

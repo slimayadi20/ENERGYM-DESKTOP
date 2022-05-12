@@ -159,7 +159,7 @@
             <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
                <children>
-                  <Circle fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle" fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                   <Button fx:id="namefxid" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
                   <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -72,7 +72,7 @@
             <Label fx:id="heureffrontfx" prefHeight="31.0" prefWidth="70.0" text="Label" />
          </children>
       </HBox>
-      <HBox layoutX="45.0" layoutY="474.0" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+      <HBox layoutX="45.0" layoutY="474.0" onMouseClicked="#gold" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
          <children>
             <ImageView fitHeight="42.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -85,7 +85,7 @@
       </HBox>
       <Button fx:id="voirplanning" layoutX="22.0" layoutY="628.0" mnemonicParsing="false" style="-fx-background-radius: 15;" text="Voir le planning Des Cours" />
       <Button layoutX="350.0" layoutY="628.0" mnemonicParsing="false" style="-fx-background-radius: 15;" text="Notre Page facebook" fx:id="x" />
-      <HBox layoutX="207.0" layoutY="474.0" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+      <HBox layoutX="207.0" layoutY="474.0" onMouseClicked="#silver" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
          <children>
             <ImageView fitHeight="42.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -96,7 +96,7 @@
             <Label prefHeight="26.0" prefWidth="33.0" text="DT" />
          </children>
       </HBox>
-      <HBox layoutX="369.0" layoutY="474.0" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
+      <HBox layoutX="369.0" layoutY="474.0" onMouseClicked="#bronze" prefHeight="60.0" prefWidth="121.0" style="-fx-background-color: #ffff; -fx-background-radius: 15;">
          <children>
             <ImageView fitHeight="42.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -165,7 +165,7 @@
             <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
                <children>
-                  <Circle fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle" fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                   <Button fx:id="namefxid" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
                   <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>

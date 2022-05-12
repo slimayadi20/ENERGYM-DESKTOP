@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="DashboardUtilis" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanierController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1000.0" stylesheets="@style.css">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="115.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="107.0">
+                     <children>
+                        <ImageView fitHeight="78.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/fidi.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
+               <children>
+                  <Label text="Salle" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="88.0">
+               <children>
+                  <Label text="Event" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
+               <children>
+                  <Label text="Reclamation" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
+            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/—Pngtree—red%20shopping%20cart%20icon%20png_4480557.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Circle fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="dark-background" />
+            <String fx:value="border-bottom" />
+         </styleClass>
+      </HBox>
+      <ScrollPane fx:id="scrollPane" blendMode="SRC_ATOP" layoutX="14.0" layoutY="228.0" prefHeight="464.0" prefWidth="750.0" styleClass="dark-background" stylesheets="@style.css">
+         <content>
+            <GridPane fx:id="grid" prefHeight="465.0" prefWidth="734.0" styleClass="dark-background" stylesheets="@style.css">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Label layoutX="410.0" layoutY="129.0" prefHeight="58.0" prefWidth="188.0" text="Votre Panier" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="25.0" />
+         </font>
+      </Label>
+      <HBox layoutX="457.0" layoutY="185.0" prefHeight="4.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXButton layoutX="791.0" layoutY="491.0" onMouseClicked="#ajouter_commande" prefHeight="26.0" prefWidth="188.0" ripplerFill="RED" style="-fx-background-color: F94242; -fx-background-radius: 8;" text="Passer au paiement" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <Label layoutX="789.0" layoutY="336.0" prefHeight="18.0" prefWidth="64.0" text="Total" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="789.0" layoutY="371.0" prefHeight="22.0" prefWidth="78.0" text="Réduction" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="789.0" layoutY="405.0" prefHeight="22.0" prefWidth="98.0" text="Code promo" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="codeTF" layoutX="885.0" layoutY="404.0" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: FFFFFF;" />
+      <Label fx:id="total" layoutX="905.0" layoutY="336.0" prefHeight="18.0" prefWidth="64.0" text="0 DT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="reduction" layoutX="905.0" layoutY="371.0" prefHeight="18.0" prefWidth="64.0" text="0 %" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="codeButton" layoutX="953.0" layoutY="404.0" prefHeight="18.0" prefWidth="30.0" ripplerFill="#f7c1c1" style="-fx-background-color: F94242; -fx-background-radius: 8; -fx-min-height: 25; -fx-min-width: 30;" text="  " wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="count" layoutX="36.0" layoutY="118.0" prefHeight="18.0" prefWidth="64.0" text="0 Items" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" layoutX="885.0" layoutY="309.0" startX="-105.800048828125" stroke="WHITE" />
+      <Line endX="100.0" layoutX="884.0" layoutY="545.0" startX="-105.800048828125" stroke="WHITE" />
+      <Label fx:id="erreur" layoutX="789.0" layoutY="427.0" prefHeight="18.0" prefWidth="88.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font></Label>
+   </children>
+   <styleClass>
+      <String fx:value="border-bottom" />
+      <String fx:value="dark-background" />
+   </styleClass>
+</AnchorPane>

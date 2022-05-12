@@ -8,14 +8,18 @@ package GUI;
 import Entities.Article;
 import Entities.Commentaire;
 import Entities.Event;
+import GUIBACK.ProfileController;
 import Services.ArticleService;
 import Services.CommentaireService;
 import Services.EventService;
 import Services.PartageFb;
 import com.jfoenix.controls.JFXToggleButton;
 import energym.desktop.MainFX;
+import static energym.desktop.MainFX.UserconnectedC;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +48,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -90,6 +96,8 @@ public class ArticleDetailController implements Initializable {
     @FXML
     private Label descriptionfxid;
     Article e;
+    @FXML
+    private Circle circle;
 
     /**
      * Initializes the controller class.
@@ -97,6 +105,13 @@ public class ArticleDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+            namefxid.setText(UserconnectedC.getNom());
+        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         loadData();
         mainpane.setOpacity(0);
         makeFadeInTransition();
@@ -170,7 +185,7 @@ public class ArticleDetailController implements Initializable {
 
     @FXML
     private void reclamation(MouseEvent event) throws IOException {
-        makeFadeInTransition("ReclamationFront");
+        makeFadeInTransition("ReclamationFront.fxml");
 
     }
 

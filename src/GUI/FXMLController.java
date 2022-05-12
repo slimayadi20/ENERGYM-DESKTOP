@@ -838,7 +838,7 @@ public class FXMLController implements Initializable {
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                                     stageclose.close();
-                                    Parent root = FXMLLoader.load(getClass().getResource("/GUIBACK/Users.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUIBACK/Livraison.fxml"));
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
@@ -891,7 +891,7 @@ public class FXMLController implements Initializable {
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                                     stageclose.close();
-                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/HomeFront.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Evenement.fxml"));
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);

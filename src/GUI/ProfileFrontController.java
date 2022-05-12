@@ -139,13 +139,15 @@ public class ProfileFrontController implements Initializable {
     private AnchorPane mainpane;
     @FXML
     private Label articlefxid;
+    @FXML
+    private Circle circle;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        name.setText(UserconnectedC.getNom());
+        namefxid.setText(UserconnectedC.getNom());
         setImage();
         File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
         circleu.setRadius(55);
@@ -356,7 +358,7 @@ public class ProfileFrontController implements Initializable {
     private void historique(MouseEvent event) {
         UserService u = new UserService();
         try {
-            us.RapportHCbyUser(UserconnectedC);
+            u.RapportHCbyUser(UserconnectedC);
         } catch (IOException ex) {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -368,7 +370,7 @@ public class ProfileFrontController implements Initializable {
         File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
         try {
             System.out.println(new Image(file.toURI().toURL().toExternalForm()));
-            image.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
         } catch (MalformedURLException ex) {
             Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }

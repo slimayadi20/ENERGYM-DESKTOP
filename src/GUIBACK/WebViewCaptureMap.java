@@ -5,7 +5,6 @@
  */
 package GUIBACK;
 
-import GUIBACK.MapController;
 import static GUIBACK.MapController.map_value;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;

@@ -68,7 +68,7 @@
                   <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
                   <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
                      <children>
-                        <Circle fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="circle" fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                         <Button fx:id="namefxid" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
                         <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -95,7 +95,7 @@
             <HBox fx:id="hboxsport" layoutX="439.0" layoutY="155.0" prefHeight="7.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" />
             <ScrollPane layoutX="15.0" layoutY="173.0" prefHeight="503.0" prefWidth="981.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1381.0" prefWidth="983.0" styleClass="dark-background" stylesheets="@style.css">
+                <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="1381.0" prefWidth="983.0" styleClass="dark-background" stylesheets="@style.css">
                      <children>
                         <MediaView fx:id="mediaView" fitHeight="300.0" fitWidth="960.0" layoutX="14.0" layoutY="25.0" onMouseClicked="#pause">
                            <viewport>

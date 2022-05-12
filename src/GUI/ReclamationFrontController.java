@@ -9,6 +9,7 @@ import GUIBACK.ProfileController;
 import Entities.Produit;
 import Entities.Reclamation;
 import Entities.User;
+import static GUI.HomeFrontController.status;
 import Services.ProduitService;
 import Services.UserService;
 import Services.ReclamationService;
@@ -104,6 +105,14 @@ public class ReclamationFrontController implements Initializable {
     private AnchorPane mainpane;
     @FXML
     private Label articlefxid;
+    @FXML
+    private Label reclamation;
+    @FXML
+    private Label titre;
+    @FXML
+    private Label produit;
+    @FXML
+    private Label contenu;
 
     /**
      * Initializes the controller class.
@@ -148,11 +157,34 @@ public class ReclamationFrontController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-         mainpane.setOpacity(0);
+        mainpane.setOpacity(0);
         makeFadeInTransition();
+        if (status == true) {
+            btnEditMode.setText("switch to dark mode");
+            mainpane.setStyle("-fx-background-color: #FFFFFF;");
+            btnEditMode.setText("switch to dark mode");
+            btnEditMode.setStyle("-fx-text-fill: #000000");
+            hboxnavbar.setStyle("-fx-background-color: #FFFFFF;");
+            sallefxid.setStyle("-fx-text-fill:#000000;");
+            eventfxid.setStyle("-fx-text-fill:#000000;");
+            produitfxid.setStyle("-fx-text-fill: #000000;");
+            reclamationfxid.setStyle("-fx-text-fill: #000000;");
+            reclamation.setStyle("-fx-text-fill: #000000;");
+            titre.setStyle("-fx-text-fill: #000000;");
+            contenu.setStyle("-fx-text-fill: #000000;");
+            produit.setStyle("-fx-text-fill: #000000;");
+            namefxid.setStyle("-fx-background-color: #FFFFFF;");
+            grid.setStyle("-fx-background-color: #FFFFFF;");
+            scrollPane.setStyle("-fx-background-color: #FFFFFF;");
+            articlefxid.setStyle("-fx-text-fill: #000000;");
+            produitfxid1.setStyle("-fx-text-fill:#000000;");
+
+            //  namefxid.setStyle("-fx-text-fill: #000000;");
+        }
 
     }
-       private void makeFadeInTransition() {
+
+    private void makeFadeInTransition() {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
         fadeTransition.setNode(mainpane);
@@ -272,8 +304,6 @@ public class ReclamationFrontController implements Initializable {
         }
     }
 
-
-
     private void makeFadeInTransition(String a) {
 
         try {
@@ -288,49 +318,85 @@ public class ReclamationFrontController implements Initializable {
         }
 
     }
+
     @FXML
     private void profile(MouseEvent event) throws IOException {
-             makeFadeInTransition("ProfileFront.fxml") ;
-
+        makeFadeInTransition("ProfileFront.fxml");
 
     }
 
     @FXML
     private void salle(MouseEvent event) {
-           makeFadeInTransition("Salle.fxml") ;
+        makeFadeInTransition("Salle.fxml");
 
     }
 
     @FXML
     private void produit(MouseEvent event) throws IOException {
-           makeFadeInTransition("Produit.fxml") ;
+        makeFadeInTransition("Produit.fxml");
 
     }
 
     @FXML
     private void event(MouseEvent event) throws IOException {
-              makeFadeInTransition("Evenement.fxml") ;
+        makeFadeInTransition("Evenement.fxml");
 
     }
 
     @FXML
     private void home(MouseEvent event) {
-               makeFadeInTransition("HomeFront.fxml") ;
+        makeFadeInTransition("HomeFront.fxml");
 
     }
 
     @FXML
     private void reclamation(MouseEvent event) {
-               makeFadeInTransition("ReclamationFront.fxml") ;
+        makeFadeInTransition("ReclamationFront.fxml");
 
     }
+
     @FXML
     private void btnEditModeToggle(MouseEvent event) {
+        if (btnEditMode.isSelected()) {
+            status = true;
+            btnEditMode.setText("switch to dark mode");
+            mainpane.setStyle("-fx-background-color: #FFFFFF;");
+            btnEditMode.setText("switch to dark mode");
+            btnEditMode.setStyle("-fx-text-fill: #000000");
+            hboxnavbar.setStyle("-fx-background-color: #FFFFFF;");
+            sallefxid.setStyle("-fx-text-fill:#000000;");
+            eventfxid.setStyle("-fx-text-fill:#000000;");
+            produitfxid1.setStyle("-fx-text-fill:#000000;");
+            produitfxid.setStyle("-fx-text-fill: #000000;");
+            reclamationfxid.setStyle("-fx-text-fill: #000000;");
+            reclamation.setStyle("-fx-text-fill: #000000;");
+            titre.setStyle("-fx-text-fill: #000000;");
+            contenu.setStyle("-fx-text-fill: #000000;");
+            produit.setStyle("-fx-text-fill: #000000;");
+            namefxid.setStyle("-fx-background-color: #FFFFFF;");
+            grid.setStyle("-fx-background-color: #FFFFFF;");
+            scrollPane.setStyle("-fx-background-color: #FFFFFF;");
+            articlefxid.setStyle("-fx-text-fill: #000000;");
+
+        } else {
+            try {
+                status = false;
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("ReclamationFront.fxml"));/* Exception */
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @FXML
     private void article(MouseEvent event) {
-                        makeFadeInTransition("Article.fxml");
+        makeFadeInTransition("Article.fxml");
 
     }
 }

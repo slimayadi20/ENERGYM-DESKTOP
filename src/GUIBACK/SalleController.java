@@ -19,6 +19,7 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -146,13 +147,21 @@ public class SalleController implements Initializable {
     @FXML
     private AnchorPane leftpane1;
     @FXML
-    private JFXButton logoutbtn1;
-    @FXML
     private JFXButton btnevenement;
     @FXML
     private JFXButton btncategoriesevent;
     @FXML
     private JFXButton btnparticipation;
+    @FXML
+    private JFXButton logoutbtn;
+    @FXML
+    private JFXButton btnarticle;
+    @FXML
+    private JFXButton btncommentaire;
+    @FXML
+    private JFXButton btncommande;
+    @FXML
+    private JFXButton btnlivraison;
 
     /**
      * Initializes the controller class.
@@ -163,7 +172,13 @@ public class SalleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            btnevenement.setVisible(false);
+            btnproduit.setVisible(false);
+            btncategories.setVisible(false);
+            btncategoriesevent.setVisible(false);
+            btnparticipation.setVisible(false);
+        }
         loadDate();
         recherche_avance();
         setCellValueFromTableToTextField();
@@ -219,7 +234,102 @@ public class SalleController implements Initializable {
 
     private void loadDate() {
         data.clear();
-        data = FXCollections.observableArrayList(ss.afficher());
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            data = FXCollections.observableArrayList(ss.affichergerant());
+            nomfx.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        adressefx.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+
+        telfx.setCellValueFactory(new PropertyValueFactory<>("tel"));
+
+        mailfx.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        descriptionfx.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        //add cell of button edit 
+        Callback<TableColumn<Salle, String>, TableCell<Salle, String>> cellFoctory = (TableColumn<Salle, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Salle, String> cell = new TableCell<Salle, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+
+                        deleteIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#ff1744;"
+                        );
+                        editIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                        );
+                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
+
+                            try {
+                                salle = tableviewsalle.getSelectionModel().getSelectedItem();
+                                SalleService rs = new SalleService();
+                                rs.supprimer((int) salle.getId());
+
+                                System.out.println(salle.getId());
+                                refreshlist();
+                            } catch (Exception ex) {
+                                System.out.println(ex.getMessage());
+                            }
+
+                        });
+                        editIcon.setOnMouseClicked((MouseEvent event) -> {
+
+                            salle = tableviewsalle.getSelectionModel().getSelectedItem();
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setLocation(getClass().getResource("/GUIBACK/addSalle.fxml"));
+                            try {
+                                loader.load();
+                            } catch (Exception ex) {
+                                ex.getMessage();
+                            }
+                            SalleService rs = new SalleService();
+                            salle = rs.findById(salle.getId());
+                            AddSalleController addSalleController = loader.getController();
+                            System.out.println("salle controller =" + salle.getUrl());
+                            addSalleController.setTextField(salle.getId(), salle.getNom(), salle.getAdresse(), salle.getTel(), salle.getMail(), salle.getDescription(), salle.getImage(), salle.getPrix1(), salle.getPrix2(), salle.getPrix3(), salle.getHeureo(), salle.getHeuref(), salle.getUrl());
+                            System.out.println(salle.getPrix2());
+                            System.out.println(salle.getPrix3());
+                            addSalleController.setUpdate(true);
+                            Parent parent = loader.getRoot();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(parent));
+                            stage.initStyle(StageStyle.UTILITY);
+                            stage.show();
+                        });
+
+                        HBox managebtn = new HBox(editIcon, deleteIcon);
+                        managebtn.setStyle("-fx-alignment:center");
+                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
+                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+
+                        setGraphic(managebtn);
+
+                        setText(null);
+
+                    }
+                }
+
+            };
+
+            return cell;
+        };
+        actionsfx.setCellFactory(cellFoctory);
+        tableviewsalle.setItems(data);
+        } else {
+            data = FXCollections.observableArrayList(ss.afficher());
         nomfx.setCellValueFactory(new PropertyValueFactory<>("nom"));
         adressefx.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
@@ -312,6 +422,7 @@ public class SalleController implements Initializable {
         };
         actionsfx.setCellFactory(cellFoctory);
         tableviewsalle.setItems(data);
+        }
 
     }
 
@@ -428,58 +539,74 @@ public class SalleController implements Initializable {
     }
 
     @FXML
-    private void handleClicks(ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btnUsers) {
+     private void handleClicks(ActionEvent event) throws IOException {
+        if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);
 
         }
-        if (actionEvent.getSource() == btnReclamation) {
+        if (event.getSource() == btnReclamation) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Reclamation.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnProfile) {
+        if (event.getSource() == btnProfile) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Profile.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnReply) {
+        if (event.getSource() == btnReply) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Reply.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == homebtn) {
+        if (event.getSource() == homebtn) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("HomeBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == homebtn) {
+        if (event.getSource() == homebtn) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("HomeBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnsalle) {
+        if (event.getSource() == btnsalle) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Salle.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btncours) {
+        if (event.getSource() == btncours) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Cours.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-              if (actionEvent.getSource() == btncategories) {
+        if (event.getSource() == btncategories) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Categories.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnproduit) {
+        if (event.getSource() == btnproduit) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Produit.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnevenement) {
+        if (event.getSource() == btnevenement) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("EvenementBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btncategoriesevent) {
+        if (event.getSource() == btncategoriesevent) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("CategoriesEventBack.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
-        if (actionEvent.getSource() == btnparticipation) {
+        if (event.getSource() == btnparticipation) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Participation.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btnarticle) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Article.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommentaire) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commentaire.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btncommande) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Commande.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+        }
+        if (event.getSource() == btnlivraison) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
     }

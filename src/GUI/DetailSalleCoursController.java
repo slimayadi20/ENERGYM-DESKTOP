@@ -6,11 +6,15 @@
 package GUI;
 
 import Entities.Salle;
+import GUIBACK.ProfileController;
 import GUIBACK.WebViewCaptureMap;
 import Services.SalleService;
 import com.jfoenix.controls.JFXToggleButton;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -34,6 +38,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -98,6 +104,8 @@ public class DetailSalleCoursController implements Initializable {
     private Button namefxid;
     @FXML
     private JFXToggleButton btnEditMode;
+    @FXML
+    private Circle circle;
 
     /**
      * Initializes the controller class.
@@ -105,6 +113,14 @@ public class DetailSalleCoursController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+            namefxid.setText(UserconnectedC.getNom());
+        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         loadData();
         mainpane.setOpacity(0);
         makeFadeInTransition();
@@ -302,5 +318,17 @@ public class DetailSalleCoursController implements Initializable {
 
     @FXML
     private void btnEditModeToggle(MouseEvent event) {
+    }
+
+    @FXML
+    private void gold(MouseEvent event) {
+    }
+
+    @FXML
+    private void silver(MouseEvent event) {
+    }
+
+    @FXML
+    private void bronze(MouseEvent event) {
     }
 }

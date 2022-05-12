@@ -62,138 +62,162 @@
             <AnchorPane fx:id="leftpane1" prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: #AC005D;">
                <children>
                   <ScrollPane prefHeight="700.0" prefWidth="250.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="705.0" prefWidth="247.0" style="-fx-background-color: #AC005D;">
+                     <content>
+                        <AnchorPane fx:id="leftpane11" prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: #AC005D;">
                            <children>
-                              <JFXButton fx:id="homebtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="5.0" layoutY="88.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Home" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnProfile" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="5.0" layoutY="128.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Profile" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnUsers" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="168.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Users" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="logoutbtn1" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="2.0" layoutY="677.0" onAction="#logOut" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Log Out" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <MaterialDesignIconView fill="WHITE" glyphName="POWER" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <Label layoutX="62.0" layoutY="38.0" text="ENERGYM" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Line endX="225.0" endY="115.0" fill="WHITE" layoutX="-1.0" layoutY="-46.0" opacity="0.85" startX="13.0" startY="115.0" stroke="WHITE" strokeLineCap="ROUND" />
-                              <JFXButton fx:id="btnReclamation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="208.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reclamation" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnReply" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="246.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reply" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnsalle" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="285.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Salles de sport" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btncours" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="323.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Cours" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnproduit" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="363.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Produits" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btncategories" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="403.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Categories" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnevenement" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="443.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Evenement" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btncategoriesevent" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="482.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="CategoriesEvent" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnparticipation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="2.0" layoutY="522.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Participation" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btnarticle" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="562.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Article" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btncommentaire" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="2.0" layoutY="602.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" prefHeight="40.0" prefWidth="230.0" text="Commentaire" textFill="WHITE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
-                                 </graphic>
-                              </JFXButton>
+                              <ScrollPane prefHeight="700.0" prefWidth="250.0">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="774.0" prefWidth="247.0" style="-fx-background-color: #AC005D;">
+                                       <children>
+                                          <JFXButton fx:id="homebtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="5.0" layoutY="88.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Home" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnProfile" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="5.0" layoutY="128.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Profile" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnUsers" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="168.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Users" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <MaterialDesignIconView fill="WHITE" glyphName="MOVIE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="logoutbtn" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="5.0" layoutY="721.0" onAction="#logOut" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="225.0" text="Log Out" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <MaterialDesignIconView fill="WHITE" glyphName="POWER" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <Label layoutX="62.0" layoutY="38.0" text="ENERGYM" textFill="WHITE">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="225.0" endY="115.0" fill="WHITE" layoutX="-1.0" layoutY="-46.0" opacity="0.85" startX="13.0" startY="115.0" stroke="WHITE" strokeLineCap="ROUND" />
+                                          <JFXButton fx:id="btnReclamation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="208.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reclamation" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnReply" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="246.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Reply" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnsalle" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="285.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Salles de sport" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btncours" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="323.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Cours" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnproduit" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="363.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Produits" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btncategories" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="403.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Categories" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnevenement" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="443.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Evenement" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btncategoriesevent" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="482.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="CategoriesEvent" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnparticipation" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="2.0" layoutY="522.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Participation" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnarticle" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="3.0" layoutY="562.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Article" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btncommentaire" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="2.0" layoutY="602.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" prefHeight="40.0" prefWidth="230.0" text="Commentaire" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btncommande" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="2.0" layoutY="641.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="230.0" text="Commande" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnlivraison" alignment="TOP_LEFT" graphicTextGap="20.0" layoutX="4.0" layoutY="681.0" onAction="#handleClicks" onMouseEntered="#btnHover" onMouseExited="#btnExit" opacity="0.8" prefHeight="40.0" prefWidth="228.0" text="Livraison" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="20" />
+                                             </graphic>
+                                          </JFXButton>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
                            </children>
                         </AnchorPane>
-                    </content>
+                     </content>
                   </ScrollPane>
                </children>
             </AnchorPane>
