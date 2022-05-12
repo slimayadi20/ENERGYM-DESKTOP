@@ -229,8 +229,8 @@ public class FXMLController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        loginTF.setText("slim.ayadi@esprit.tn");
-        passwordTF.setText("azertyuiop");
+        loginTF.setText("karim.trabelsi1@esprit.tn");
+        passwordTF.setText("321654987");
 // idn 
         try {
             URL url_name = new URL("http://checkip.amazonaws.com/");
@@ -687,6 +687,7 @@ public class FXMLController implements Initializable {
             alert.setTitle("Errors");
             alert.setContentText(errors.toString());
             alert.showAndWait();
+            errors.setLength(0);
         } else {
             User u = new User();
             if (selectedFile != null) {

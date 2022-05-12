@@ -4,6 +4,7 @@
  */
 package energym.desktop;
 
+import Services.PanierService;
 import Services.ReclamationService;
 import Services.UserService;
 import java.io.IOException;
@@ -30,6 +31,11 @@ public class ENERGYMDESKTOP {
      */
     public static void main(String[] args) throws ParseException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException, InterruptedException {
         UserService us = new UserService();
+        PanierService ps = new PanierService();
+        ps.ajouterPanier(1, 37);
+        ps.ajouterPanier(2, 37);
+        ps.panier( 37);
+        
         ReclamationService rs = new ReclamationService();
         // Date date = new Date(System.currentTimeMillis());
         //LocalDate d = LocalDate.(date); 
@@ -47,6 +53,8 @@ public class ENERGYMDESKTOP {
         LocalDate date2 = LocalDate.parse(todaysdate, formatter);
         long yearsBetween = ChronoUnit.YEARS.between(date1, date2);
         System.out.println(yearsBetween);
+        
+        
         // ************************************ age calculator *************************************
 
         //Smsapi.sendSMS("hello");

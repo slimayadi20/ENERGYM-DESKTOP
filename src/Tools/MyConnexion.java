@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class MyConnexion {
     
-    private final String URL="jdbc:mysql://127.0.0.1:3306/energym3" ;
+    private final String URL="jdbc:mysql://127.0.0.1:3306/energym1" ;
     private final String USER="root";
     private final String PWD="";
     
