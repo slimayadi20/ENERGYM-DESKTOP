@@ -30,12 +30,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.animation.FadeTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,19 +52,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -71,6 +81,7 @@ import org.apache.commons.io.FileUtils;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
+import java.io.File;
 
 /**
  * FXML Controller class
@@ -141,6 +152,34 @@ public class ProfileFrontController implements Initializable {
     private Label articlefxid;
     @FXML
     private Circle circle;
+    @FXML
+    private Label song_label;
+    @FXML
+    private ComboBox<String> speedbox;
+    @FXML
+    private ImageView resetbutton;
+    @FXML
+    private ImageView previousbutton;
+    @FXML
+    private ImageView pausebutton;
+    @FXML
+    private ImageView playbutton;
+    @FXML
+    private ImageView nextbutton;
+    @FXML
+    private ProgressBar song_progressbar;
+    @FXML
+    private Slider volumeslider;
+    private Media media;
+    private MediaPlayer mediaPlayer;
+    private File directory;
+    private File[] files;
+    private ArrayList<File> songs;
+    private int songNumber;
+    private int[] speeds = {25, 50, 75, 100, 125, 150, 175, 200};
+    private Timer timer;
+    private TimerTask task;
+    private boolean running;
 
     /**
      * Initializes the controller class.
@@ -160,8 +199,76 @@ public class ProfileFrontController implements Initializable {
         setUser();
         mainpane.setOpacity(0);
         makeFadeInTransition();
+        songs = new ArrayList<File>();
+
+        directory = new File("music");
+
+        files = directory.listFiles();
+
+        if (files != null) {
+
+            for (File filee : files) {
+
+                songs.add(filee);
+            }
+        }
+
+        media = new Media(songs.get(songNumber).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+
+        song_label.setText(songs.get(songNumber).getName());
+
+        for (int i = 0; i < speeds.length; i++) {
+
+            speedbox.getItems().add(Integer.toString(speeds[i]) + "%");
+        }
+
+        //speedbox.setOnAction(this::changeSpeed);
+        volumeslider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+
+                mediaPlayer.setVolume(volumeslider.getValue() * 0.01);
+            }
+        });
+
+        song_progressbar.setStyle("-fx-accent: #00FF00;");
+
     }
-   private void makeFadeInTransition() {
+
+    public void playMedia() {
+
+        beginTimer();
+        changespeed(null);
+        mediaPlayer.setVolume(volumeslider.getValue() * 0.01);
+        mediaPlayer.play();
+    }
+
+    public void beginTimer() {
+        timer = new Timer();
+        task = new TimerTask() {
+            public void run() {
+                running = true;
+                double current = mediaPlayer.getCurrentTime().toSeconds();
+                double end = media.getDuration().toSeconds();
+                System.out.println(current / end);
+                song_progressbar.setProgress(current / end);
+                if (current / end == 1) {
+                    cancelTimer();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 1000, 1000);
+    }
+
+    public void cancelTimer() {
+        running = false;
+        timer.cancel();
+
+    }
+
+    private void makeFadeInTransition() {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
         fadeTransition.setNode(mainpane);
@@ -170,6 +277,7 @@ public class ProfileFrontController implements Initializable {
         fadeTransition.play();
 
     }
+
     private void logOut(ActionEvent event) {
         try {
             Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -376,7 +484,6 @@ public class ProfileFrontController implements Initializable {
         }
     }
 
- 
     private void makeFadeInTransition(String a) {
 
         try {
@@ -392,7 +499,7 @@ public class ProfileFrontController implements Initializable {
 
     }
 
-  @FXML
+    @FXML
     private void reclamation(MouseEvent event) throws IOException {
         makeFadeInTransition("ReclamationFront.fxml");
 
@@ -434,7 +541,108 @@ public class ProfileFrontController implements Initializable {
 
     @FXML
     private void article(MouseEvent event) {
-                        makeFadeInTransition("Article.fxml");
+        makeFadeInTransition("Article.fxml");
 
+    }
+
+    @FXML
+    private void changespeed(ActionEvent event) {
+        if (speedbox.getValue() == null) {
+            mediaPlayer.setRate(1);
+        } else {
+//  mediaPlayer.setRate(Ineger.parseInt(speedBox.getValue().) * 0.01);
+            mediaPlayer.setRate(Integer.parseInt(speedbox.getValue().substring(0, speedbox.getValue().length() - 1)) * 0.01);
+        }
+    }
+
+    @FXML
+    private void resetmedia(MouseEvent event) {
+        mediaPlayer.seek(Duration.seconds(0));
+
+    }
+
+    @FXML
+    private void previousmedia(MouseEvent event) {
+        if (songNumber > 0) {
+
+            songNumber--;
+
+            mediaPlayer.stop();
+
+            if (running) {
+
+                cancelTimer();
+            }
+
+            media = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+
+            song_label.setText(songs.get(songNumber).getName());
+
+            playMedia();
+        } else {
+
+            songNumber = songs.size() - 1;
+
+            mediaPlayer.stop();
+
+            if (running) {
+
+                cancelTimer();
+            }
+
+            media = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+
+            song_label.setText(songs.get(songNumber).getName());
+
+            playMedia();
+        }
+    }
+
+    @FXML
+    private void pausemedia(MouseEvent event) {
+        mediaPlayer.pause();
+
+    }
+
+    @FXML
+    private void playmedia(MouseEvent event) {
+        mediaPlayer.play();
+
+    }
+
+    @FXML
+    private void nextmedia(MouseEvent event) {
+        if (songNumber < songs.size() - 1) {
+
+            songNumber++;
+
+            mediaPlayer.stop();
+
+            if (running) {
+
+                cancelTimer();
+            }
+
+            media = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+
+            song_label.setText(songs.get(songNumber).getName());
+
+            playMedia();
+        } else {
+
+            songNumber = 0;
+
+            mediaPlayer.stop();
+
+            media = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+
+            song_label.setText(songs.get(songNumber).getName());
+
+            playMedia();
+        }
     }
 }

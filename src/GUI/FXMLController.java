@@ -266,16 +266,16 @@ public class FXMLController implements Initializable {
             System.out.println("ezfzezfzfzz");
         }
 
-        System.out.println(json.toString());
+     //   System.out.println(json.toString());
         //System.out.println(json.get("country_name"));
-        pays = json.get("country_name").toString();
+      /*  pays = json.get("country_name").toString();
         region = json.get("city").toString();
         idn = json.get("calling_code").toString();
 
         System.out.println("pays" + pays);
         System.out.println("region" + region);
         System.out.println(idn);
-        numTelTF.setText(idn);
+        numTelTF.setText(idn);*/
 
         // ********* voice entry 
         Voice voice;
@@ -891,7 +891,7 @@ public class FXMLController implements Initializable {
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                                     stageclose.close();
-                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/Evenement.fxml"));
+                                    Parent root = FXMLLoader.load(getClass().getResource("/GUI/HomeFront.fxml"));
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);

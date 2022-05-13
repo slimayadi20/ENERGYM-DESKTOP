@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="DashboardUtilis" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanierController">
+<AnchorPane fx:id="DashboardUtilis" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanierController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1000.0" stylesheets="@style.css">
          <children>
@@ -49,12 +49,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">
                <children>
-                  <Label prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
+                  <Label onMouseClicked="#produit" prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
                <children>
-                  <Label text="Reclamation" textFill="WHITE" />
+                  <Label fx:id="reclamation" onMouseClicked="#reclamation" text="Reclamation" textFill="WHITE" />
                </children>
             </HBox>
             <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
@@ -128,7 +128,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXButton fx:id="codeButton" layoutX="953.0" layoutY="404.0" prefHeight="18.0" prefWidth="30.0" ripplerFill="#f7c1c1" style="-fx-background-color: F94242; -fx-background-radius: 8; -fx-min-height: 25; -fx-min-width: 30;" text="  " wrapText="true">
+      <JFXButton fx:id="codeButton" layoutX="953.0" layoutY="404.0" onMouseClicked="#ajoutcode" prefHeight="18.0" prefWidth="30.0" ripplerFill="#f7c1c1" style="-fx-background-color: F94242; -fx-background-radius: 8; -fx-min-height: 25; -fx-min-width: 30;" text="  " wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -144,6 +144,11 @@
          <font>
             <Font size="10.0" />
          </font></Label>
+      <JFXButton fx:id="vider" layoutX="852.0" layoutY="642.0" onMouseClicked="#vider_panier" prefHeight="37.0" prefWidth="130.0" ripplerFill="RED" style="-fx-background-color: F94242; -fx-background-radius: 8;" text="Vider Panier" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
    </children>
    <styleClass>
       <String fx:value="border-bottom" />

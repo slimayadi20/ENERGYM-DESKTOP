@@ -110,7 +110,7 @@ public class CommandeController implements Initializable {
     private JFXButton btncommentaire;
     @FXML
     private JFXButton btncommande;
-    static String cat;
+    static int cat;
     CommandeService rs = new CommandeService();
     Commande Commande = null;
     ObservableList<Commande> data = FXCollections.observableArrayList();
@@ -251,7 +251,7 @@ public class CommandeController implements Initializable {
     }
 
     // for add event    
-    public static String getCat() {
+    public static int getCat() {
         return cat;
     }
 
@@ -261,7 +261,7 @@ public class CommandeController implements Initializable {
     try {
             tableviewCommande.setOnMousePressed((MouseEvent event) -> {
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 3) {
-                    cat = tableviewCommande.getSelectionModel().getSelectedItem().getNom();
+                    cat = tableviewCommande.getSelectionModel().getSelectedItem().getId();
                     Stage stage = (Stage) tableviewCommande.getScene().getWindow();
                     stage.close();
                     //Version_3Controller vt = new Version_3Controller();

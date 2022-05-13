@@ -82,22 +82,23 @@ public class AddLivraisonController implements Initializable {
         // TODO
     }
 
-    private void getQuery(String nom, String nomlivreur,  LocalDate datee, String etat) {
+    private void getQuery(int nom, String nomlivreur,  LocalDate datee, String etat) {
 
         if (update == false) {
             CommandeService ces = new CommandeService();
             LivraisonService es = new LivraisonService();
-            int c = ces.getbyid(nom);
+            System.out.println("nom="+nom);
+         //   int c = ces.getbyid(nom);
             java.util.Date date = java.sql.Date.valueOf(datee);
-
-            Livraison e = new Livraison( c, nomlivreur, (java.sql.Date) date,etat);
+         //   System.out.println("c="+c);
+            Livraison e = new Livraison( nom, nomlivreur, (java.sql.Date) date,etat);
             es.ajouterLivraison(e);
         } else {
             LivraisonService es = new LivraisonService();
             CommandeService ces = new CommandeService();
-            int c = ces.getbyid(nom);
+            //int c = ces.getbyid(nom);
             java.util.Date date = java.sql.Date.valueOf(datee);
-            Livraison e = new Livraison(categoriesLivraisonid, c, nom, (java.sql.Date) date, etat);
+            Livraison e = new Livraison(categoriesLivraisonid, nom, nomlivreur, (java.sql.Date) date, etat);
             es.modifier(categoriesLivraisonid, e);
         }
 
@@ -112,7 +113,7 @@ public class AddLivraisonController implements Initializable {
         String c = ces.getbynom(commande);
         LocalDate localDate = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(datee));
 
-        categorie.setText(c);
+      //  categorie.setText(c);
         date_Debut.setValue(localDate);
 
      //   File file = new File("C:\\xampp\\htdocs\\img\\" + image);
@@ -155,7 +156,7 @@ public class AddLivraisonController implements Initializable {
             String nom = tfNom.getText();
      
             String addr = etat.getText();
-            String categ = categorie.getText();
+            int categ = Integer.parseInt(categorie.getText());
             LocalDate datee = date_Debut.getValue();
 
             getQuery(categ, nom, datee, addr);
@@ -181,7 +182,7 @@ public class AddLivraisonController implements Initializable {
         //stage.close();  
         CommandeController ct = new CommandeController();
         //System.out.println(ct.getCat());
-        categorie.setText(ct.getCat());
+        categorie.setText(String.valueOf(ct.getCat()));
     }
 
     @FXML
@@ -212,7 +213,7 @@ public class AddLivraisonController implements Initializable {
             String nom = tfNom.getText();
      
             String addr = etat.getText();
-            String categ = categorie.getText();
+            int categ = Integer.parseInt(categorie.getText());
             LocalDate datee = date_Debut.getValue();
 
             getQuery(categ, nom, datee, addr);

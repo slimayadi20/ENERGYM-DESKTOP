@@ -7,6 +7,7 @@ package GUI;
 
 import Entities.Panier;
 import Entities.User;
+import static GUI.PaiementController.showAlert;
 import static GUI.PanierController.listTH;
 import Services.PanierService;
 import energym.desktop.MainFX;
@@ -15,8 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -62,8 +61,7 @@ public class ProduitPanierController {
     private Button plus;
     URL url;
     ResourceBundle rb;
-
-    public static int qt = 0;
+    PanierController te = new PanierController();
 
     public void setData(Panier t) {
 
@@ -78,9 +76,9 @@ public class ProduitPanierController {
                 ps.ajouterPanier(t.getIdproduit(), MainFX.UserconnectedC.getId());
                 int a = ps.getInstance().getQT(MainFX.UserconnectedC.getId(), t.getIdproduit());
                 if (a >= ps.getInstance().getStock(t.getIdproduit())) {
+                    showAlert(Alert.AlertType.INFORMATION, "Opération Invalide", "error", "Stock insuffisant");
                 } else {
                     quantite.setText(String.valueOf(a));
-                    qt = a;
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
                     try {
@@ -88,9 +86,16 @@ public class ProduitPanierController {
                     } catch (Exception ex) {
                         ex.getMessage();
                     }
-                    PanierController model = new PanierController();
-                    model.setTotal(new Label("hhohohohoho"));
 
+                    PanierController addLivraisonController = loader.getController();
+
+                    Parent parent = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(parent));
+                    stage.initStyle(StageStyle.UTILITY);
+                    stage.show();
+                    stage = (Stage) plus.getScene().getWindow();
+                    stage.close();
                 }
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -103,27 +108,28 @@ public class ProduitPanierController {
                 ps.deletePanier(t.getIdproduit(), MainFX.UserconnectedC.getId());
 
                 //te.setTest(true);
-                int a = ps.getInstance().getQT(MainFX.UserconnectedC.getId(), t.getIdproduit());
-                System.out.println(a);
-                quantite.setText(String.valueOf(a));
-                if (a == 0) {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
-                    try {
-                        loader.load();
-                    } catch (Exception ex) {
-                        ex.getMessage();
-                    }
-                    PanierController te = loader.getController();
-                    Platform.runLater(() -> {
-                        try {
-                            te.displayGrid();
-                        } catch (IOException ex) {
-                            Logger.getLogger(ProduitPanierController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    });
-
+                if (t.getQuantite() > 1) {
+                    int a = ps.getInstance().getQT(MainFX.UserconnectedC.getId(), t.getIdproduit());
+                    System.out.println(a);
+                    quantite.setText(String.valueOf(a));
                 }
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
+                try {
+                    loader.load();
+                } catch (Exception ex) {
+                    ex.getMessage();
+                }
+
+                PanierController addLivraisonController = loader.getController();
+
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+                stage = (Stage) plus.getScene().getWindow();
+                stage.close();
 
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());

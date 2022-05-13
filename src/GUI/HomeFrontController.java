@@ -396,4 +396,10 @@ public class HomeFrontController implements Initializable {
 
     }
 
+    @FXML
+    private void panier(MouseEvent event) {
+                makeFadeInTransition("Panier.fxml");
+
+    }
+
 }

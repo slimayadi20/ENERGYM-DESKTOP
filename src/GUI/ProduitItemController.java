@@ -8,6 +8,8 @@ package GUI;
 import Entities.Produit;
 import Entities.Salle;
 import Entities.User;
+import static GUI.PaiementController.showAlert;
+import Services.PanierService;
 import Services.ProduitService;
 import Services.SalleService;
 import java.io.IOException;
@@ -30,6 +32,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.xml.ws.Action;
 import static energym.desktop.MainFX.UserconnectedC;
+import javafx.scene.control.Alert;
 import org.controlsfx.control.Rating;
 
 /**
@@ -38,7 +41,7 @@ import org.controlsfx.control.Rating;
  * @author eyaba
  */
 public class ProduitItemController {
-    
+
     @FXML
     private ImageView image;
     private Produit produit;
@@ -50,10 +53,10 @@ public class ProduitItemController {
     private Label prix;
     @FXML
     private Label qte;
-    
+
     public void setData(Produit t) {
         produit = t;
-        
+
         nom.setText(t.getNom());
         image.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\" + t.getImage()));
         prix.setText(String.valueOf(t.getPrix()) + "$");
@@ -64,6 +67,14 @@ public class ProduitItemController {
             ps.modifierrating(t.getId(), (int) rating.getRating());
         }
         );
-        
+
+    }
+
+    @FXML
+    private void addcarte(MouseEvent event) {
+        PanierService ps = new PanierService();
+        ps.ajouterPanier(produit.getId(), UserconnectedC.getId());
+        showAlert(Alert.AlertType.INFORMATION, "Veuillez remplir votre panier", "error", "Veuillez remplir votre panier");
+
     }
 }

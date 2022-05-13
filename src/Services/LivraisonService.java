@@ -31,6 +31,7 @@ public class LivraisonService {
         try {
             Statement st;
             st = cnx.createStatement();
+            System.out.println("id commande = "+t.getCommandeid());
             String query = "INSERT INTO `livraison`(`id_commande_id`,`nom_livreur`, `date_livraison`, `etat`) "
                     + "VALUES ('" + t.getCommandeid()+ "','" + t.getNom()+ "','" + t.getDate()+ "','" + t.getEtat()+ "')";
             st.executeUpdate(query);

@@ -70,7 +70,7 @@
                      <children>
                         <Circle fx:id="circle" fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                         <Button fx:id="namefxid" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
-                        <ImageView fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="70.0" fitWidth="41.0" onMouseClicked="#panier" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/—Pngtree—red%20shopping%20cart%20icon%20png_4480557.png" />
                            </image>

@@ -7,10 +7,10 @@ package GUI;
 
 import Entities.Panier;
 import Entities.User;
+import static GUI.PaiementController.showAlert;
 import Services.PanierService;
 import com.jfoenix.controls.JFXButton;
 import energym.desktop.MainFX;
-import static energym.desktop.MainFX.UserconnectedC;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,6 +38,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -55,7 +56,7 @@ public class PanierController implements Initializable {
     @FXML
     public Label count;
     @FXML
-    public Label total;
+    private Label total;
     URL url;
     ResourceBundle rb;
     public static List<Panier> listTH;
@@ -70,8 +71,14 @@ public class PanierController implements Initializable {
     private Label erreur;
     @FXML
     public AnchorPane DashboardUtilis;
-    public static int tt = 0;
     public static boolean test = false;
+    @FXML
+    private Label reclamation;
+    public int reduc = 0;
+    public int c = 0;
+    public int global_variable = 0;
+    @FXML
+    private JFXButton vider;
 
     /**
      * Initializes the controller class.
@@ -79,11 +86,11 @@ public class PanierController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PanierService ths = new PanierService();
-
-        listTH = getData();
-        total.setText(String.valueOf(ProduitPanierController.qt));
+        listTH = PanierService.getInstance().panier(MainFX.UserconnectedC.getId());
+        int tt = 0;
         int colonne = 0;
         int row = 1;
+        reduc = 0;
         try {
             for (Panier t : listTH) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -107,28 +114,11 @@ public class PanierController implements Initializable {
                 GridPane.setMargin(anchorPane, new Insets(12));
                 //break;
                 tt += t.getPrix() * ths.getInstance().getQT(MainFX.UserconnectedC.getId(), t.getIdproduit());
+                global_variable= tt ; 
                 count.setText(String.valueOf(ths.getInstance().getCount(MainFX.UserconnectedC.getId())) + " Items");
                 total.setText(String.valueOf(tt) + " DT");
-                codeButton.setOnMouseClicked((MouseEvent event) -> {
-                    int red = 0;
-                    try {
 
-                        if (ths.getPromo(codeTF.getText()) == 0) {
-                            erreur.setText("Code invalide");
-                            reduction.setText("0 %");
-
-                        } else {
-
-                            reduction.setText(String.valueOf(ths.getPromo(codeTF.getText())) + " %");
-                            erreur.setText("");
-
-                        }
-
-                    } catch (Exception ex) {
-                        System.out.println(ex.getMessage());
-                    }
-
-                });
+               
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -136,79 +126,13 @@ public class PanierController implements Initializable {
 
     }
 
-    private List<Panier> getData() {
-        PanierService ldao = new PanierService();
-        return ldao.panier(UserconnectedC.getId());
-
-    }
-
-    public void setTotal(Label total) {
-        this.total = total;
-    }
-
-    public Label getTotal() {
-        return total;
-    }
-
-    public void displayGrid() throws IOException {
-
-        System.out.println("okok");
-        PanierService ths = new PanierService();
-        total.setText(Integer.toString(12));
-        System.out.println(UserconnectedC.getId());
-        listTH = PanierService.getInstance().panier(MainFX.UserconnectedC.getId());
-
-        int colonne = 0;
-        int row = 1;
+    public void displayGrid() {
+        AnchorPane panee;
         try {
-            for (Panier t : listTH) {
-                System.out.println("total updated");
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ProduitPanier.fxml"));
-
-                Pane anchorPane = fxmlLoader.load();
-
-                ProduitPanierController controller = fxmlLoader.getController();
-                controller.setData(t);
-                if (colonne == 3) {
-                    colonne = 0;
-                    row++;
-                }
-                grid.add(anchorPane, colonne++, row);
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-                GridPane.setMargin(anchorPane, new Insets(12));
-                //break;
-                tt += t.getPrix() * ths.getInstance().getQT(MainFX.UserconnectedC.getId(), t.getIdproduit());
-                count.setText(String.valueOf(ths.getInstance().getCount(MainFX.UserconnectedC.getId())) + " Items");
-                total.setText(String.valueOf(tt) + " DT");
-                codeButton.setOnMouseClicked((MouseEvent event) -> {
-                    int red = 0;
-                    try {
-
-                        if (ths.getPromo(codeTF.getText()) == 0) {
-                            erreur.setText("Code invalide");
-                            reduction.setText("0 %");
-
-                        } else {
-
-                            reduction.setText(String.valueOf(ths.getPromo(codeTF.getText())) + " %");
-                            erreur.setText("");
-
-                        }
-
-                    } catch (Exception ex) {
-                        System.out.println(ex.getMessage());
-                    }
-
-                });
-            }
+            panee = FXMLLoader.load(getClass().getResource("Panier.fxml"));
+            DashboardUtilis.getChildren().setAll(panee);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -257,9 +181,75 @@ public class PanierController implements Initializable {
                 Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
+            showAlert(Alert.AlertType.INFORMATION, "Veuillez remplir votre panier", "error", "Veuillez remplir votre panier");
         }
 
     }
 
 // 4242 4242 4242 4242
+    @FXML
+    private void reclamation(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Reclamation.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    @FXML
+    private void ajoutcode(MouseEvent event) {
+        PanierService ths = new PanierService();
+
+        c = ths.getPromo(codeTF.getText());
+        reduc = global_variable - ((global_variable * c) / 100);
+
+        if (ths.getPromo(codeTF.getText()) == 0) {
+            total.setText(String.valueOf(global_variable) + " DT");
+            erreur.setText("Code invalide");
+            reduction.setText("0 %");
+
+        } else {
+            reduction.setText(String.valueOf(ths.getPromo(codeTF.getText())) + " %");
+            total.setText(String.valueOf(reduc) + " DT");
+            System.out.println(c);
+            erreur.setText("");
+
+        }
+    }
+
+    @FXML
+    private void produit(MouseEvent event) throws IOException {
+              Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Produit.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    @FXML
+    private void vider_panier(MouseEvent event) {
+         PanierService ths = new PanierService();
+         ths.supprimerPanierbyuser(MainFX.UserconnectedC.getId());
+          FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
+                try {
+                    loader.load();
+                } catch (Exception ex) {
+                    ex.getMessage();
+                }
+
+          PanierController addLivraisonController = loader.getController();
+
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+                stage = (Stage) vider.getScene().getWindow();
+                stage.close();
+    }
 }

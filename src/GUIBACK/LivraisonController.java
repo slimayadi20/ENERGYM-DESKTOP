@@ -139,6 +139,7 @@ public class LivraisonController implements Initializable {
 
     @FXML
     private void refreshfct(MouseEvent event) {
+        loadDate();
     }
 
     @FXML
