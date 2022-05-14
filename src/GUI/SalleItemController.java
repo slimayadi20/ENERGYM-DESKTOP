@@ -60,7 +60,7 @@ public class SalleItemController {
         System.out.println("name" + t.getNom());
         System.out.println("image " + t.getImage());
         name.setText(t.getNom());
-        image.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\" + t.getImage()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\salle\\" + t.getImage()));
 
         name.setOnMouseClicked((MouseEvent event) -> {
 //**************************

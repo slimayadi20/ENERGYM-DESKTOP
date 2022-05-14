@@ -86,13 +86,13 @@ public class AddCoursController implements Initializable {
         // TODO  
 
         ajoutjourfx.setItems(jour);
-        jour.add("Lundi");
-        jour.add("Mardi");
-        jour.add("Mercredi");
-        jour.add("Jeudi");
-        jour.add("Vendredi");
-        jour.add("Samedi");
-        jour.add("Dimanche");
+        jour.add("lundi");
+        jour.add("mardi");
+        jour.add("mercredi");
+        jour.add("jeudi");
+        jour.add("vendredi");
+        jour.add("samedi");
+        jour.add("dimanche");
 
     }
 
@@ -244,7 +244,7 @@ public class AddCoursController implements Initializable {
         if (selectedFile != null) {
 
             path = selectedFile.getName();
-            path = selectedFile.toURI().toURL().toExternalForm();
+         //   path = selectedFile.toURI().toURL().toExternalForm();
             // image.setImage(new Image(selectedFile.toURI().toURL().toString()));
             // image.setFitHeight(150);
             //  image.setFitWidth(250);
@@ -254,7 +254,7 @@ public class AddCoursController implements Initializable {
         if (selectedFile != null) {
             try {
                 File source = new File(selectedFile.toString());
-                File dest = new File("C:\\xampp\\htdocs\\img");
+                File dest = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit");
                 FileUtils.copyFileToDirectory(source, dest);
             } catch (IOException e) {
                 e.printStackTrace();

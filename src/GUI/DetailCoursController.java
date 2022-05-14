@@ -139,7 +139,7 @@ public class DetailCoursController implements Initializable {
         try {
 
             for (Cours t : listTH) {
-                if ("Lundi".equals(t.getJour())) {
+                if ("lundi".equals(t.getJour())) {
                     System.out.println(t);
 
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -164,7 +164,7 @@ public class DetailCoursController implements Initializable {
                     GridPane.setMargin(anchorPane, new Insets(12));
                     //break;
                 }
-                if ("Mardi".equals(t.getJour())) {
+                if ("mardi".equals(t.getJour())) {
                     System.out.println(t);
 
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -190,7 +190,7 @@ public class DetailCoursController implements Initializable {
                     GridPane.setMargin(anchorPane, new Insets(12));
                     //break;
                 }
-                if ("Mercredi".equals(t.getJour())) {
+                if ("mercredi".equals(t.getJour())) {
                     System.out.println(t);
 
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -216,7 +216,7 @@ public class DetailCoursController implements Initializable {
                     GridPane.setMargin(anchorPane, new Insets(12));
                     //break;
                 }
-                if ("Jeudi".equals(t.getJour())) {
+                if ("jeudi".equals(t.getJour())) {
                     System.out.println(t);
 
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -242,7 +242,7 @@ public class DetailCoursController implements Initializable {
                     GridPane.setMargin(anchorPane, new Insets(12));
                     //break;
                 }
-                if ("Vendredi".equals(t.getJour())) {
+                if ("vendredi".equals(t.getJour())) {
                     System.out.println(t);
 
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -268,7 +268,7 @@ public class DetailCoursController implements Initializable {
                     GridPane.setMargin(anchorPane, new Insets(12));
                     //break;
                 }
-                if ("Samedi".equals(t.getJour())) {
+                if ("samedi".equals(t.getJour())) {
                     System.out.println(t);
 
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -294,7 +294,7 @@ public class DetailCoursController implements Initializable {
                     GridPane.setMargin(anchorPane, new Insets(12));
                     //break;
                 }
-                if ("Dimanche".equals(t.getJour())) {
+                if ("dimanche".equals(t.getJour())) {
                     System.out.println(t);
 
                     FXMLLoader fxmlLoader = new FXMLLoader();

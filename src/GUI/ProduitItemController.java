@@ -58,7 +58,7 @@ public class ProduitItemController {
         produit = t;
 
         nom.setText(t.getNom());
-        image.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\" + t.getImage()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit\\" + t.getImage()));
         prix.setText(String.valueOf(t.getPrix()) + "$");
         qte.setText(String.valueOf(t.getQuantité()));
         rating.setRating(t.getRating());

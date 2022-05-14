@@ -55,7 +55,7 @@ public class ArticleItemController implements Initializable {
     public void setData(Article t) {
         article = t;
         name.setText(t.getTitre());
-        image.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + t.getImageFile()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\posts\\" + t.getImageFile()));
 
         vboxfx.setOnMouseClicked((MouseEvent event) -> {
 //**************************

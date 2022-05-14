@@ -373,7 +373,7 @@ public class CoursController implements Initializable {
                 movietitle.setText(u.getNom());
                 descriptionfx.setText(u.getDescription());
 
-                imagefx.setImage(new Image(u.getImage()));
+                imagefx.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\cour\\"+u.getImage()));
 
             }
         });

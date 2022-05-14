@@ -8,6 +8,7 @@ package Services;
 import Entities.Categories;
 import Entities.Produit;
 import Entities.Reply;
+import Entities.Salle;
 import Tools.MyConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -90,10 +91,20 @@ public class ProduitService {
     public void ajouter(Produit t) {
         try {
             Statement st;
+            Statement pt;
             st = cnx.createStatement();
-            String query = "INSERT INTO `Produit`( `nom`, `description`,`image`, `prix`, `quantite`,`categories_id_java`) "
-                    + "VALUES ('" + t.getNom() + "','" + t.getDescription() + "','" + t.getImage() + "','" + t.getPrix() + "','" + t.getQuantité() + "','" + t.getNomCategories() + "')";
+            pt = cnx.createStatement();
+            String query = "INSERT INTO `Produit`( `nom`, `description`,`image`, `prix`, `quantite`) "
+                    + "VALUES ('" + t.getNom() + "','" + t.getDescription() + "','" + t.getImage() + "','" + t.getPrix() + "','" + t.getQuantité() + "')";
             st.executeUpdate(query);
+
+            String query2 = "INSERT INTO `produit_categories`( `produit_id`, `categories_id`) "
+                    + "VALUES ('" + getproduitassocie_id((t.getNom())) + "','" + t.getNomCategories() + "')";
+            System.out.println(query2);
+            System.out.println("nom" + t.getNom());
+            System.out.println("id= " + getproduitassocie_id(t.getNom()));
+            System.out.println("categ= " + t.getNomCategories());
+            pt.executeUpdate(query2);
             System.out.println("Produit ajouté avec success");
         } catch (SQLException ex) {
             Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,7 +116,9 @@ public class ProduitService {
             System.out.println("1");
 
             PreparedStatement st;
-            st = cnx.prepareStatement("UPDATE `Produit` SET `nom`=?,`description`=?, `image`=?,`prix`=?,`quantite`=?,`categories_id_java`=?"
+            PreparedStatement pt;
+
+            st = cnx.prepareStatement("UPDATE `Produit` SET `nom`=?,`description`=?, `image`=?,`prix`=?,`quantite`=?"
                     + " WHERE id=?");
             System.out.println("2");
 
@@ -114,11 +127,21 @@ public class ProduitService {
             st.setString(3, t.getImage());
             st.setInt(4, t.getPrix());
             st.setInt(5, t.getQuantité());
-            st.setInt(6, t.getNomCategories());
             // st.setString(5, t.getImageFile());
             //   st.setDate(2, new java.sql.Date(t.getDate_naissance().getTime()));
-            st.setInt(7, id_amodifier);
+            st.setInt(6, id_amodifier);
+
+            pt = cnx.prepareStatement("UPDATE `produit_categories` SET `produit_id`=?,`categories_id`=?"
+                    + " WHERE produit_id=?");
+            pt.setInt(1, t.getId());
+            pt.setInt(2, t.getNomCategories());
+            pt.setInt(3, t.getId());
             if (st.executeUpdate() == 1) {
+                System.out.println("Produit modifié avec success");
+            } else {
+                System.out.println("Produit n'existe pas");
+            }
+            if (pt.executeUpdate() == 1) {
                 System.out.println("Produit modifié avec success");
             } else {
                 System.out.println("Produit n'existe pas");
@@ -131,9 +154,9 @@ public class ProduitService {
 
     public void modifierrating(long id_amodifier, int c) {
         int s = getRating((int) id_amodifier);
-        int rating = ( s + c ) / 2;
+        int rating = (s + c) / 2;
         System.out.println(s);
-        System.out.println("rating"+rating);
+        System.out.println("rating" + rating);
         try {
             PreparedStatement st;
             st = cnx.prepareStatement("UPDATE produit SET `rating`=? WHERE id=?");
@@ -178,10 +201,14 @@ public class ProduitService {
                 u.setImage(rs.getString("image"));
                 u.setPrix(rs.getInt("prix"));
                 u.setQuantité(rs.getInt("quantite"));
-                u.setNomCategories(rs.getInt("categories_id_java"));
                 u.setId(rs.getInt("id"));
                 u.setRating(rs.getInt("rating"));
-
+                Statement pt = cnx.createStatement();
+                String query1 = "select * from produit_categories where produit_id=" + rs.getInt("id");
+                ResultSet rss = pt.executeQuery(query1);
+                while (rss.next()) {
+                    u.setNomCategories(rss.getInt("categories_id"));
+                }
                 lu.add(u);
             }
         } catch (SQLException ex) {
@@ -285,6 +312,26 @@ public class ProduitService {
         return prix;
     }
 
+    public int getproduitassocie_id(String nom) {
+        ObservableList<Produit> myList = FXCollections.observableArrayList();
+        int id = 0;
+        try {
+            String query = "SELECT * FROM `produit` WHERE `nom`='" + nom + "'";
+            Statement st = MyConnexion.getInstance().getCnx().createStatement();
+            ResultSet res = st.executeQuery(query);
+
+            while (res.next()) {
+                id = res.getInt(1);
+                //   nom=res.getString(2);
+                System.out.println("id" + id);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return id;
+    }
+
     public int getProduitid(String nom) {
         ObservableList<Produit> myList = FXCollections.observableArrayList();
         int id = 0;
@@ -294,9 +341,10 @@ public class ProduitService {
             ResultSet res = st.executeQuery(query);
 
             while (res.next()) {
-                Produit p = new Produit();
-                p.setId(res.getInt(1));
+                //  Produit p = new Produit();
+                //    p.setId(res.getInt(1));
                 id = res.getInt(1);
+                System.out.println("id dans getproduitid" + id);
                 //   nom=res.getString(2);
 
             }
@@ -335,7 +383,8 @@ public class ProduitService {
         }
         return image;
     }
-        public String getCategories(int prod) {
+
+    public String getCategories(int prod) {
         ObservableList<Categories> myList = FXCollections.observableArrayList();
         String nom = "";
         try {
@@ -347,11 +396,11 @@ public class ProduitService {
                 Categories p = new Categories();
                 p.setId(res.getInt(1));
                 nom = res.getString(3);
-                System.out.println("nom"+nom);
+                System.out.println("nom" + nom);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return nom;
-    } 
+    }
 }

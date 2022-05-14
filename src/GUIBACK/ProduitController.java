@@ -305,7 +305,7 @@ public class ProduitController implements Initializable {
                         } else {
                             ProduitService Produit = new ProduitService();
                             String image = Produit.findByIdimage(item);
-                            ImageView imagev = new ImageView(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+                            ImageView imagev = new ImageView(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit\\" + image));
                             imagev.setFitHeight(90);
                             imagev.setFitWidth(150);
                             setGraphic(imagev);

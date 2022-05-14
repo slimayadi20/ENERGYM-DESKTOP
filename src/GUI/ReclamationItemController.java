@@ -69,7 +69,7 @@ public class ReclamationItemController {
         titrefxid.setText(t.getTitre());
         ProduitService ps = new ProduitService();
         Produit p = ps.afficherbyid(t.getProduit());
-        image.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\" + p.getImage()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit\\"  + p.getImage()));
 
         datefxid.setText(String.valueOf(t.getDate()));
         descriptionfxid.setText(String.valueOf(t.getContenu()));

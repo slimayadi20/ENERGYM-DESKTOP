@@ -243,10 +243,10 @@ public class FXMLController implements Initializable {
         // TODO
         tooltip();
 
-        loginTF.setText("slim.ayadi@esprit.tn");
-        passwordTF.setText("azertyuiop");
+     //   loginTF.setText("slim.ayadi@esprit.tn");
+       // passwordTF.setText("azertyuiop");
         txtPasswordShown.setVisible(false);
-
+ /* incomment this to validate
 // idn 
         try {
             URL url_name = new URL("http://checkip.amazonaws.com/");
@@ -258,8 +258,8 @@ public class FXMLController implements Initializable {
         }
 
         JSONObject json = null;
-        try {
-            json = readJsonFromUrl("https://api.ipgeolocation.io/ipgeo?apiKey=e3f347b989f34e239402188106fbdf4c&ip=" + AIP);
+      try {
+         //   json = readJsonFromUrl("https://api.ipgeolocation.io/ipgeo?apiKey=e3f347b989f34e239402188106fbdf4c&ip=" + AIP);
         } catch (IOException ex) {
             System.out.println("ezfzezfzfzz");
         } catch (JSONException ex) {
@@ -288,7 +288,7 @@ public class FXMLController implements Initializable {
             System.out.println("welcome");
         } catch (Exception e) {
 
-        }
+        }*/
 
         System.out.println("form swapped");
         TranslateTransition slide = new TranslateTransition();

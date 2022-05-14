@@ -66,7 +66,7 @@ public class ProduitPanierController {
     public void setData(Panier t) {
 
         name.setText(t.getProduit());
-        image.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\" + t.getImage()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit\\"  + t.getImage()));
         prename.setText(String.valueOf(t.getPrix()) + " DT");
         quantite.setText(String.valueOf(t.getQuantite()));
 

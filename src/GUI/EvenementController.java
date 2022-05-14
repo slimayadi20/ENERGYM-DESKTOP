@@ -93,8 +93,9 @@ public class EvenementController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            namefxid.setText(UserconnectedC.getNom());
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+         namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
         } catch (MalformedURLException ex) {

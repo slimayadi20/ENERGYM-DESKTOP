@@ -488,7 +488,7 @@ if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
                         } else {
                             EventService event = new EventService();
                             String image = event.findByIdimage(item);
-                            ImageView imagev = new ImageView(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+                            ImageView imagev = new ImageView(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\" +  image));
                             imagev.setFitHeight(90);
                             imagev.setFitWidth(150);
                             setGraphic(imagev);
@@ -543,7 +543,7 @@ if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
                 String c = ces.getbynom(categorieseventid);
                 eventid = u.getId();
                 categfxid.setText(c);
-                userimage.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + u.getImageFile()));
+                userimage.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\" + u.getImageFile()));
                 image.setText(u.getImageFile());
 
                 //  movietitle.setText(user.getNom() + " " + user.getPrenom());
@@ -666,7 +666,7 @@ if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
         if (selectedFile != null) {
             try {
                 File source = new File(selectedFile.toString());
-                File dest = new File("C:\\xampp\\htdocs\\img");
+                File dest = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image");
                 FileUtils.copyFileToDirectory(source, dest);
             } catch (IOException e) {
                 e.printStackTrace();

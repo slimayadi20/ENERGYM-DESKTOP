@@ -192,7 +192,7 @@ public class AddArticleController implements Initializable {
       if (selectedFile != null) {
             try {
                 File source = new File(selectedFile.toString());
-                File dest = new File("C:\\xampp\\htdocs\\img");
+                File dest = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\posts");
                 FileUtils.copyFileToDirectory(source, dest);
             } catch (IOException e) {
                 e.printStackTrace();

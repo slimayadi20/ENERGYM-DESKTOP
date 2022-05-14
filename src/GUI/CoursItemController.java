@@ -53,7 +53,7 @@ public class CoursItemController implements Initializable {
        nomcoursfrontfx.setText(t.getNom());
         heuredfx.setText(t.getHeure_d());
          heureffx.setText(t.getHeure_f());
-       image.setImage(new Image(t.getImage()));
+       image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\cour\\"+t.getImage()));
   
  
         

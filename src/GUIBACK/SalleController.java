@@ -511,7 +511,7 @@ public class SalleController implements Initializable {
                 heureffx.setText(u.getHeuref());
 
                 movietitle.setText(u.getNom());
-                imagefx.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + u.getImage()));
+                imagefx.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\salle\\" + u.getImage()));
 
             }
         });

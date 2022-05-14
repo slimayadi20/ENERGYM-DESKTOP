@@ -14,6 +14,7 @@ import Entities.MyScribble;
 import Entities.MyShape;
 import Entities.MySquare;
 import Entities.Panier;
+import GUIBACK.ProfileController;
 import Services.CommandeService;
 import Services.PanierService;
 import Tools.Smsapi;
@@ -24,6 +25,7 @@ import com.stripe.model.Customer;
 import com.stripe.model.Token;
 import com.stripe.param.CustomerRetrieveParams;
 import energym.desktop.MainFX;
+import static energym.desktop.MainFX.UserconnectedC;
 
 import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
@@ -49,7 +51,9 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -78,6 +82,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -191,6 +196,14 @@ public class PaiementController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+          namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+
+        try {
+            circle.setFill(new ImagePattern(new javafx.scene.image.Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         panier.setOnMouseClicked((MouseEvent event) -> {
 
             try {

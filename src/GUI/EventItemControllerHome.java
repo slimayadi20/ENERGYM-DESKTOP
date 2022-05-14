@@ -59,7 +59,7 @@ public class EventItemControllerHome {
     public void setData(Event t) {
 
         name.setText(t.getNomEvent());
-        image.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\" + t.getImageFile()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\"  + t.getImageFile()));
         prename.setText(t.getLieuEvent());
         if (Integer.parseInt(t.getNbrPlacesEvent()) == 0) {
             ribbon.setImage(new Image("file:\\C:\\xampp\\htdocs\\img\\ribbon.png"));

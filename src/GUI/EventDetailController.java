@@ -144,8 +144,9 @@ public class EventDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        namefxid.setText(UserconnectedC.getNom());
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+         namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
         } catch (MalformedURLException ex) {
@@ -187,7 +188,7 @@ public class EventDetailController implements Initializable {
         String todayAsString = df.format(e.getDateEvent());
         datefxid.setText(todayAsString);
         System.out.println(e.getDateEvent());*/
-        imagefxid.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + e.getImageFile()));
+        imagefxid.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\" + e.getImageFile()));
         EventService thss = new EventService();
         Event ee = thss.EventDetailFront(Eventid);
         System.out.println("id categ" + ee.getCategories());

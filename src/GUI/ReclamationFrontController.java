@@ -195,7 +195,7 @@ public class ReclamationFrontController implements Initializable {
     }
 
     public void setImage() {
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
         try {
             System.out.println(new Image(file.toURI().toURL().toExternalForm()));
             image.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));

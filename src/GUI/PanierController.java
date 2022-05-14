@@ -8,12 +8,16 @@ package GUI;
 import Entities.Panier;
 import Entities.User;
 import static GUI.PaiementController.showAlert;
+import GUIBACK.ProfileController;
 import Quiz.Controllers.MainController;
 import Services.PanierService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import energym.desktop.MainFX;
+import static energym.desktop.MainFX.UserconnectedC;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +46,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -110,6 +115,14 @@ public class PanierController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+          namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         PanierService ths = new PanierService();
         listTH = PanierService.getInstance().panier(MainFX.UserconnectedC.getId());
         int tt = 0;

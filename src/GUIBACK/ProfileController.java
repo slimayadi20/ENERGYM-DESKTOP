@@ -223,7 +223,7 @@ public class ProfileController implements Initializable {
     btncategoriesevent.setVisible(false);
     btnparticipation.setVisible(false);
 }
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
         circleu.setRadius(55);
 
         try {
@@ -330,7 +330,7 @@ public class ProfileController implements Initializable {
     }
 
     public void setImage(String name) {
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
         circleu.setRadius(55);
         try {
             System.out.println(new Image(file.toURI().toURL().toExternalForm()));
@@ -476,7 +476,7 @@ public class ProfileController implements Initializable {
         String key = UUID.randomUUID().toString();
         String fcs = SelectedFile.getAbsolutePath();
         File source = new File(fcs);
-        File destination = new File("C:\\xampp\\htdocs\\img\\" + key + fileName);
+        File destination = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + key + fileName);
         String url = destination.getAbsolutePath();
         System.out.println(url);
 

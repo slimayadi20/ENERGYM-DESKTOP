@@ -105,8 +105,9 @@ public class ArticleDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-            namefxid.setText(UserconnectedC.getNom());
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
         } catch (MalformedURLException ex) {
@@ -127,7 +128,7 @@ public class ArticleDetailController implements Initializable {
         e = ths.afficherdetail(Articleid);
         titlefxid.setText("titre : " + e.getTitre());
         descriptionfxid.setText("description : " + e.getContenu());
-        image.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + e.getImageFile()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\posts\\" + e.getImageFile()));
         datefxid.setText("date de creation : " + String.valueOf(e.getCreated_at()));
         CommentaireService cs = new CommentaireService();
         List<Commentaire> listTH = cs.afficherCommentaireByarticle(Articleid);
@@ -249,10 +250,10 @@ public class ArticleDetailController implements Initializable {
 
     @FXML
     private void partager(MouseEvent event) {
-         PartageFb fb=new PartageFb();
+        PartageFb fb = new PartageFb();
         try {
- 
-            fb.partager(e.getContenu(),"file:C:\\xampp\\htdocs\\img\\05f083303e10cb496827cb6628fdd3e5 (1).jpg");
+
+            fb.partager(e.getContenu(), "file:C:\\xampp\\htdocs\\img\\05f083303e10cb496827cb6628fdd3e5 (1).jpg");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ArticleDetailController.class.getName()).log(Level.SEVERE, null, ex);
         }

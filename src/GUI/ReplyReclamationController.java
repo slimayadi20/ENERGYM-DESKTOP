@@ -136,7 +136,7 @@ public class ReplyReclamationController implements Initializable {
         User u = us.findByUsername(email);
         Reclamation r = rs.afficherbyid(id);
         sender.setText(email);
-        image.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + u.getImageFile()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + u.getImageFile()));
         time.setText(r.getDate().toString());
         title.setText(r.getTitre());
     }

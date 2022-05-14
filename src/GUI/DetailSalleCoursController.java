@@ -113,8 +113,8 @@ public class DetailSalleCoursController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-            namefxid.setText(UserconnectedC.getNom());
-        File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
+        namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
 
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
@@ -149,7 +149,7 @@ public class DetailSalleCoursController implements Initializable {
         telfrontfx.setText(listTH.getTel());
         mailfrontfx.setText(listTH.getMail());
         adressefrontfx.setText(listTH.getAdresse());
-        imagefrontfx.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + listTH.getImage()));
+        imagefrontfx.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\salle\\" + listTH.getImage()));
         voirplanning.setOnMouseClicked((MouseEvent event) -> {
 //**************************
 
