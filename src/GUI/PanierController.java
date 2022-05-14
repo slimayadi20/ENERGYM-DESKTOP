@@ -8,8 +8,10 @@ package GUI;
 import Entities.Panier;
 import Entities.User;
 import static GUI.PaiementController.showAlert;
+import Quiz.Controllers.MainController;
 import Services.PanierService;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXToggleButton;
 import energym.desktop.MainFX;
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +31,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -35,10 +39,13 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -72,13 +79,31 @@ public class PanierController implements Initializable {
     @FXML
     public AnchorPane DashboardUtilis;
     public static boolean test = false;
-    @FXML
-    private Label reclamation;
     public int reduc = 0;
     public int c = 0;
     public int global_variable = 0;
     @FXML
     private JFXButton vider;
+    @FXML
+    private Label quiz;
+    @FXML
+    private HBox hboxnavbar;
+    @FXML
+    private Label articlefxid;
+    @FXML
+    private Label sallefxid;
+    @FXML
+    private Label eventfxid;
+    @FXML
+    private Label produitfxid;
+    @FXML
+    private Label reclamationfxid;
+    @FXML
+    private Circle circle;
+    @FXML
+    private Button namefxid;
+    @FXML
+    private JFXToggleButton btnEditMode;
 
     /**
      * Initializes the controller class.
@@ -123,9 +148,32 @@ public class PanierController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+   DashboardUtilis.setOpacity(0);
+        makeFadeInTransition();
+    }
+    private void makeFadeInTransition() {
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(DashboardUtilis);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
 
     }
+        private void makeFadeInTransition(String a) {
 
+        try {
+            Stage stage = (Stage) DashboardUtilis.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource(a));/* Exception */
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HomeFrontController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     public void displayGrid() {
         AnchorPane panee;
         try {
@@ -187,16 +235,7 @@ public class PanierController implements Initializable {
     }
 
 // 4242 4242 4242 4242
-    @FXML
-    private void reclamation(MouseEvent event) throws IOException {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Reclamation.fxml"));/* Exception */
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
 
-        stage.show();
-    }
 
     @FXML
     private void ajoutcode(MouseEvent event) {
@@ -219,16 +258,7 @@ public class PanierController implements Initializable {
         }
     }
 
-    @FXML
-    private void produit(MouseEvent event) throws IOException {
-              Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("Produit.fxml"));/* Exception */
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
 
-        stage.show();
-    }
 
     @FXML
     private void vider_panier(MouseEvent event) {
@@ -252,4 +282,72 @@ public class PanierController implements Initializable {
                 stage = (Stage) vider.getScene().getWindow();
                 stage.close();
     }
+
+    @FXML
+    private void quiz(MouseEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/QuizStyle/MainView.fxml"));
+                    try {
+                        loader.load();
+                    } catch (Exception ex) {
+                        ex.getMessage();
+                    }
+
+                    MainController addLivraisonController = loader.getController();
+
+                    Parent parent = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(parent));
+                    stage.initStyle(StageStyle.UTILITY);
+                    stage.show();
+        
+    }
+
+   @FXML
+    private void home(MouseEvent event) throws IOException {
+        makeFadeInTransition("HomeFront.fxml");
+
+    }
+
+    @FXML
+    private void event(MouseEvent event) throws IOException {
+        makeFadeInTransition("Evenement.fxml");
+    }
+
+   @FXML
+    private void salle(MouseEvent event) {
+        makeFadeInTransition("Salle.fxml");
+    }
+
+    @FXML
+    private void produit(MouseEvent event) throws IOException {
+        makeFadeInTransition("Produit.fxml");
+    }
+
+    @FXML
+    private void reclamation(MouseEvent event) {
+        makeFadeInTransition("ReclamationFront.fxml");
+    }
+
+    @FXML
+    private void profile(MouseEvent event) {
+    }
+
+    @FXML
+    private void article(MouseEvent event) {
+        makeFadeInTransition("Article.fxml");
+
+    }
+
+    @FXML
+    private void panier(MouseEvent event) {
+                makeFadeInTransition("Panier.fxml");
+
+    }
+
+
+    @FXML
+    private void btnEditModeToggle(MouseEvent event) {
+    }
+    
 }

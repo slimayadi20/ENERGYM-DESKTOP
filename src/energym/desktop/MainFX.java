@@ -32,7 +32,7 @@ public class MainFX extends Application {
 
           //       Parent root = FXMLLoader.load(getClass().getResource("/GUI/HomeFront.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXML.fxml"));
-          //  Parent root = FXMLLoader.load(getClass().getResource("/GUIBACK/Event.fxml"));
+         //   Parent root = FXMLLoader.load(getClass().getResource("/QuizStyle/MainView.fxml"));
 
             Scene scene = new Scene(root);
 

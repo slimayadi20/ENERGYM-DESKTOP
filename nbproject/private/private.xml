@@ -2,31 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/ProduitController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/ReclamationController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ArticleController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ArticleDetailController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ReclamationFrontController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ProfileFrontController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/SalleController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/UsersController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/ReplyController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/HomeFrontController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Services/UserService.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ProduitController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Services/SalleService.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/SalleController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/ProfileController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/EvenementBackController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/DetailSalleCoursController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EventDetailController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EvenementController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/HomeBackController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/energym/desktop/MainFX.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/CoursController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/AddSalleController.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/DetailCoursController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

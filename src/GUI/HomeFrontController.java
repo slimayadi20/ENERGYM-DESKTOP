@@ -164,6 +164,7 @@ public class HomeFrontController implements Initializable {
         mediaPlayer.setMute(true);
         mediaView.setMediaPlayer(mediaPlayer);
 
+        
         if (status == true) {
             mainpane.setStyle("-fx-background-color: #FFFFFF;");
             secondpane.setStyle("-fx-background-color: #FFFFFF;");

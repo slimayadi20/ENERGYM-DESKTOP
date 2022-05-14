@@ -89,20 +89,6 @@
          </styleClass>
       </HBox>
       <ImageView fx:id="image" fitHeight="181.0" fitWidth="473.0" layoutX="53.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
-      <HBox layoutX="285.0" layoutY="592.0" prefHeight="100.0" prefWidth="552.0">
-         <children>
-            <TextField fx:id="txt_titre" prefHeight="66.0" prefWidth="352.0" promptText="Ajouter un commentaire">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </TextField>
-            <Button mnemonicParsing="false" onAction="#btnAjouterAction" prefHeight="31.0" prefWidth="146.0" text="Ajouter">
-               <HBox.margin>
-                  <Insets top="20.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
       <HBox layoutX="42.0" layoutY="376.0" prefHeight="207.0" prefWidth="940.0" styleClass="transparent" stylesheets="@../../../../../Desktop/MiddlefeastConnexionJDBC%20-%20Copie/src/middlefeast/esprit/gui/style.css">
          <children>
             <ScrollPane fx:id="scrollPane" prefHeight="198.0" prefWidth="920.0" styleClass="transparent" stylesheets="@../../../../../Desktop/MiddlefeastConnexionJDBC%20-%20Copie/src/middlefeast/esprit/gui/style.css">
@@ -129,7 +115,19 @@
             <Font name="Arial Narrow" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="561.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#partager" text="Button" />
+      <Button layoutX="606.0" layoutY="302.0" mnemonicParsing="false" onMouseClicked="#partager" text="Partager sur facebook" />
+      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="512.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/clock.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="37.0" layoutX="510.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/email.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txt_titre" layoutX="53.0" layoutY="571.0" prefHeight="48.0" prefWidth="776.0" promptText="Ajouter un commentaire" />
+      <Button layoutX="830.0" layoutY="568.0" mnemonicParsing="false" onAction="#btnAjouterAction" prefHeight="48.0" prefWidth="146.0" text="Ajouter" />
    </children>
    <styleClass>
       <String fx:value="border-bottom" />

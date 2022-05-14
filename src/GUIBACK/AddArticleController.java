@@ -182,7 +182,7 @@ public class AddArticleController implements Initializable {
     if (selectedFile != null) {
 
             path = selectedFile.getName();
-            path = selectedFile.toURI().toURL().toExternalForm();
+          //  path = selectedFile.toURI().toURL().toExternalForm();
             // image.setImage(new Image(selectedFile.toURI().toURL().toString()));
             // image.setFitHeight(150);
             //  image.setFitWidth(250);

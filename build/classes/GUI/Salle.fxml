@@ -40,7 +40,7 @@
          </font>
       </Label>
       <HBox fx:id="hbox" layoutX="442.0" layoutY="143.0" prefHeight="7.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" />
-      <Button fx:id="boutonimc" layoutX="845.0" layoutY="112.0" mnemonicParsing="false" onMouseClicked="#boutomimc" prefHeight="21.0" prefWidth="158.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" text="Calculer IMC" />
+      <Button fx:id="boutonimc" layoutX="845.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#boutomimc" prefHeight="21.0" prefWidth="158.0" style="-fx-background-color: #dd1010; -fx-background-radius: 10;" text="Calculer IMC" />
       <HBox fx:id="hboxnavbar" alignment="CENTER" layoutY="-8.0" prefHeight="118.0" prefWidth="1023.0" stylesheets="@style.css">
          <children>
             <HBox prefHeight="100.0" prefWidth="115.0">

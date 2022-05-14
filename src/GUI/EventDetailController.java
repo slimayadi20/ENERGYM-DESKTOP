@@ -143,8 +143,8 @@ public class EventDetailController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         
-            namefxid.setText(UserconnectedC.getNom());
+
+        namefxid.setText(UserconnectedC.getNom());
         File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
@@ -154,8 +154,8 @@ public class EventDetailController implements Initializable {
         loadData();
         mainpane.setOpacity(0);
         makeFadeInTransition();
-        System.out.println("eventid"+Eventid);
-       
+        System.out.println("eventid" + Eventid);
+
         // TODO
     }
 
@@ -176,7 +176,7 @@ public class EventDetailController implements Initializable {
     public void loadData() {
         //System.out.println("initData"+thematique_id);
         EventService ths = new EventService();
-        System.out.println("loaddata event id "+Eventid);
+        System.out.println("loaddata event id " + Eventid);
         Event e = ths.EventDetailFront(Eventid);
         namefxid.setText(e.getNomEvent());
         nbrfxid.setText(e.getNbrPlacesEvent());
@@ -188,9 +188,9 @@ public class EventDetailController implements Initializable {
         datefxid.setText(todayAsString);
         System.out.println(e.getDateEvent());*/
         imagefxid.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + e.getImageFile()));
-  EventService thss = new EventService();
-             Event ee = thss.EventDetailFront(Eventid);
-             System.out.println("id categ"+ee.getCategories());
+        EventService thss = new EventService();
+        Event ee = thss.EventDetailFront(Eventid);
+        System.out.println("id categ" + ee.getCategories());
         List<Event> listTHH = thss.afficherbycategorie(ee.getCategories());
 
         int colonne = 0;
@@ -230,12 +230,12 @@ public class EventDetailController implements Initializable {
         Event e = ths.EventDetailFront(Eventid);
         JavaMailEvent mail = new JavaMailEvent();
         System.out.println(ths.check(Eventid, u.getId()));
-        System.out.println("event"+Eventid);
-        System.out.println("user"+u.getId());
+        System.out.println("event" + Eventid);
+        System.out.println("user" + u.getId());
         if (ths.check(Eventid, MainFX.UserconnectedC.getId()) == true) {
             errorfxid.setText("vous avez deja participé");
         } else {
-    
+
             ths.Participer(e, MainFX.UserconnectedC, code);
             String content = "Bonjour mr/mme " + u.getNom() + "\n"
                     + "Merci pour votre participation et voici votre pass pour l'evenement\n"
@@ -289,7 +289,6 @@ public class EventDetailController implements Initializable {
 
     }
 
-
     private void makeFadeInTransition(String a) {
 
         try {
@@ -305,7 +304,7 @@ public class EventDetailController implements Initializable {
 
     }
 
- @FXML
+    @FXML
     private void reclamation(MouseEvent event) throws IOException {
         makeFadeInTransition("ReclamationFront.fxml");
 
@@ -347,7 +346,7 @@ public class EventDetailController implements Initializable {
 
     @FXML
     private void article(MouseEvent event) {
-                        makeFadeInTransition("Article.fxml");
+        makeFadeInTransition("Article.fxml");
 
     }
 }

@@ -108,7 +108,7 @@ public class ProduitController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            namefxid.setText(UserconnectedC.getNom());
+        namefxid.setText(UserconnectedC.getNom());
         File file = new File("C:\\xampp\\htdocs\\img\\" + UserconnectedC.getImageFile());
 
         try {
@@ -351,6 +351,11 @@ public class ProduitController implements Initializable {
         }
 
     }
-    
+
+    @FXML
+    private void panier(MouseEvent event) {
+        makeFadeInTransition("Panier.fxml");
+
+    }
 
 }

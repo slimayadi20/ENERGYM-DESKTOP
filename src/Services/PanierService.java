@@ -41,7 +41,18 @@ public static PanierService instance=null;
         return instance;
     }
     
-    
+        public void ajoutercode(String nom,int reduction) {
+          try {
+            Statement st;
+            st = cnx.createStatement();
+             String query = "INSERT INTO `promo`( `code`,`reduction`) "
+                    + "VALUES ('" + nom+ "','"+reduction+"')";     
+            st.executeUpdate(query);
+            System.out.println("categories ajouté avec success");
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public List<Panier> panier(int id) {
         List<Panier> myList = new ArrayList();
         try {

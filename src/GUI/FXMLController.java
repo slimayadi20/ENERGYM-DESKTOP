@@ -268,14 +268,14 @@ public class FXMLController implements Initializable {
 
      //   System.out.println(json.toString());
         //System.out.println(json.get("country_name"));
-      /*  pays = json.get("country_name").toString();
+        pays = json.get("country_name").toString();
         region = json.get("city").toString();
         idn = json.get("calling_code").toString();
 
         System.out.println("pays" + pays);
         System.out.println("region" + region);
         System.out.println(idn);
-        numTelTF.setText(idn);*/
+        numTelTF.setText(idn);
 
         // ********* voice entry 
         Voice voice;
@@ -284,7 +284,7 @@ public class FXMLController implements Initializable {
 
         voice.allocate();
         try {
-            //    voice.speak("Welcome Back to Energym");
+                voice.speak("Welcome Back to Energym");
             System.out.println("welcome");
         } catch (Exception e) {
 

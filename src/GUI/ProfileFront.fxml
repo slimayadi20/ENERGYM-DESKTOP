@@ -115,7 +115,7 @@
             <Label fx:id="Nomc" layoutX="317.0" layoutY="193.0" prefHeight="31.0" prefWidth="121.0" styleClass="labelc" stylesheets="@../css/profile.css" text="Slim Ayadi" textFill="WHITE" />
             <Separator layoutX="238.0" layoutY="194.0" prefHeight="1.0" prefWidth="265.0" />
             <Label layoutX="113.0" layoutY="224.0" text="Veuillez saisir les nouvelles informations si vous souhaitez modifier votre profil." textAlignment="CENTER" textFill="WHITE" />
-            <Hyperlink fx:id="HyHistoCnx" layoutX="-101.0" layoutY="23.0" onMouseClicked="#historique" opacity="0.8" prefHeight="29.0" prefWidth="232.0" text="Exporter Mon Historique de Connexion" textFill="WHITE" />
+            <Hyperlink fx:id="HyHistoCnx" layoutX="-101.0" layoutY="23.0" onMouseClicked="#historique" opacity="0.8" prefHeight="29.0" prefWidth="232.0" textFill="WHITE" />
             <HBox alignment="CENTER" layoutX="-82.0" layoutY="507.0" prefHeight="87.0" prefWidth="913.0" styleClass="dark-background" stylesheets="@style.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="265.0" spacing="20.0">
