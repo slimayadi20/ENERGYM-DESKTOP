@@ -144,8 +144,8 @@ public class EventDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-         namefxid.setText(UserconnectedC.getNom());
-        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+        namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
 
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
@@ -189,6 +189,8 @@ public class EventDetailController implements Initializable {
         datefxid.setText(todayAsString);
         System.out.println(e.getDateEvent());*/
         imagefxid.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\" + e.getImageFile()));
+        imagefxid.setFitHeight(190);
+        imagefxid.setFitWidth(1700);
         EventService thss = new EventService();
         Event ee = thss.EventDetailFront(Eventid);
         System.out.println("id categ" + ee.getCategories());

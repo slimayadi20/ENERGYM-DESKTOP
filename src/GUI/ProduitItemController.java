@@ -74,7 +74,7 @@ public class ProduitItemController {
     private void addcarte(MouseEvent event) {
         PanierService ps = new PanierService();
         ps.ajouterPanier(produit.getId(), UserconnectedC.getId());
-        showAlert(Alert.AlertType.INFORMATION, "Veuillez remplir votre panier", "error", "Veuillez remplir votre panier");
+        showAlert(Alert.AlertType.INFORMATION, "Produit ajoutée au panier", "success", "Completez votre achat");
 
     }
 }

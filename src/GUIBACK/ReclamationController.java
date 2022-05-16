@@ -165,14 +165,17 @@ public class ReclamationController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-                if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
-{
-    btnevenement.setVisible(false);
-    btnproduit.setVisible(false);
-    btncategories.setVisible(false);
-    btncategoriesevent.setVisible(false);
-    btnparticipation.setVisible(false);
-}
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+           btnevenement.setVisible(false);
+            btnproduit.setVisible(false);
+            btncategories.setVisible(false);
+            btncategoriesevent.setVisible(false);
+            btnparticipation.setVisible(false);
+            btncommande.setVisible(false);
+            btnlivraison.setVisible(false);
+            btncommentaire.setVisible(false);
+            btnarticle.setVisible(false);
+        }
         repondufid.setText((Integer.toString(rs.affichernumber("repondu"))));
         encoursfid.setText((Integer.toString(rs.affichernumber("encours"))));
 
@@ -271,7 +274,6 @@ public class ReclamationController implements Initializable {
             mainmoviespane.getChildren().setAll(panee);
         }
     }
-
 
     public void disableAllFocus(Pane pane) {
         for (Node n : pane.getChildren()) {
@@ -420,6 +422,8 @@ public class ReclamationController implements Initializable {
                             stage.setScene(new Scene(parent));
                             stage.initStyle(StageStyle.UTILITY);
                             stage.show();
+                            stage = (Stage) editIcon.getScene().getWindow();
+                            stage.close();
                         });
 
                         HBox managebtn = new HBox(editIcon, deleteIcon);

@@ -10,6 +10,7 @@ import Entities.Salle;
 import Services.SalleService;
 
 import com.jfoenix.controls.JFXButton;
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
@@ -178,6 +179,10 @@ public class SalleController implements Initializable {
             btncategories.setVisible(false);
             btncategoriesevent.setVisible(false);
             btnparticipation.setVisible(false);
+            btncommande.setVisible(false);
+            btnlivraison.setVisible(false);
+            btncommentaire.setVisible(false);
+            btnarticle.setVisible(false);
         }
         loadDate();
         recherche_avance();
@@ -237,191 +242,191 @@ public class SalleController implements Initializable {
         if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
             data = FXCollections.observableArrayList(ss.affichergerant());
             nomfx.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        adressefx.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+            adressefx.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
-        telfx.setCellValueFactory(new PropertyValueFactory<>("tel"));
+            telfx.setCellValueFactory(new PropertyValueFactory<>("tel"));
 
-        mailfx.setCellValueFactory(new PropertyValueFactory<>("mail"));
-        descriptionfx.setCellValueFactory(new PropertyValueFactory<>("description"));
+            mailfx.setCellValueFactory(new PropertyValueFactory<>("mail"));
+            descriptionfx.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        //add cell of button edit 
-        Callback<TableColumn<Salle, String>, TableCell<Salle, String>> cellFoctory = (TableColumn<Salle, String> param) -> {
-            // make cell containing buttons
-            final TableCell<Salle, String> cell = new TableCell<Salle, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
+            //add cell of button edit 
+            Callback<TableColumn<Salle, String>, TableCell<Salle, String>> cellFoctory = (TableColumn<Salle, String> param) -> {
+                // make cell containing buttons
+                final TableCell<Salle, String> cell = new TableCell<Salle, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        //that cell created only on non-empty rows
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
 
-                    } else {
+                        } else {
 
-                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
-                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+                            FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+                            FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
 
-                        deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#ff1744;"
-                        );
-                        editIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#00E676;"
-                        );
-                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
+                            deleteIcon.setStyle(
+                                    " -fx-cursor: hand ;"
+                                    + "-glyph-size:28px;"
+                                    + "-fx-fill:#ff1744;"
+                            );
+                            editIcon.setStyle(
+                                    " -fx-cursor: hand ;"
+                                    + "-glyph-size:28px;"
+                                    + "-fx-fill:#00E676;"
+                            );
+                            deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
-                            try {
+                                try {
+                                    salle = tableviewsalle.getSelectionModel().getSelectedItem();
+                                    SalleService rs = new SalleService();
+                                    rs.supprimer((int) salle.getId());
+
+                                    System.out.println(salle.getId());
+                                    refreshlist();
+                                } catch (Exception ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+
+                            });
+                            editIcon.setOnMouseClicked((MouseEvent event) -> {
+
                                 salle = tableviewsalle.getSelectionModel().getSelectedItem();
+                                FXMLLoader loader = new FXMLLoader();
+                                loader.setLocation(getClass().getResource("/GUIBACK/addSalle.fxml"));
+                                try {
+                                    loader.load();
+                                } catch (Exception ex) {
+                                    ex.getMessage();
+                                }
                                 SalleService rs = new SalleService();
-                                rs.supprimer((int) salle.getId());
+                                salle = rs.findById(salle.getId());
+                                AddSalleController addSalleController = loader.getController();
+                                System.out.println("salle controller =" + salle.getUrl());
+                                addSalleController.setTextField(salle.getId(), salle.getNom(), salle.getAdresse(), salle.getTel(), salle.getMail(), salle.getDescription(), salle.getImage(), salle.getPrix1(), salle.getPrix2(), salle.getPrix3(), salle.getHeureo(), salle.getHeuref(), salle.getUrl());
+                                System.out.println(salle.getPrix2());
+                                System.out.println(salle.getPrix3());
+                                addSalleController.setUpdate(true);
+                                Parent parent = loader.getRoot();
+                                Stage stage = new Stage();
+                                stage.setScene(new Scene(parent));
+                                stage.initStyle(StageStyle.UTILITY);
+                                stage.show();
+                            });
 
-                                System.out.println(salle.getId());
-                                refreshlist();
-                            } catch (Exception ex) {
-                                System.out.println(ex.getMessage());
-                            }
+                            HBox managebtn = new HBox(editIcon, deleteIcon);
+                            managebtn.setStyle("-fx-alignment:center");
+                            HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
+                            HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
 
-                        });
-                        editIcon.setOnMouseClicked((MouseEvent event) -> {
+                            setGraphic(managebtn);
 
-                            salle = tableviewsalle.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/GUIBACK/addSalle.fxml"));
-                            try {
-                                loader.load();
-                            } catch (Exception ex) {
-                                ex.getMessage();
-                            }
-                            SalleService rs = new SalleService();
-                            salle = rs.findById(salle.getId());
-                            AddSalleController addSalleController = loader.getController();
-                            System.out.println("salle controller =" + salle.getUrl());
-                            addSalleController.setTextField(salle.getId(), salle.getNom(), salle.getAdresse(), salle.getTel(), salle.getMail(), salle.getDescription(), salle.getImage(), salle.getPrix1(), salle.getPrix2(), salle.getPrix3(), salle.getHeureo(), salle.getHeuref(), salle.getUrl());
-                            System.out.println(salle.getPrix2());
-                            System.out.println(salle.getPrix3());
-                            addSalleController.setUpdate(true);
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
-                        });
+                            setText(null);
 
-                        HBox managebtn = new HBox(editIcon, deleteIcon);
-                        managebtn.setStyle("-fx-alignment:center");
-                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
-
-                        setGraphic(managebtn);
-
-                        setText(null);
-
+                        }
                     }
-                }
 
+                };
+
+                return cell;
             };
-
-            return cell;
-        };
-        actionsfx.setCellFactory(cellFoctory);
-        tableviewsalle.setItems(data);
+            actionsfx.setCellFactory(cellFoctory);
+            tableviewsalle.setItems(data);
         } else {
             data = FXCollections.observableArrayList(ss.afficher());
-        nomfx.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        adressefx.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+            nomfx.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            adressefx.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
-        telfx.setCellValueFactory(new PropertyValueFactory<>("tel"));
+            telfx.setCellValueFactory(new PropertyValueFactory<>("tel"));
 
-        mailfx.setCellValueFactory(new PropertyValueFactory<>("mail"));
-        descriptionfx.setCellValueFactory(new PropertyValueFactory<>("description"));
+            mailfx.setCellValueFactory(new PropertyValueFactory<>("mail"));
+            descriptionfx.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        //add cell of button edit 
-        Callback<TableColumn<Salle, String>, TableCell<Salle, String>> cellFoctory = (TableColumn<Salle, String> param) -> {
-            // make cell containing buttons
-            final TableCell<Salle, String> cell = new TableCell<Salle, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
+            //add cell of button edit 
+            Callback<TableColumn<Salle, String>, TableCell<Salle, String>> cellFoctory = (TableColumn<Salle, String> param) -> {
+                // make cell containing buttons
+                final TableCell<Salle, String> cell = new TableCell<Salle, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        //that cell created only on non-empty rows
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
 
-                    } else {
+                        } else {
 
-                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
-                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+                            FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+                            FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
 
-                        deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#ff1744;"
-                        );
-                        editIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#00E676;"
-                        );
-                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
+                            deleteIcon.setStyle(
+                                    " -fx-cursor: hand ;"
+                                    + "-glyph-size:28px;"
+                                    + "-fx-fill:#ff1744;"
+                            );
+                            editIcon.setStyle(
+                                    " -fx-cursor: hand ;"
+                                    + "-glyph-size:28px;"
+                                    + "-fx-fill:#00E676;"
+                            );
+                            deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
-                            try {
+                                try {
+                                    salle = tableviewsalle.getSelectionModel().getSelectedItem();
+                                    SalleService rs = new SalleService();
+                                    rs.supprimer((int) salle.getId());
+
+                                    System.out.println(salle.getId());
+                                    refreshlist();
+                                } catch (Exception ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+
+                            });
+                            editIcon.setOnMouseClicked((MouseEvent event) -> {
+
                                 salle = tableviewsalle.getSelectionModel().getSelectedItem();
+                                FXMLLoader loader = new FXMLLoader();
+                                loader.setLocation(getClass().getResource("/GUIBACK/addSalle.fxml"));
+                                try {
+                                    loader.load();
+                                } catch (Exception ex) {
+                                    ex.getMessage();
+                                }
                                 SalleService rs = new SalleService();
-                                rs.supprimer((int) salle.getId());
+                                salle = rs.findById(salle.getId());
+                                AddSalleController addSalleController = loader.getController();
+                                System.out.println("salle controller =" + salle.getUrl());
+                                addSalleController.setTextField(salle.getId(), salle.getNom(), salle.getAdresse(), salle.getTel(), salle.getMail(), salle.getDescription(), salle.getImage(), salle.getPrix1(), salle.getPrix2(), salle.getPrix3(), salle.getHeureo(), salle.getHeuref(), salle.getUrl());
+                                System.out.println(salle.getPrix2());
+                                System.out.println(salle.getPrix3());
+                                addSalleController.setUpdate(true);
+                                Parent parent = loader.getRoot();
+                                Stage stage = new Stage();
+                                stage.setScene(new Scene(parent));
+                                stage.initStyle(StageStyle.UTILITY);
+                                stage.show();
+                            });
 
-                                System.out.println(salle.getId());
-                                refreshlist();
-                            } catch (Exception ex) {
-                                System.out.println(ex.getMessage());
-                            }
+                            HBox managebtn = new HBox(editIcon, deleteIcon);
+                            managebtn.setStyle("-fx-alignment:center");
+                            HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
+                            HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
 
-                        });
-                        editIcon.setOnMouseClicked((MouseEvent event) -> {
+                            setGraphic(managebtn);
 
-                            salle = tableviewsalle.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/GUIBACK/addSalle.fxml"));
-                            try {
-                                loader.load();
-                            } catch (Exception ex) {
-                                ex.getMessage();
-                            }
-                            SalleService rs = new SalleService();
-                            salle = rs.findById(salle.getId());
-                            AddSalleController addSalleController = loader.getController();
-                            System.out.println("salle controller =" + salle.getUrl());
-                            addSalleController.setTextField(salle.getId(), salle.getNom(), salle.getAdresse(), salle.getTel(), salle.getMail(), salle.getDescription(), salle.getImage(), salle.getPrix1(), salle.getPrix2(), salle.getPrix3(), salle.getHeureo(), salle.getHeuref(), salle.getUrl());
-                            System.out.println(salle.getPrix2());
-                            System.out.println(salle.getPrix3());
-                            addSalleController.setUpdate(true);
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
-                        });
+                            setText(null);
 
-                        HBox managebtn = new HBox(editIcon, deleteIcon);
-                        managebtn.setStyle("-fx-alignment:center");
-                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
-
-                        setGraphic(managebtn);
-
-                        setText(null);
-
+                        }
                     }
-                }
 
+                };
+
+                return cell;
             };
-
-            return cell;
-        };
-        actionsfx.setCellFactory(cellFoctory);
-        tableviewsalle.setItems(data);
+            actionsfx.setCellFactory(cellFoctory);
+            tableviewsalle.setItems(data);
         }
 
     }
@@ -434,6 +439,8 @@ public class SalleController implements Initializable {
 
     @FXML
     private void PDFSalle(MouseEvent event) throws FileNotFoundException, DocumentException, IOException {
+             String filename = "";
+
         SalleService ec = new SalleService();
         String message = "Voici la liste des salles \n\n";
 
@@ -446,6 +453,8 @@ public class SalleController implements Initializable {
         List<Salle> Salle = ec.afficher();
         PdfPTable table = new PdfPTable(5);
 
+        
+        
         PdfPCell cl1 = new PdfPCell(new Phrase("Nom de la salle"));
         table.addCell(cl1);
         PdfPCell cl = new PdfPCell(new Phrase("Description"));
@@ -454,23 +463,39 @@ public class SalleController implements Initializable {
         table.addCell(cl2);
         PdfPCell cl3 = new PdfPCell(new Phrase("mail"));
         table.addCell(cl3);
-        PdfPCell cl4 = new PdfPCell(new Phrase("photo"));
+        PdfPCell cl4 = new PdfPCell(new Phrase("Affiche de l'événement"));
         table.addCell(cl4);
-
+        
+        
+        
         table.setHeaderRows(1);
         document.add(table);
 
         int i = 0;
         for (i = 0; i < Salle.size(); i++) {
-
+            
             table.addCell("" + Salle.get(i).getNom());
             table.addCell("" + Salle.get(i).getDescription());
             table.addCell("" + Salle.get(i).getAdresse());
             table.addCell("" + Salle.get(i).getMail());
-            table.addCell("" + Salle.get(i).getImage());
+       
+                filename = "src\\images\\" + Salle.get(i).getImage();
+                System.out.println(filename);
+                com.lowagie.text.Image img = com.lowagie.text.Image.getInstance(filename);
+                img.scalePercent(24);// Creating an Image object 
+                PdfPCell cell = new PdfPCell();
+                cell.addElement(new Chunk(img, 5, -5));
+
+                cell.setFixedHeight(80);
+                cell.setPaddingTop(60);
+                table.addCell(cell);
+            
+          //  table.addCell("" + Salle.get(i).getImage());
 
         }
         document.add(table);
+
+        document.close();
 
         document.close();
         Desktop.getDesktop().open(new File("src/css/liste_Salle.pdf"));
@@ -539,7 +564,7 @@ public class SalleController implements Initializable {
     }
 
     @FXML
-     private void handleClicks(ActionEvent event) throws IOException {
+    private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);

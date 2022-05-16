@@ -148,6 +148,7 @@ public class HomeFrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
            namefxid.setText(UserconnectedC.getNom());
         File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
 
@@ -211,6 +212,7 @@ public class HomeFrontController implements Initializable {
 
         Agenda a = new Agenda();
         a.applyCss();
+    //  a.backgroundProperty();
         List<EvenementCalendrier> elements = participationToAppoitments();
         a.appointments().addAll(elements);
         /*ICalendarAgenda agenda = new ICalendarAgenda(vCalendar);
@@ -248,6 +250,7 @@ public class HomeFrontController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+               
     }
 
     private List<EvenementCalendrier> participationToAppoitments() {

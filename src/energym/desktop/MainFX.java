@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -35,7 +36,8 @@ public class MainFX extends Application {
          //   Parent root = FXMLLoader.load(getClass().getResource("/QuizStyle/MainView.fxml"));
 
             Scene scene = new Scene(root);
-
+            Image image = new Image("/images/fidi.jpg") ;
+primaryStage.getIcons().add(image);
             primaryStage.setTitle("ENERGYM app!");
             primaryStage.setScene(scene);
             primaryStage.show();

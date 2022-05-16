@@ -97,12 +97,13 @@
               <content>
                 <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="1381.0" prefWidth="983.0" styleClass="dark-background" stylesheets="@style.css">
                      <children>
+                        <Label layoutX="82.0" layoutY="425.0" prefHeight="31.0" prefWidth="599.0" style="-fx-background-color: grey;" />
                         <MediaView fx:id="mediaView" fitHeight="300.0" fitWidth="960.0" layoutX="14.0" layoutY="25.0" onMouseClicked="#pause">
                            <viewport>
                               <Rectangle2D height="320.0" minY="150.0" width="1000.0" />
                            </viewport>
                         </MediaView>
-                        <BorderPane fx:id="cell" layoutX="34.0" layoutY="424.0" prefHeight="329.0" prefWidth="906.0" />
+                        <BorderPane fx:id="cell" layoutX="34.0" layoutY="425.0" prefHeight="328.0" prefWidth="906.0" />
                         <Label fx:id="participationfxid" layoutX="376.0" layoutY="325.0" prefHeight="58.0" prefWidth="395.0" text="Vos participations" textFill="WHITE">
                            <font>
                               <Font name="Impact" size="25.0" />

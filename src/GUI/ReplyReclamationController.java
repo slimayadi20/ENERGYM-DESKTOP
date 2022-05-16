@@ -213,6 +213,8 @@ public class ReplyReclamationController implements Initializable {
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
+           stage = (Stage) btnReply.getScene().getWindow();
+                stage.close();
     }
 
     public float getId() {

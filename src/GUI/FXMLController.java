@@ -31,6 +31,7 @@ import java.io.Reader;
 import java.math.RoundingMode;
 import java.net.MalformedURLException;
 import java.nio.charset.Charset;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -83,6 +84,7 @@ import org.controlsfx.control.Notifications;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -243,10 +245,10 @@ public class FXMLController implements Initializable {
         // TODO
         tooltip();
 
-     //   loginTF.setText("slim.ayadi@esprit.tn");
-       // passwordTF.setText("azertyuiop");
+        //   loginTF.setText("slim.ayadi@esprit.tn");
+        // passwordTF.setText("azertyuiop");
         txtPasswordShown.setVisible(false);
- /* incomment this to validate
+        /* incomment this to validate
 // idn 
         try {
             URL url_name = new URL("http://checkip.amazonaws.com/");
@@ -810,7 +812,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void performLogIn(MouseEvent event) throws ParseException {
+    private void performLogIn(MouseEvent event) throws ParseException, SQLException {
 
         User lu = us.findByUsername(loginTF.getText());
         imgProgress.setVisible(false);
@@ -819,7 +821,8 @@ public class FXMLController implements Initializable {
 
         if (us.countRecentLoginAttempts(loginTF.getText()) < 4) {
             System.out.println(us.countRecentLoginAttempts(loginTF.getText()));
-            if (us.checklogin(loginTF.getText(), CryptWithMD5.cryptWithMD5(passwordTF.getText()))) {
+
+            if (us.checkloginargon(loginTF.getText(), passwordTF.getText())) {
                 //7ell interface
                 if ("null".equals(lu.getActivation_token())) {
                     System.out.println("activated");
@@ -842,7 +845,8 @@ public class FXMLController implements Initializable {
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
-
+                                    Image image = new Image("/images/fidi.jpg");
+                                    stage.getIcons().add(image);
                                     stage.setTitle("ENERGYM APP");
                                     stage.setScene(scene);
                                     stage.show();
@@ -868,7 +872,8 @@ public class FXMLController implements Initializable {
                                     Stage stage = new Stage();
 
                                     Scene scene = new Scene(root);
-
+                                    Image image = new Image("/images/fidi.jpg");
+                                    stage.getIcons().add(image);
                                     stage.setTitle("ENERGYM APP");
                                     stage.setScene(scene);
                                     stage.show();
@@ -879,13 +884,13 @@ public class FXMLController implements Initializable {
                             pauseTransition1.play();
 
                             break;
-                        case "ROLE_CLIENT":
+                        case "ROLE_USER":
                             imgProgress.setVisible(true);
                             PauseTransition pauseTransition2 = new PauseTransition();
                             pauseTransition2.setDuration(Duration.seconds(3));
                             pauseTransition2.setOnFinished(ev -> {
                                 System.out.println("bienveunue Passager");
-                                    System.out.println("userconnected"+UserconnectedC);
+                                System.out.println("userconnected" + UserconnectedC);
                                 try {
 
                                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -893,7 +898,8 @@ public class FXMLController implements Initializable {
                                     stageclose.close();
                                     Parent root = FXMLLoader.load(getClass().getResource("/GUI/HomeFront.fxml"));
                                     Stage stage = new Stage();
-
+                                    Image image = new Image("/images/fidi.jpg");
+                                    stage.getIcons().add(image);
                                     Scene scene = new Scene(root);
                                     stage.setTitle("ENERGYM APP");
                                     stage.setScene(scene);

@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
 public class UserService {
 
@@ -51,8 +52,10 @@ public class UserService {
         try {
             Statement st;
             st = cnx.createStatement();
+            Argon2PasswordEncoder encoder = new Argon2PasswordEncoder(32, 64, 1, 15 * 1024, 2);
+            String hash = encoder.encode(t.getPassword());
             String query = "INSERT INTO `user`( `nom`, `prenom`, `email`, `roles`, `phone`, `password`, `created_at`, `status`, `image_file` ,`activation_token`,`birthday`) "
-                    + "VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getRoles() + "','" + t.getPhone() + "','" + cryptWithMD5(t.getPassword()) + "','" + t.getCreated_at() + "','" + t.getStatus() + "','" + t.getImageFile() + "','" + t.getActivation_token() + "','" + t.getBirthday() + "')";
+                    + "VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getRoles() + "','" + t.getPhone() + "','" + hash + "','" + t.getCreated_at() + "','" + t.getStatus() + "','" + t.getImageFile() + "','" + t.getActivation_token() + "','" + t.getBirthday() + "')";
             st.executeUpdate(query);
             System.out.println("user ajouter avec success");
         } catch (SQLException ex) {
@@ -134,6 +137,28 @@ public class UserService {
 
     }
 
+    public boolean checkloginargon(String username, String password) throws SQLException {
+        try {
+            Statement st = cnx.createStatement();
+            String query = "SELECT * FROM `user` WHERE `email`='" + username + "'";
+
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                String Mypasssword = password;
+                Argon2PasswordEncoder encoder = new Argon2PasswordEncoder(32, 64, 1, 15 * 1024, 2);
+                String hash = encoder.encode(password);
+                boolean validPassword = encoder.matches(Mypasssword, rs.getString(4));
+                if (validPassword) {
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
+
     public int countRecentLoginAttempts(String email) throws ParseException {
         /*  Date date = new Date(System.currentTimeMillis());
         final String current = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
@@ -182,6 +207,45 @@ public class UserService {
                 u.setRoles(rs.getString("roles"));
                 u.setBirthday(rs.getString("birthday"));
                 lu.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lu;
+    }
+
+    public List<User> affichergerant(int id) {
+        List<User> lu = new ArrayList<>();
+        try {
+            Statement st = cnx.createStatement();
+            Statement pt = cnx.createStatement();
+            Statement qt = cnx.createStatement();
+
+            String query = "select * from user_salle where user_id=" + id;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String query2 = "select * from user_salle where salle_id=" + rs.getInt("salle_id");
+                ResultSet rss = pt.executeQuery(query2);
+                while (rss.next()) {
+                    String query3 = "select * from user where id=" + rss.getInt("user_id");
+                    ResultSet rsss = qt.executeQuery(query3);
+                    while (rsss.next()) {
+                        User u = new User();
+                        u.setPhone(rsss.getString("phone"));
+                        u.setCreated_at(rsss.getDate("created_at"));
+                        u.setEmail(rsss.getString("email"));
+                        u.setId(rsss.getInt("id"));
+                        u.setStatus(rsss.getInt("status"));
+                        u.setNom(rsss.getString("nom"));
+                        u.setImageFile(rsss.getString("image_file"));
+                        System.out.println(rsss.getString("image_file"));
+                        u.setPassword(cryptWithMD5(rsss.getString("password")));
+                        u.setPrenom(rsss.getString("prenom"));
+                        u.setRoles(rsss.getString("roles"));
+                        u.setBirthday(rsss.getString("birthday"));
+                        lu.add(u);
+                    }
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);

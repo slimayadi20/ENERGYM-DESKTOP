@@ -9,10 +9,12 @@
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ArticleDetailController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ProfileFrontController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/HomeFrontController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Services/UserService.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ProduitController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/PaiementController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/SalleController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUIBACK/ProfileController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/Entities/User.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ReclamationItemController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ProduitItemController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EventDetailController.java</file>
@@ -20,6 +22,7 @@
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/DetailSalleCoursController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/ReplyReclamationController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/EventItemController.java</file>
+            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/FXMLController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/PanierController.java</file>
             <file>file:/C:/Users/MSI/Documents/NetBeansProjects/ENERGYM%20DESKTOP/src/GUI/DetailCoursController.java</file>
         </group>

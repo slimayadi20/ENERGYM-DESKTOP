@@ -6,6 +6,7 @@
 package GUI;
 
 import Entities.Salle;
+import static GUI.PaiementController.showAlert;
 import GUIBACK.ProfileController;
 import GUIBACK.WebViewCaptureMap;
 import Services.SalleService;
@@ -30,6 +31,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -114,7 +116,7 @@ public class DetailSalleCoursController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         namefxid.setText(UserconnectedC.getNom());
-        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
 
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
@@ -202,7 +204,8 @@ public class DetailSalleCoursController implements Initializable {
         });
 
     }
-  private void makeFadeInTransition(String a) {
+
+    private void makeFadeInTransition(String a) {
 
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
@@ -224,6 +227,7 @@ public class DetailSalleCoursController implements Initializable {
         fadeTransition.play();
 
     }
+
     public void map(Salle actividad) {
         paneMapa = new Pane();
         webView = new WebView();
@@ -312,7 +316,7 @@ public class DetailSalleCoursController implements Initializable {
 
     @FXML
     private void article(MouseEvent event) {
-                makeFadeInTransition("Article.fxml");
+        makeFadeInTransition("Article.fxml");
 
     }
 
@@ -322,13 +326,44 @@ public class DetailSalleCoursController implements Initializable {
 
     @FXML
     private void gold(MouseEvent event) {
+        SalleService ss = new SalleService();
+
+        if (ss.check(salleid, UserconnectedC.getId())) {
+            showAlert(Alert.AlertType.INFORMATION, "vous etes deja inscrits", "error", "vous etes deja inscrits");
+
+        } else {
+            Salle listTH = ss.findById(salleid);
+            ss.Participer(listTH, UserconnectedC);
+            showAlert(Alert.AlertType.INFORMATION, "Inscription ajoutée avec succes", "success", "Bienvenue chez nous");
+        }
+
     }
 
     @FXML
     private void silver(MouseEvent event) {
+           SalleService ss = new SalleService();
+
+        if (ss.check(salleid, UserconnectedC.getId())) {
+            showAlert(Alert.AlertType.INFORMATION, "vous etes deja inscrits", "error", "vous etes deja inscrits");
+
+        } else {
+            Salle listTH = ss.findById(salleid);
+            ss.Participer(listTH, UserconnectedC);
+            showAlert(Alert.AlertType.INFORMATION, "Inscription ajoutée avec succes", "success", "Bienvenue chez nous");
+        }
     }
 
     @FXML
     private void bronze(MouseEvent event) {
+     SalleService ss = new SalleService();
+
+        if (ss.check(salleid, UserconnectedC.getId())) {
+            showAlert(Alert.AlertType.INFORMATION, "vous etes deja inscrits", "error", "vous etes deja inscrits");
+
+        } else {
+            Salle listTH = ss.findById(salleid);
+            ss.Participer(listTH, UserconnectedC);
+            showAlert(Alert.AlertType.INFORMATION, "Inscription ajoutée avec succes", "success", "Bienvenue chez nous");
+        }
     }
 }

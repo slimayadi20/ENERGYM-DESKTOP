@@ -208,13 +208,17 @@ public class HomeBackController implements Initializable {
                 if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
 {
     btnevenement.setVisible(false);
-    btnproduit.setVisible(false);
-    btncategories.setVisible(false);
-    btncategoriesevent.setVisible(false);
-    btnparticipation.setVisible(false);
-     Traduction();
+            btnproduit.setVisible(false);
+            btncategories.setVisible(false);
+            btncategoriesevent.setVisible(false);
+            btnparticipation.setVisible(false);
+            btncommande.setVisible(false);
+            btnlivraison.setVisible(false);
+            btncommentaire.setVisible(false);
+            btnarticle.setVisible(false);
      
 }
+     Traduction();
                        try {
                 // TODO
                 loadDataPie();

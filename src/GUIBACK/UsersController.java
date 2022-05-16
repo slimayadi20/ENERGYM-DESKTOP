@@ -151,16 +151,19 @@ public class UsersController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
-{
-    btnevenement.setVisible(false);
-    btnproduit.setVisible(false);
-    btncategories.setVisible(false);
-    btncategoriesevent.setVisible(false);
-    btnparticipation.setVisible(false);
-}
-        
-        
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            btnevenement.setVisible(false);
+            btnproduit.setVisible(false);
+            btncategories.setVisible(false);
+            btncategoriesevent.setVisible(false);
+            btnparticipation.setVisible(false);
+            btncommande.setVisible(false);
+            btnlivraison.setVisible(false);
+            btncommentaire.setVisible(false);
+            btnarticle.setVisible(false);
+         
+        }
+
         ss.add("Par role");
         ss.add("Par date");
         ss.add("Par status");
@@ -174,95 +177,188 @@ public class UsersController implements Initializable {
 
     public void refreshlist() {
         data.clear();
-        data = FXCollections.observableArrayList(us.afficher());
-        nom_col.setCellValueFactory(new PropertyValueFactory<>("Nom"));
-        prenom_col.setCellValueFactory(new PropertyValueFactory<>("Prenom"));
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            data = FXCollections.observableArrayList(us.affichergerant(UserconnectedC.getId()));
+
+            nom_col.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+            prenom_col.setCellValueFactory(new PropertyValueFactory<>("Prenom"));
 //slim.ayadi@esprit.tn
-        email_col.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        createdat_col.setCellValueFactory(new PropertyValueFactory<>("created_at"));
-        //String age =calculateAge(new PropertyValueFactory<>("birthday")) ;
-        //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-        //Date date = new Date(System.currentTimeMillis());
-        //    date_col.setCellValueFactory(cellData -> new SimpleStringProperty(getDateDiff(cellData.getValue().getBirthday(),date,TimeUnit.MINUTES)));
-        //   System.out.println(date);
-        date_col.setCellValueFactory(new PropertyValueFactory<>("birthday"));
-        image.setCellValueFactory(new PropertyValueFactory<>("id"));
+            email_col.setCellValueFactory(new PropertyValueFactory<>("Email"));
+            createdat_col.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+            //String age =calculateAge(new PropertyValueFactory<>("birthday")) ;
+            //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+            //Date date = new Date(System.currentTimeMillis());
+            //    date_col.setCellValueFactory(cellData -> new SimpleStringProperty(getDateDiff(cellData.getValue().getBirthday(),date,TimeUnit.MINUTES)));
+            //   System.out.println(date);
+            date_col.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+            image.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        Callback<TableColumn<User, Integer>, TableCell<User, Integer>> cellFactoryImage
-                = new Callback<TableColumn<User, Integer>, TableCell<User, Integer>>() {
-            @Override
-            public TableCell call(final TableColumn<User, Integer> param) {
-                final TableCell<User, Integer> cell = new TableCell<User, Integer>() {
+            Callback<TableColumn<User, Integer>, TableCell<User, Integer>> cellFactoryImage
+                    = new Callback<TableColumn<User, Integer>, TableCell<User, Integer>>() {
+                @Override
+                public TableCell call(final TableColumn<User, Integer> param) {
+                    final TableCell<User, Integer> cell = new TableCell<User, Integer>() {
 
-                    @Override
-                    public void updateItem(Integer item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-                            UserService user = new UserService();
-                            String image = user.findByIdimage(item);
-                            ImageView imagev = new ImageView(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
-                            imagev.setFitHeight(90);
-                            imagev.setFitWidth(150);
-                            setGraphic(imagev);
-                            setText(null);
-                            //System.out.println(item);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        image.setCellFactory(cellFactoryImage);
-
-        Callback<TableColumn<User, String>, TableCell<User, String>> cellFactoryTime
-                = //
-                new Callback<TableColumn<User, String>, TableCell<User, String>>() {
-            @Override
-            public TableCell call(final TableColumn<User, String> param) {
-                final TableCell<User, String> cell = new TableCell<User, String>() {
-
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if ((empty) || (item == null)) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-                            DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
-
-                            try {
-                                Calendar cal = Calendar.getInstance();
-                                java.util.Date date = cal.getTime();
-                                String todaysdate = dateFormat.format(date);
-
-                                //  String db = dateFormat.format(item);
-                                System.out.println(todaysdate);
-                                System.out.println(item);
-                                System.out.println("up");
-                                LocalDate date1 = LocalDate.parse(item, formatter);
-                                LocalDate date2 = LocalDate.parse(todaysdate, formatter);
-                                long yearsBetween = ChronoUnit.YEARS.between(date1, date2);
-                                setText(Long.toString(yearsBetween));
-                            } catch (Exception ex) {
-                                Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
+                        @Override
+                        public void updateItem(Integer item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty) {
+                                setGraphic(null);
+                                setText(null);
+                            } else {
+                                UserService user = new UserService();
+                                String image = user.findByIdimage(item);
+                                ImageView imagev = new ImageView(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+                                imagev.setFitHeight(90);
+                                imagev.setFitWidth(150);
+                                setGraphic(imagev);
+                                setText(null);
+                                //System.out.println(item);
                             }
-
                         }
-                    }
-                };
-                return cell;
-            }
-        };
+                    };
+                    return cell;
+                }
+            };
+            image.setCellFactory(cellFactoryImage);
 
-        date_col.setCellFactory(cellFactoryTime);
-        role_col.setCellValueFactory(new PropertyValueFactory<>("Roles"));
-        tableviewuser.setItems(data);
-        tableviewuser.setStyle("-fx-font-weight: bold; -fx-font-size: 1.05em; ");
+            Callback<TableColumn<User, String>, TableCell<User, String>> cellFactoryTime
+                    = //
+                    new Callback<TableColumn<User, String>, TableCell<User, String>>() {
+                @Override
+                public TableCell call(final TableColumn<User, String> param) {
+                    final TableCell<User, String> cell = new TableCell<User, String>() {
 
+                        @Override
+                        public void updateItem(String item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if ((empty) || (item == null)) {
+                                setGraphic(null);
+                                setText(null);
+                            } else {
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+                                DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+
+                                try {
+                                    Calendar cal = Calendar.getInstance();
+                                    java.util.Date date = cal.getTime();
+                                    String todaysdate = dateFormat.format(date);
+
+                                    //  String db = dateFormat.format(item);
+                                    System.out.println(todaysdate);
+                                    System.out.println(item);
+                                    System.out.println("up");
+                                    LocalDate date1 = LocalDate.parse(item, formatter);
+                                    LocalDate date2 = LocalDate.parse(todaysdate, formatter);
+                                    long yearsBetween = ChronoUnit.YEARS.between(date1, date2);
+                                    setText(Long.toString(yearsBetween));
+                                } catch (Exception ex) {
+                                    Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+
+                            }
+                        }
+                    };
+                    return cell;
+                }
+            };
+
+            date_col.setCellFactory(cellFactoryTime);
+            role_col.setCellValueFactory(new PropertyValueFactory<>("Roles"));
+            tableviewuser.setItems(data);
+            tableviewuser.setStyle("-fx-font-weight: bold; -fx-font-size: 1.05em; ");
+        } else {
+
+            data = FXCollections.observableArrayList(us.afficher());
+
+            nom_col.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+            prenom_col.setCellValueFactory(new PropertyValueFactory<>("Prenom"));
+//slim.ayadi@esprit.tn
+            email_col.setCellValueFactory(new PropertyValueFactory<>("Email"));
+            createdat_col.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+            //String age =calculateAge(new PropertyValueFactory<>("birthday")) ;
+            //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+            //Date date = new Date(System.currentTimeMillis());
+            //    date_col.setCellValueFactory(cellData -> new SimpleStringProperty(getDateDiff(cellData.getValue().getBirthday(),date,TimeUnit.MINUTES)));
+            //   System.out.println(date);
+            date_col.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+            image.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+            Callback<TableColumn<User, Integer>, TableCell<User, Integer>> cellFactoryImage
+                    = new Callback<TableColumn<User, Integer>, TableCell<User, Integer>>() {
+                @Override
+                public TableCell call(final TableColumn<User, Integer> param) {
+                    final TableCell<User, Integer> cell = new TableCell<User, Integer>() {
+
+                        @Override
+                        public void updateItem(Integer item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty) {
+                                setGraphic(null);
+                                setText(null);
+                            } else {
+                                UserService user = new UserService();
+                                String image = user.findByIdimage(item);
+                                ImageView imagev = new ImageView(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+                                imagev.setFitHeight(90);
+                                imagev.setFitWidth(150);
+                                setGraphic(imagev);
+                                setText(null);
+                                //System.out.println(item);
+                            }
+                        }
+                    };
+                    return cell;
+                }
+            };
+            image.setCellFactory(cellFactoryImage);
+
+            Callback<TableColumn<User, String>, TableCell<User, String>> cellFactoryTime
+                    = //
+                    new Callback<TableColumn<User, String>, TableCell<User, String>>() {
+                @Override
+                public TableCell call(final TableColumn<User, String> param) {
+                    final TableCell<User, String> cell = new TableCell<User, String>() {
+
+                        @Override
+                        public void updateItem(String item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if ((empty) || (item == null)) {
+                                setGraphic(null);
+                                setText(null);
+                            } else {
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+                                DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+
+                                try {
+                                    Calendar cal = Calendar.getInstance();
+                                    java.util.Date date = cal.getTime();
+                                    String todaysdate = dateFormat.format(date);
+
+                                    //  String db = dateFormat.format(item);
+                                    System.out.println(todaysdate);
+                                    System.out.println(item);
+                                    System.out.println("up");
+                                    LocalDate date1 = LocalDate.parse(item, formatter);
+                                    LocalDate date2 = LocalDate.parse(todaysdate, formatter);
+                                    long yearsBetween = ChronoUnit.YEARS.between(date1, date2);
+                                    setText(Long.toString(yearsBetween));
+                                } catch (Exception ex) {
+                                    Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+
+                            }
+                        }
+                    };
+                    return cell;
+                }
+            };
+
+            date_col.setCellFactory(cellFactoryTime);
+            role_col.setCellValueFactory(new PropertyValueFactory<>("Roles"));
+            tableviewuser.setItems(data);
+            tableviewuser.setStyle("-fx-font-weight: bold; -fx-font-size: 1.05em; ");
+        }
     }
 
     @FXML
@@ -376,9 +472,8 @@ public class UsersController implements Initializable {
     private void fillforum(MouseEvent event) {
     }
 
-  
     @FXML
-     private void handleClicks(ActionEvent event) throws IOException {
+    private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);
@@ -449,6 +544,5 @@ public class UsersController implements Initializable {
             mainmoviespane.getChildren().setAll(panee);
         }
     }
-
 
 }

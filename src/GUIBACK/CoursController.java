@@ -162,11 +162,15 @@ public class CoursController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
-            btnevenement.setVisible(false);
+          btnevenement.setVisible(false);
             btnproduit.setVisible(false);
             btncategories.setVisible(false);
             btncategoriesevent.setVisible(false);
             btnparticipation.setVisible(false);
+            btncommande.setVisible(false);
+            btnlivraison.setVisible(false);
+            btncommentaire.setVisible(false);
+            btnarticle.setVisible(false);
         }
         // TODO
         tableviewsalle.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

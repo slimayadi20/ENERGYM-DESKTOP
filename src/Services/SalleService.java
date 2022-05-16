@@ -5,7 +5,9 @@
  */
 package Services;
 
+import Entities.Event;
 import Entities.Salle;
+import Entities.User;
 import Tools.MyConnexion;
 import energym.desktop.MainFX;
 
@@ -336,5 +338,27 @@ public class SalleService {
         }
         return u;
     }
-
+    public void Participer(Salle e, User u) {
+        try {
+            Statement st;
+            st = cnx.createStatement();
+            String query = "INSERT INTO `user_salle`(`user_id`,`salle_id`)"
+                    + "VALUES ('" + u.getId() + "','" + e.getId() + "')";
+            st.executeUpdate(query);
+            System.out.println("inscription ajouté avec success");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+        public Boolean check(int idevent , int iduser){
+          try {
+            Statement st = cnx.createStatement();
+            String query = "SELECT * FROM `user_salle` WHERE `user_id`='" + iduser + "'";
+            ResultSet rs = st.executeQuery(query);
+            return rs.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }

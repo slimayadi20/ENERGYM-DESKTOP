@@ -63,13 +63,14 @@ public class ReclamationItemController {
     @FXML
     private StackPane stack;
     Reclamation r;
+    public static int seen = 0;
 
     public void setData(Reclamation t) {
         r = t;
         titrefxid.setText(t.getTitre());
         ProduitService ps = new ProduitService();
         Produit p = ps.afficherbyid(t.getProduit());
-        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit\\"  + p.getImage()));
+        image.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit\\" + p.getImage()));
 
         datefxid.setText(String.valueOf(t.getDate()));
         descriptionfxid.setText(String.valueOf(t.getContenu()));
@@ -77,6 +78,12 @@ public class ReclamationItemController {
         Reply r = rs.afficherReplybyid(t.getId());
         if (r.getReclamation() != t.getId()) {
             reply.setVisible(false);
+            seen = 0;
+        }
+
+        if (seen == 1) {
+            reply.setVisible(false);
+
         }
 
     }
@@ -96,6 +103,9 @@ public class ReclamationItemController {
             @Override
             public void handle(ActionEvent event) {
                 dialog.close();
+                seen = 1;
+                reply.setVisible(false);
+
             }
         });
         content.setActions(button);

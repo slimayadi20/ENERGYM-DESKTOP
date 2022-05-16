@@ -6,8 +6,11 @@
 package Services;
 
 import Entities.Salle;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
@@ -16,6 +19,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,12 +27,13 @@ import java.util.List;
  * @author omar
  */
 public class PDFSalle {
-         public void liste_SallePDF() throws FileNotFoundException, DocumentException {
+         public void liste_SallePDF() throws FileNotFoundException, DocumentException, BadElementException, IOException {
+        String filename = "";
 
         SalleService ec = new SalleService();
         String message = "Voici la liste des salles \n\n";
 
-        String file_name = "src/PDF/liste_Salle.pdf";
+        String file_name = "src/PDF/liste_Salles.pdf";
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(file_name));
         document.open();
@@ -62,7 +67,19 @@ public class PDFSalle {
             table.addCell("" + Salle.get(i).getDescription());
             table.addCell("" + Salle.get(i).getAdresse());
             table.addCell("" + Salle.get(i).getMail());
-            table.addCell("" + Salle.get(i).getImage());
+       
+                filename = "file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\salle\\" + Salle.get(i).getImage();
+                System.out.println(filename);
+                Image img = Image.getInstance(filename);
+                img.scalePercent(28);// Creating an Image object 
+                PdfPCell cell = new PdfPCell();
+                cell.addElement(new Chunk(img, 5, -5));
+
+                cell.setFixedHeight(80);
+                cell.setPaddingTop(50);
+                table.addCell(cell);
+            
+          //  table.addCell("" + Salle.get(i).getImage());
 
         }
         document.add(table);

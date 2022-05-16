@@ -215,14 +215,17 @@ public class ProfileController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-                if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
-{
-    btnevenement.setVisible(false);
-    btnproduit.setVisible(false);
-    btncategories.setVisible(false);
-    btncategoriesevent.setVisible(false);
-    btnparticipation.setVisible(false);
-}
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            btnevenement.setVisible(false);
+            btnproduit1.setVisible(false);
+            btncategories1.setVisible(false);
+            btncategoriesevent.setVisible(false);
+            btnparticipation.setVisible(false);
+            btncommande.setVisible(false);
+            btnlivraison.setVisible(false);
+            btncommentaire.setVisible(false);
+            btnarticle.setVisible(false);
+        }
         File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
         circleu.setRadius(55);
 
@@ -307,7 +310,6 @@ public class ProfileController implements Initializable {
             mainmoviespane.getChildren().setAll(panee);
         }
     }
-
 
     @FXML
     private void logOut(ActionEvent event) {

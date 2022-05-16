@@ -148,14 +148,17 @@ public class ReplyController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-                if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
-{
-    btnevenement.setVisible(false);
-    btnproduit.setVisible(false);
-    btncategories.setVisible(false);
-    btncategoriesevent.setVisible(false);
-    btnparticipation.setVisible(false);
-}
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            btnevenement.setVisible(false);
+            btnproduit.setVisible(false);
+            btncategories.setVisible(false);
+            btncategoriesevent.setVisible(false);
+            btnparticipation.setVisible(false);
+            btncommande.setVisible(false);
+            btnlivraison.setVisible(false);
+            btncommentaire.setVisible(false);
+            btnarticle.setVisible(false);
+        }
         repondufid.setText((Integer.toString(rs.affichernumber("repondu"))));
 
         loadDate();
@@ -180,7 +183,7 @@ public class ReplyController implements Initializable {
     }
 
     @FXML
-     private void handleClicks(ActionEvent event) throws IOException {
+    private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);
@@ -251,7 +254,6 @@ public class ReplyController implements Initializable {
             mainmoviespane.getChildren().setAll(panee);
         }
     }
-
 
     @FXML
     public void recherche_avance() {

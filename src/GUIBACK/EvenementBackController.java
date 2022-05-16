@@ -206,10 +206,9 @@ public class EvenementBackController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
-{
-    btnevenement.setDisable(true);
-}
+        if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
+            btnevenement.setDisable(true);
+        }
         Collections.addAll(possibleWordSet, words);
         autoCompletionBinding = TextFields.bindAutoCompletion(lieufxid, possibleWordSet);
 
@@ -404,7 +403,6 @@ if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
         }
     }
 
-
     @FXML
     public void recherche_avance() {
         System.out.println("*******************");
@@ -488,7 +486,7 @@ if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
                         } else {
                             EventService event = new EventService();
                             String image = event.findByIdimage(item);
-                            ImageView imagev = new ImageView(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\" +  image));
+                            ImageView imagev = new ImageView(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\" + image));
                             imagev.setFitHeight(90);
                             imagev.setFitWidth(150);
                             setGraphic(imagev);
@@ -544,6 +542,8 @@ if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
                 eventid = u.getId();
                 categfxid.setText(c);
                 userimage.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\Event_image\\" + u.getImageFile()));
+                userimage.setFitHeight(150);
+                userimage.setFitWidth(150);
                 image.setText(u.getImageFile());
 
                 //  movietitle.setText(user.getNom() + " " + user.getPrenom());
@@ -659,7 +659,7 @@ if (UserconnectedC.getRoles().equals("ROLE_GERANT"))
 //                path = selectedFile.toURI().toURL().toExternalForm();
             userimage.setImage(new Image(selectedFile.toURI().toURL().toString()));
             userimage.setFitHeight(150);
-            userimage.setFitWidth(250);
+            userimage.setFitWidth(150);
             image.setText(path);
 
         }

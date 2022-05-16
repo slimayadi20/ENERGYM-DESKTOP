@@ -6,15 +6,19 @@
 package GUI;
 
 
+import static GUI.PaiementController.showAlert;
+import com.jfoenix.controls.JFXSlider;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.controlsfx.control.PlusMinusSlider;
 
 
 /**
@@ -34,7 +38,7 @@ public class Imc_omarController implements Initializable {
     @FXML
     private ImageView img_red;
     @FXML
-    private TextField tx1;
+    private JFXSlider tx1;
     @FXML
     private TextField tx2;
     @FXML
@@ -46,11 +50,19 @@ public class Imc_omarController implements Initializable {
    @FXML
    public void calculate()
    {
-       double h = Double.parseDouble(tx1.getText());
+       if(tx1.getValue()==0|| tx2.getText().isEmpty() )
+       {
+                   showAlert(Alert.AlertType.INFORMATION, "veuillez remplir tous les champs", "error", "Completez les champs");
+
+       }
+       else{
+           
+       
+       double h = Double.parseDouble(String.valueOf(tx1.getValue()))/100;
        double w = Double.parseDouble(tx2.getText());
-       
+           System.out.println(h);
        double bmi = w / (h * h);
-       
+           System.out.println("bmi"+bmi);
        String cal = String.format("%.2f",bmi);
        
        tx3.setText(cal);
@@ -98,13 +110,13 @@ public class Imc_omarController implements Initializable {
            img_blue.setVisible(false);
            
        }
-       
+       }
    }
    
    @FXML
    public void clear()
    {
-        tx1.setText("");
+       // tx1.set("");
         tx2.setText("");
         tx3.setText("");
         label.setText("");
