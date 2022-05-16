@@ -31,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.xml.ws.Action;
 
 /**
@@ -77,13 +78,23 @@ public class ProduitPanierController {
                     showAlert(Alert.AlertType.INFORMATION, "Opération Invalide", "error", "Stock insuffisant");
                 } else {
                     quantite.setText(String.valueOf(a));
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("Panier.fxml"));
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
+                    try {
+                        loader.load();
+                    } catch (Exception ex) {
+                        ex.getMessage();
+                    }
 
-                Pane anchorPane = fxmlLoader.load();
+                    PanierController addLivraisonController = loader.getController();
 
-                PanierController controller = fxmlLoader.getController();
-                    controller.displayGrid();
+                    Parent parent = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(parent));
+                    stage.initStyle(StageStyle.UTILITY);
+                    stage.show();
+                    stage = (Stage) plus.getScene().getWindow();
+                   stage.close();
                 }
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -96,11 +107,29 @@ public class ProduitPanierController {
                 ps.deletePanier(t.getIdproduit(), 37);
 
                 //te.setTest(true);
+                if (t.getQuantite()>1)
+                {
                 int a = ps.getInstance().getQT(37, t.getIdproduit());
                 System.out.println(a);
                 quantite.setText(String.valueOf(a));
-                te.displayGrid();
-                   
+                }
+                   FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
+                    try {
+                        loader.load();
+                    } catch (Exception ex) {
+                        ex.getMessage();
+                    }
+
+                  PanierController addLivraisonController = loader.getController();
+
+                    Parent parent = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(parent));
+                    stage.initStyle(StageStyle.UTILITY);
+                    stage.show();
+                    stage = (Stage) plus.getScene().getWindow();
+                   stage.close();
 
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());

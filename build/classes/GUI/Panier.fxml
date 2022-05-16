@@ -54,7 +54,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
                <children>
-                  <Label text="Reclamation" textFill="WHITE" />
+                  <Label fx:id="reclamation" onMouseClicked="#reclamation" text="Reclamation" textFill="WHITE" />
                </children>
             </HBox>
             <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
@@ -128,7 +128,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXButton fx:id="codeButton" layoutX="953.0" layoutY="404.0" prefHeight="18.0" prefWidth="30.0" ripplerFill="#f7c1c1" style="-fx-background-color: F94242; -fx-background-radius: 8; -fx-min-height: 25; -fx-min-width: 30;" text="  " wrapText="true">
+      <JFXButton fx:id="codeButton" layoutX="953.0" layoutY="404.0" onMouseClicked="#ajoutcode" prefHeight="18.0" prefWidth="30.0" ripplerFill="#f7c1c1" style="-fx-background-color: F94242; -fx-background-radius: 8; -fx-min-height: 25; -fx-min-width: 30;" text="  " wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

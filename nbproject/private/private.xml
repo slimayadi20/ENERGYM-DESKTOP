@@ -11,11 +11,9 @@
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/ReclamationController.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/Services/PanierService.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/Services/CommandeService.java</file>
-            <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/Paiement.fxml</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/Services/UserService.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/ThematiqueItemController.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/FrontController.java</file>
-            <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/FXML.fxml</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/Tools/Smsapi.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/Tools/MyConnexion.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/energym/desktop/MainFX.java</file>
@@ -25,7 +23,6 @@
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/ForgetPasswordController.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/Entities/LoginAttempt.java</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/Entities/Reclamation.java</file>
-            <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/Panier.fxml</file>
             <file>file:/C:/Users/karim/Documents/energym.java/ENERGYM-DESKTOP/src/GUI/ProfileController.java</file>
         </group>
     </open-files>

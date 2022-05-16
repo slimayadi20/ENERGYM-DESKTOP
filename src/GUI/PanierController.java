@@ -58,7 +58,7 @@ public class PanierController implements Initializable {
     URL url;
     ResourceBundle rb;
     public static List<Panier> listTH;
-    Panier listTHH=null;
+    Panier listTHH = null;
     @FXML
     private TextField codeTF;
     @FXML
@@ -69,8 +69,12 @@ public class PanierController implements Initializable {
     private Label erreur;
     @FXML
     public AnchorPane DashboardUtilis;
-    public static int tt = 0;
     public static boolean test = false;
+    @FXML
+    private Label reclamation;
+    public int reduc = 0;
+    public int c = 0;
+    public int global_variable = 0;
 
     /**
      * Initializes the controller class.
@@ -79,10 +83,10 @@ public class PanierController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         PanierService ths = new PanierService();
         listTH = PanierService.getInstance().panier(37);
-
-        
+        int tt = 0;
         int colonne = 0;
         int row = 1;
+        reduc = 0;
         try {
             for (Panier t : listTH) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -106,42 +110,26 @@ public class PanierController implements Initializable {
                 GridPane.setMargin(anchorPane, new Insets(12));
                 //break;
                 tt += t.getPrix() * ths.getInstance().getQT(37, t.getIdproduit());
+                global_variable= tt ; 
                 count.setText(String.valueOf(ths.getInstance().getCount(37)) + " Items");
                 total.setText(String.valueOf(tt) + " DT");
-                codeButton.setOnMouseClicked((MouseEvent event) -> {
-                    int red = 0;
-                    try {
 
-                        if (ths.getPromo(codeTF.getText()) == 0) {
-                            erreur.setText("Code invalide");
-                            reduction.setText("0 %");
-
-                        } else {
-
-                            reduction.setText(String.valueOf(ths.getPromo(codeTF.getText())) + " %");
-                            erreur.setText("");
-
-                        }
-
-                    } catch (Exception ex) {
-                        System.out.println(ex.getMessage());
-                    }
-
-                });
+               
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
     }
-public void displayGrid() {
+
+    public void displayGrid() {
         AnchorPane panee;
-                    try {
-                        panee = FXMLLoader.load(getClass().getResource("Panier.fxml"));
-                        DashboardUtilis.getChildren().setAll(panee);
-                    } catch (IOException ex) {
-                        Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+        try {
+            panee = FXMLLoader.load(getClass().getResource("Panier.fxml"));
+            DashboardUtilis.getChildren().setAll(panee);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static boolean isTest() {
@@ -194,8 +182,36 @@ public void displayGrid() {
 
     }
 
-
-  
-
 // 4242 4242 4242 4242
+    @FXML
+    private void reclamation(MouseEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Reclamation.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    @FXML
+    private void ajoutcode(MouseEvent event) {
+        PanierService ths = new PanierService();
+
+        c = ths.getPromo(codeTF.getText());
+        reduc = global_variable - ((global_variable * c) / 100);
+
+        if (ths.getPromo(codeTF.getText()) == 0) {
+            total.setText(String.valueOf(global_variable) + " DT");
+            erreur.setText("Code invalide");
+            reduction.setText("0 %");
+
+        } else {
+            reduction.setText(String.valueOf(ths.getPromo(codeTF.getText())) + " %");
+            total.setText(String.valueOf(reduc) + " DT");
+            System.out.println(c);
+            erreur.setText("");
+
+        }
+    }
 }
