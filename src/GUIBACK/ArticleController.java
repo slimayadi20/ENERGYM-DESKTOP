@@ -10,6 +10,7 @@ import Services.ArticleService;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -349,6 +350,11 @@ public class ArticleController implements Initializable {
         if (event.getSource() == btnlivraison) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
+        }
+          if (event.getSource() == logoutbtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            UserconnectedC=null ; 
         }
     }
 

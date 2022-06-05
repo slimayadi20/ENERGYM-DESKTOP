@@ -9,6 +9,7 @@ import GUIBACK.ProfileController;
 import Entities.Produit;
 import Entities.Reclamation;
 import Entities.User;
+import Services.PanierService;
 import Services.ProduitService;
 import Services.UserService;
 import Services.ReclamationService;
@@ -18,6 +19,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import com.lowagie.text.DocumentException;
+import energym.desktop.MainFX;
 import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
 import java.io.IOException;
@@ -180,12 +182,17 @@ public class ProfileFrontController implements Initializable {
     private Timer timer;
     private TimerTask task;
     private boolean running;
+    @FXML
+    private Label badge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
+
         namefxid.setText(UserconnectedC.getNom());
         setImage();
         File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
@@ -298,7 +305,7 @@ public class ProfileFrontController implements Initializable {
     }
 
     public void setImage(String name) {
-        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
         circleu.setRadius(55);
         try {
             System.out.println(new Image(file.toURI().toURL().toExternalForm()));
@@ -444,7 +451,7 @@ public class ProfileFrontController implements Initializable {
         String key = UUID.randomUUID().toString();
         String fcs = SelectedFile.getAbsolutePath();
         File source = new File(fcs);
-        File destination = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + key + fileName);
+        File destination = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + key + fileName);
         String url = destination.getAbsolutePath();
         System.out.println(url);
 
@@ -475,7 +482,7 @@ public class ProfileFrontController implements Initializable {
     }
 
     public void setImage() {
-        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
         try {
             System.out.println(new Image(file.toURI().toURL().toExternalForm()));
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
@@ -644,5 +651,11 @@ public class ProfileFrontController implements Initializable {
 
             playMedia();
         }
+    }
+
+    @FXML
+    private void panier(MouseEvent event) {
+                makeFadeInTransition("Panier.fxml");
+
     }
 }

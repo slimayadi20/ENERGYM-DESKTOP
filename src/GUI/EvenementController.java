@@ -10,8 +10,10 @@ import Entities.User;
 import static GUI.HomeFrontController.status;
 import GUIBACK.ProfileController;
 import Services.EventService;
+import Services.PanierService;
 import Services.UserService;
 import com.jfoenix.controls.JFXToggleButton;
+import energym.desktop.MainFX;
 import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
 import java.io.IOException;
@@ -87,12 +89,17 @@ public class EvenementController implements Initializable {
     private Label articlefxid;
     @FXML
     private Circle circle;
+    @FXML
+    private Label badge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
+
          namefxid.setText(UserconnectedC.getNom());
         File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
 

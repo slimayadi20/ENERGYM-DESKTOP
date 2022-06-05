@@ -7,6 +7,7 @@ package Services;
 
 import Entities.Categories;
 import Tools.MyConnexion;
+import energym.desktop.MainFX;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,8 +36,8 @@ public class CategoriesService {
           try {
             Statement st;
             st = cnx.createStatement();
-             String query = "INSERT INTO `categories`( `nom`) "
-                    + "VALUES ('" + nom+"')";     
+            String query = "INSERT INTO `categories`( `nom`,`user_id`) "
+                    + "VALUES ('" + nom+ "','" + MainFX.UserconnectedC.getId()+"')";     
             st.executeUpdate(query);
             System.out.println("categories ajouté avec success");
         } catch (SQLException ex) {

@@ -215,6 +215,9 @@ public class ProfileController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        UserService us = new UserService();
+        us.modifierLoginAttempt();
+        us.modifierLoginAttemptfail();
         if (UserconnectedC.getRoles().equals("ROLE_GERANT")) {
             btnevenement.setVisible(false);
             btnproduit1.setVisible(false);
@@ -308,6 +311,11 @@ public class ProfileController implements Initializable {
         if (event.getSource() == btnlivraison) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
+        }
+          if (event.getSource() == logoutbtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            UserconnectedC=null ; 
         }
     }
 

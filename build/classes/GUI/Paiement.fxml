@@ -25,7 +25,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="DashboardUtilis" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PaiementController">
    <children>
-      <AnchorPane layoutX="-8.0" layoutY="-12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1028.0" stylesheets="@style.css">
+      <AnchorPane layoutX="-8.0" layoutY="-12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1028.0" stylesheets="@stylepayment.css">
          <children>
             <Label layoutX="437.0" layoutY="130.0" prefHeight="58.0" prefWidth="188.0" text="Paiement" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -49,7 +49,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <HBox fx:id="hboxnavbar" alignment="CENTER" layoutX="6.0" prefHeight="118.0" prefWidth="1023.0" stylesheets="@style.css">
+            <HBox fx:id="hboxnavbar" alignment="CENTER" layoutX="6.0" prefHeight="118.0" prefWidth="1023.0" stylesheets="@stylepayment.css">
                <children>
                   <HBox prefHeight="100.0" prefWidth="115.0">
                      <children>
@@ -82,7 +82,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">
                      <children>
-                        <Label fx:id="produitfxid" onMouseClicked="#produit" prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
+                        <Label fx:id="produitfxid" onMouseClicked="#produit" opacity="0.8" prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
@@ -94,7 +94,7 @@
                   <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0">
                      <children>
                         <Circle fx:id="circle" fill="WHITE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Button fx:id="namefxid" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" />
+                        <Button fx:id="namefxid" mnemonicParsing="false" onMouseClicked="#profile" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Button" textFill="WHITE" />
                         <ImageView fx:id="panier" fitHeight="70.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/—Pngtree—red%20shopping%20cart%20icon%20png_4480557.png" />
@@ -103,6 +103,7 @@
                               <Insets top="3.0" />
                            </HBox.margin>
                         </ImageView>
+                        <Label fx:id="badge" alignment="CENTER" prefHeight="21.0" prefWidth="75.0" styleClass="round-lbl" textFill="WHITE" />
                      </children>
                   </HBox>
                   <JFXToggleButton fx:id="btnEditMode" onMouseClicked="#btnEditModeToggle" prefHeight="60.0" prefWidth="160.0" text="Switch to light mode" textFill="WHITE" toggleColor="WHITE" toggleLineColor="WHITE" unToggleColor="WHITE" unToggleLineColor="WHITE" wrapText="true" />
@@ -147,7 +148,7 @@
                </effect>
             </MenuBar>
             <JFXTextField fx:id="firstnamefield" focusColor="WHITE" labelFloat="true" layoutX="101.0" layoutY="287.0" prefWidth="185.0" promptText="First Name" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
-            <JFXTextField fx:id="lastnamefield" focusColor="WHITE" labelFloat="true" layoutX="315.0" layoutY="286.0" prefWidth="185.0" promptText="Last Name" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
+            <JFXTextField fx:id="lastnamefield" focusColor="WHITE" labelFloat="true" layoutX="316.0" layoutY="287.0" prefHeight="25.0" prefWidth="185.0" promptText="Last Name" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
             <JFXTextField fx:id="emailfield" focusColor="WHITE" labelFloat="true" layoutX="100.0" layoutY="337.0" prefHeight="31.0" prefWidth="185.0" promptText="Email" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
             <JFXTextField focusColor="WHITE" layoutX="316.0" layoutY="337.0" prefHeight="31.0" prefWidth="185.0" promptText="Addresse" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />
             <JFXTextField fx:id="cardfield" focusColor="WHITE" labelFloat="true" layoutX="101.0" layoutY="475.0" prefHeight="26.0" prefWidth="379.0" promptText="Card Number" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="WHITE" />

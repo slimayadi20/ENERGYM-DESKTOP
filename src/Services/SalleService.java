@@ -6,6 +6,7 @@
 package Services;
 
 import Entities.Event;
+import Entities.Produit;
 import Entities.Salle;
 import Entities.User;
 import Tools.MyConnexion;
@@ -360,5 +361,38 @@ public class SalleService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+            public Salle getsallehome() {
+        ObservableList<Salle> myList = FXCollections.observableArrayList();
+        String nom = "";
+        Salle u = new Salle();
+
+        try {
+            String requete = "SELECT * FROM Salle where like_count =  (SELECT max(like_count) FROM salle)";
+            Statement st = MyConnexion.getInstance().getCnx().createStatement();
+            ResultSet res = st.executeQuery(requete);
+
+            while (res.next()) {
+             u.setId(res.getInt("id"));
+                u.setNom(res.getString("nom"));
+                u.setAdresse(res.getString("adresse"));
+                u.setTel(res.getString("tel"));
+                u.setMail(res.getString("mail"));
+                u.setDescription(res.getString("description"));
+                u.setImage(res.getString("image"));
+                u.setPrix1(res.getString("prix1"));
+                u.setPrix2(res.getString("prix2"));
+                u.setPrix3(res.getString("prix3"));
+                u.setHeureo(res.getString("heureo"));
+                u.setHeuref(res.getString("heuref"));
+                u.setUrl(res.getString("url"));
+                u.setNblike(res.getInt("like_count"));
+                System.out.println(res.getString("url"));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return u;
     }
 }

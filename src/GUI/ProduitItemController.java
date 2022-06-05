@@ -12,6 +12,7 @@ import static GUI.PaiementController.showAlert;
 import Services.PanierService;
 import Services.ProduitService;
 import Services.SalleService;
+import energym.desktop.MainFX;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +34,7 @@ import javafx.stage.Stage;
 import javax.xml.ws.Action;
 import static energym.desktop.MainFX.UserconnectedC;
 import javafx.scene.control.Alert;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.Rating;
 
 /**
@@ -75,6 +77,21 @@ public class ProduitItemController {
         PanierService ps = new PanierService();
         ps.ajouterPanier(produit.getId(), UserconnectedC.getId());
         showAlert(Alert.AlertType.INFORMATION, "Produit ajoutée au panier", "success", "Completez votre achat");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/GUI/Produit.fxml"));
+        try {
+            loader.load();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        ProduitController addLivraisonController = loader.getController();
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+        stage = (Stage) nom.getScene().getWindow();
+        stage.close();
 
     }
 }

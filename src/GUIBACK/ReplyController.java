@@ -253,6 +253,11 @@ public class ReplyController implements Initializable {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
+        if (event.getSource() == logoutbtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            UserconnectedC=null ; 
+        }
     }
 
     @FXML

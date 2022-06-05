@@ -208,7 +208,7 @@ public class UsersController implements Initializable {
                             } else {
                                 UserService user = new UserService();
                                 String image = user.findByIdimage(item);
-                                ImageView imagev = new ImageView(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+                                ImageView imagev = new ImageView(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + image));
                                 imagev.setFitHeight(90);
                                 imagev.setFitWidth(150);
                                 setGraphic(imagev);
@@ -299,7 +299,7 @@ public class UsersController implements Initializable {
                             } else {
                                 UserService user = new UserService();
                                 String image = user.findByIdimage(item);
-                                ImageView imagev = new ImageView(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+                                ImageView imagev = new ImageView(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + image));
                                 imagev.setFitHeight(90);
                                 imagev.setFitWidth(150);
                                 setGraphic(imagev);
@@ -462,7 +462,7 @@ public class UsersController implements Initializable {
                 dn.setText(u.getBirthday());
                 role.setText(u.getRoles());
                 createdat.setText(u.getCreated_at().toString());
-                userimage.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + u.getImageFile()));
+                userimage.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + u.getImageFile()));
 
             }
         });
@@ -542,6 +542,11 @@ public class UsersController implements Initializable {
         if (event.getSource() == btnlivraison) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
+        }
+          if (event.getSource() == logoutbtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            UserconnectedC=null ; 
         }
     }
 

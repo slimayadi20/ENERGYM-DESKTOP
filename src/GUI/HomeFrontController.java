@@ -9,6 +9,7 @@ import Entities.EvenementCalendrier;
 import Entities.Event;
 import GUIBACK.ProfileController;
 import Services.EventService;
+import Services.PanierService;
 import com.jfoenix.controls.JFXToggleButton;
 import energym.desktop.MainFX;
 import static energym.desktop.MainFX.UserconnectedC;
@@ -142,15 +143,19 @@ public class HomeFrontController implements Initializable {
     private AnchorPane anchor;
     @FXML
     private Circle circle;
+    @FXML
+    private Label badge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
 
-           namefxid.setText(UserconnectedC.getNom());
-        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+        namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
 
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
@@ -165,7 +170,6 @@ public class HomeFrontController implements Initializable {
         mediaPlayer.setMute(true);
         mediaView.setMediaPlayer(mediaPlayer);
 
-        
         if (status == true) {
             mainpane.setStyle("-fx-background-color: #FFFFFF;");
             secondpane.setStyle("-fx-background-color: #FFFFFF;");
@@ -212,7 +216,7 @@ public class HomeFrontController implements Initializable {
 
         Agenda a = new Agenda();
         a.applyCss();
-    //  a.backgroundProperty();
+        //  a.backgroundProperty();
         List<EvenementCalendrier> elements = participationToAppoitments();
         a.appointments().addAll(elements);
         /*ICalendarAgenda agenda = new ICalendarAgenda(vCalendar);
@@ -250,7 +254,7 @@ public class HomeFrontController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-               
+
     }
 
     private List<EvenementCalendrier> participationToAppoitments() {
@@ -392,6 +396,8 @@ public class HomeFrontController implements Initializable {
 
     @FXML
     private void profile(MouseEvent event) {
+        makeFadeInTransition("ProfileFront.fxml");
+
     }
 
     @FXML
@@ -402,7 +408,7 @@ public class HomeFrontController implements Initializable {
 
     @FXML
     private void panier(MouseEvent event) {
-                makeFadeInTransition("Panier.fxml");
+        makeFadeInTransition("Panier.fxml");
 
     }
 

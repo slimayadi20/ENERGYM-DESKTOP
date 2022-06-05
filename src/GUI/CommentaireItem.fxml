@@ -9,10 +9,13 @@
    <children>
       <HBox prefHeight="55.0" prefWidth="700.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="userfxid" prefHeight="59.0" prefWidth="192.0" text="User : " />
-            <Label fx:id="lbl_commentaire" alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="512.0" styleClass="dark-background" stylesheets="@style.css" text="Commentaire titre" textFill="WHITE">
+            <Label fx:id="userfxid" prefHeight="59.0" prefWidth="192.0" text="User : " textFill="#dd1010">
                <font>
-                  <Font name="Arial" size="15.0" />
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label fx:id="lbl_commentaire" alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="512.0" style="-fx-background-radius: 20; -fx-background-color: WHITE;" stylesheets="@style.css" text="Commentaire titre">
+               <font>
+                  <Font name="Arial" size="12.0" />
                </font>
             </Label>
          </children>

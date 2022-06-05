@@ -254,7 +254,7 @@ public class AddCoursController implements Initializable {
         if (selectedFile != null) {
             try {
                 File source = new File(selectedFile.toString());
-                File dest = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\produit");
+                File dest = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\cour");
                 FileUtils.copyFileToDirectory(source, dest);
             } catch (IOException e) {
                 e.printStackTrace();

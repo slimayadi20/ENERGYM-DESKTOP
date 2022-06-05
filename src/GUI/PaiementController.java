@@ -189,6 +189,8 @@ public class PaiementController implements Initializable {
     public Point2D movePoint;
     @FXML
     private ImageView panier;
+    @FXML
+    private Label badge;
 
     /**
      * Initialise method that gets run whenever the payment.fxml is loaded.
@@ -196,8 +198,16 @@ public class PaiementController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-          namefxid.setText(UserconnectedC.getNom());
-        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+        PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
+
+        namefxid.setText(UserconnectedC.getNom());
+        firstnamefield.setText(UserconnectedC.getNom());
+        lastnamefield.setText(UserconnectedC.getPrenom());
+        emailfield.setText(UserconnectedC.getEmail());
+        cardfield.setText("4242 4242 4242 4242");
+
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
 
         try {
             circle.setFill(new ImagePattern(new javafx.scene.image.Image(file.toURI().toURL().toExternalForm())));
@@ -289,9 +299,10 @@ public class PaiementController implements Initializable {
             }
 
         });
-  DashboardUtilis.setOpacity(0);
+        DashboardUtilis.setOpacity(0);
         makeFadeInTransition();
     }
+
     private void makeFadeInTransition() {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
@@ -301,7 +312,8 @@ public class PaiementController implements Initializable {
         fadeTransition.play();
 
     }
-        private void makeFadeInTransition(String a) {
+
+    private void makeFadeInTransition(String a) {
 
         try {
             Stage stage = (Stage) DashboardUtilis.getScene().getWindow();
@@ -315,6 +327,7 @@ public class PaiementController implements Initializable {
         }
 
     }
+
     private boolean controleDeSaisi() {
 
         if (cardfield.getText().isEmpty() || cvvfield.getText().isEmpty()) {
@@ -374,8 +387,7 @@ public class PaiementController implements Initializable {
     private void handleButtons(ActionEvent event) {
     }
 
-  
-   @FXML
+    @FXML
     private void home(MouseEvent event) throws IOException {
         makeFadeInTransition("HomeFront.fxml");
 
@@ -386,7 +398,7 @@ public class PaiementController implements Initializable {
         makeFadeInTransition("Evenement.fxml");
     }
 
-   @FXML
+    @FXML
     private void salle(MouseEvent event) {
         makeFadeInTransition("Salle.fxml");
     }
@@ -411,12 +423,10 @@ public class PaiementController implements Initializable {
 
     }
 
-    @FXML
     private void panier(MouseEvent event) {
-                makeFadeInTransition("Panier.fxml");
+        makeFadeInTransition("Panier.fxml");
 
     }
-
 
     @FXML
     private void btnEditModeToggle(MouseEvent event) {

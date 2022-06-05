@@ -273,6 +273,11 @@ public class ReclamationController implements Initializable {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
+          if (event.getSource() == logoutbtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            UserconnectedC=null ; 
+        }
     }
 
     public void disableAllFocus(Pane pane) {
@@ -477,7 +482,7 @@ public class ReclamationController implements Initializable {
                 titrelabel.setText(u.getTitre());
                 contenulabel.setText(u.getContenu());
                 produitlabel.setText("produit");
-                userimage.setImage(new Image("file:C:\\xampp\\htdocs\\img\\" + image));
+                userimage.setImage(new Image("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + image));
 
             }
         });

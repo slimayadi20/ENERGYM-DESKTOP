@@ -10,6 +10,7 @@ import Entities.Produit;
 import Entities.Reclamation;
 import Entities.User;
 import static GUI.HomeFrontController.status;
+import Services.PanierService;
 import Services.ProduitService;
 import Services.UserService;
 import Services.ReclamationService;
@@ -17,6 +18,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import energym.desktop.MainFX;
 import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
 import java.io.IOException;
@@ -113,18 +115,27 @@ public class ReclamationFrontController implements Initializable {
     private Label produit;
     @FXML
     private Label contenu;
+    @FXML
+    private Label badge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
+
         System.out.println(UserconnectedC);
         namefxid.setText(UserconnectedC.getNom());
         setImage();
         ProduitService ps = new ProduitService();
-        String a = ps.afficherSLIM();
-        ss.add(a);
+        int a = ps.afficherSLIM();
+        System.out.println("id"+a);
+        Produit p = ps.afficherbyid(a);
+        System.out.println("produit"+p);
+        ss.add(p.getNom());
+        System.out.println("nom"+p.getNom());
         produitfxid.setItems(ss);
         ReclamationService ths = new ReclamationService();
         List<Reclamation> listTH = ths.afficherbyuser(UserconnectedC.getId());
@@ -397,6 +408,12 @@ public class ReclamationFrontController implements Initializable {
     @FXML
     private void article(MouseEvent event) {
         makeFadeInTransition("Article.fxml");
+
+    }
+
+    @FXML
+    private void panier(MouseEvent event) {
+                makeFadeInTransition("Panier.fxml");
 
     }
 }

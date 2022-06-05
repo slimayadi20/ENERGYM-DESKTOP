@@ -439,7 +439,7 @@ public class SalleController implements Initializable {
 
     @FXML
     private void PDFSalle(MouseEvent event) throws FileNotFoundException, DocumentException, IOException {
-             String filename = "";
+        String filename = "";
 
         SalleService ec = new SalleService();
         String message = "Voici la liste des salles \n\n";
@@ -453,8 +453,6 @@ public class SalleController implements Initializable {
         List<Salle> Salle = ec.afficher();
         PdfPTable table = new PdfPTable(5);
 
-        
-        
         PdfPCell cl1 = new PdfPCell(new Phrase("Nom de la salle"));
         table.addCell(cl1);
         PdfPCell cl = new PdfPCell(new Phrase("Description"));
@@ -465,33 +463,30 @@ public class SalleController implements Initializable {
         table.addCell(cl3);
         PdfPCell cl4 = new PdfPCell(new Phrase("Affiche de l'événement"));
         table.addCell(cl4);
-        
-        
-        
+
         table.setHeaderRows(1);
         document.add(table);
 
         int i = 0;
         for (i = 0; i < Salle.size(); i++) {
-            
+
             table.addCell("" + Salle.get(i).getNom());
             table.addCell("" + Salle.get(i).getDescription());
             table.addCell("" + Salle.get(i).getAdresse());
             table.addCell("" + Salle.get(i).getMail());
-       
-                filename = "src\\images\\" + Salle.get(i).getImage();
-                System.out.println(filename);
-                com.lowagie.text.Image img = com.lowagie.text.Image.getInstance(filename);
-                img.scalePercent(24);// Creating an Image object 
-                PdfPCell cell = new PdfPCell();
-                cell.addElement(new Chunk(img, 5, -5));
 
-                cell.setFixedHeight(80);
-                cell.setPaddingTop(60);
-                table.addCell(cell);
-            
-          //  table.addCell("" + Salle.get(i).getImage());
+            filename = "src\\images\\" + Salle.get(i).getImage();
+            System.out.println(filename);
+            com.lowagie.text.Image img = com.lowagie.text.Image.getInstance(filename);
+            img.scalePercent(10);// Creating an Image object 
+            PdfPCell cell = new PdfPCell();
+            cell.addElement(new Chunk(img, 2, -2));
 
+            cell.setFixedHeight(100);
+            cell.setPaddingTop(60);
+            table.addCell(cell);
+
+            //  table.addCell("" + Salle.get(i).getImage());
         }
         document.add(table);
 
@@ -633,6 +628,11 @@ public class SalleController implements Initializable {
         if (event.getSource() == btnlivraison) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
+        }
+          if (event.getSource() == logoutbtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            UserconnectedC=null ; 
         }
     }
 

@@ -10,6 +10,7 @@ import Entities.Produit;
 import Entities.Reply;
 import Entities.Salle;
 import Tools.MyConnexion;
+import energym.desktop.MainFX;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,6 +46,7 @@ public class ProduitService {
                 //  System.out.println(rs);
                 u.setId(rs.getInt("id"));
                 u.setImage(rs.getString("image"));
+                u.setNom(rs.getString("nom"));
             }
         } catch (SQLException ex) {
         }
@@ -69,18 +71,16 @@ public class ProduitService {
         return idd;
     }
 
-    public String afficherSLIM() {
+    public int afficherSLIM() {
         Produit u = new Produit();
-        String image = "";
+        int image=0;
         try {
             Statement st = cnx.createStatement();
-            String query = "select * from produit ";
+            String query = "select * from produit_user where user_id= "+MainFX.UserconnectedC.getId();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 //  System.out.println(rs);
-                u.setId(rs.getInt("id"));
-                u.setImage(rs.getString("image"));
-                image = rs.getString("nom");
+                image= (rs.getInt("produit_id"));
 
             }
         } catch (SQLException ex) {
@@ -273,6 +273,32 @@ public class ProduitService {
             System.out.println(ex.getMessage());
         }
         return nom;
+    }
+
+    public Produit getProduithome() {
+        ObservableList<Produit> myList = FXCollections.observableArrayList();
+        String nom = "";
+        Produit p = new Produit();
+
+        try {
+            String requete = "SELECT * FROM produit where rating =  (SELECT max(rating) FROM produit)";
+            Statement st = MyConnexion.getInstance().getCnx().createStatement();
+            ResultSet res = st.executeQuery(requete);
+
+            while (res.next()) {
+                p.setId(res.getInt(1));
+                p.setNom(res.getString(2));
+                p.setDescription(res.getString(3));
+                p.setPrix(res.getInt(4));
+                p.setQuantité(res.getInt(5));
+                p.setImage(res.getString(6));
+                p.setRating(res.getInt(8));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
     }
 
     public int getProduitqte(float prod) {

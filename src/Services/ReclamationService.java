@@ -33,7 +33,7 @@ public class ReclamationService {
             Statement st;
             st = cnx.createStatement();
             String query = "INSERT INTO `reclamation`( `titre`, `date_creation`, `contenu`, `statut`,`nom_user_id`,`produit`) "
-                    + "VALUES ('" + t.getTitre() + "','" + t.getDate() + "','" + t.getContenu() + "','" + "encours" + "','" + t.getNomUser() + "','" + t.getProduit() + "')";
+                    + "VALUES ('" + t.getTitre() + "','" + t.getDate() + "','" + t.getContenu() + "','" + "Encours" + "','" + t.getNomUser() + "','" + t.getProduit() + "')";
             st.executeUpdate(query);
             System.out.println("Reclamation ajouter avec success");
         } catch (SQLException ex) {
@@ -50,7 +50,7 @@ public class ReclamationService {
             String query = "INSERT INTO `reply`( `contenu`, `email_receiver`, `email_sender`, `reclamation_id`) "
                     + "VALUES ('" + t.getContenu() + "','" + t.getEmail_receiver() + "','" + t.getEmail_sender() + "','" + t.getReclamation() + "')";
             pt = cnx.prepareStatement("UPDATE `reclamation` SET `statut`=? WHERE id=?");
-            String etat = "traite";
+            String etat = "Repondu";
             pt.setString(1, etat);
             pt.setInt(2, id);
             if (pt.executeUpdate() == 1) {
@@ -197,8 +197,8 @@ public class ReclamationService {
                 u.setContenu(rs.getString("contenu"));
                 u.setStatut(rs.getString("statut"));
                 u.setId(rs.getInt("id"));
-                u.setProduit(rs.getInt("produit"));
-                System.out.println("service produit  = "+rs.getInt("produit"));
+            //    u.setProduit(rs.getInt("produit"));
+              //  System.out.println("service produit  = "+rs.getInt("produit"));
                 u.setNomUser(rs.getInt("nom_user_id"));
 
                 lu.add(u);

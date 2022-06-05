@@ -243,12 +243,10 @@ public class FXMLController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        tooltip();
 
         //   loginTF.setText("slim.ayadi@esprit.tn");
         // passwordTF.setText("azertyuiop");
         txtPasswordShown.setVisible(false);
-        /* incomment this to validate
 // idn 
         try {
             URL url_name = new URL("http://checkip.amazonaws.com/");
@@ -260,15 +258,15 @@ public class FXMLController implements Initializable {
         }
 
         JSONObject json = null;
-      try {
-         //   json = readJsonFromUrl("https://api.ipgeolocation.io/ipgeo?apiKey=e3f347b989f34e239402188106fbdf4c&ip=" + AIP);
+        try {
+            json = readJsonFromUrl("https://api.ipgeolocation.io/ipgeo?apiKey=e3f347b989f34e239402188106fbdf4c&ip=" + AIP);
         } catch (IOException ex) {
             System.out.println("ezfzezfzfzz");
         } catch (JSONException ex) {
             System.out.println("ezfzezfzfzz");
         }
 
-     //   System.out.println(json.toString());
+        //   System.out.println(json.toString());
         //System.out.println(json.get("country_name"));
         pays = json.get("country_name").toString();
         region = json.get("city").toString();
@@ -286,11 +284,11 @@ public class FXMLController implements Initializable {
 
         voice.allocate();
         try {
-                voice.speak("Welcome Back to Energym");
+            voice.speak("Welcome Back to Energym");
             System.out.println("welcome");
         } catch (Exception e) {
 
-        }*/
+        }
 
         System.out.println("form swapped");
         TranslateTransition slide = new TranslateTransition();
@@ -738,18 +736,22 @@ public class FXMLController implements Initializable {
         if (us.emailExist(emailTF.getText())) {
             errors.append("- email already exist");
         }
+        errors.setLength(0);
+
         if (errors.length() > 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errors");
             alert.setContentText(errors.toString());
             alert.showAndWait();
             errors.setLength(0);
+            errors.setLength(0);
+
         } else {
             User u = new User();
             if (selectedFile != null) {
                 try {
                     File source = new File(selectedFile.toString());
-                    File dest = new File("C:\\xampp\\htdocs\\img");
+                    File dest = new File("file:D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\");
                     FileUtils.copyFileToDirectory(source, dest);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -763,7 +765,7 @@ public class FXMLController implements Initializable {
             u.setPhone((numTelTF.getText()));
             u.setPassword(passwordPF.getText());
             u.setPrenom(prenomtf.getText());
-            u.setStatus(0);
+            u.setStatus(2);
             u.setImageFile(path);
             u.setCreated_at(date);
             u.setRoles("ROLE_GERANT");
@@ -774,7 +776,7 @@ public class FXMLController implements Initializable {
                 String content = "Activation de votre compte\n"
                         + "veuillez clicker sur le lien ci-dessus pour l'activer  votre compte\n"
                         + "http://127.0.0.1:8000/activation/" + u.getActivation_token();
-                u.setActivation_token(null);
+                //   u.setActivation_token(null);
                 mail.sendMail("Mail Verification", content, emailTF.getText());
                 try {
                     Stage stageclose = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -824,10 +826,11 @@ public class FXMLController implements Initializable {
 
             if (us.checkloginargon(loginTF.getText(), passwordTF.getText())) {
                 //7ell interface
-                if ("null".equals(lu.getActivation_token())) {
+                User u = us.findByUsername(loginTF.getText());
+                UserconnectedC = u;
+                System.out.println("status" + u.getStatus());
+                if ("null".equals(lu.getActivation_token()) && u.getStatus() == 1) {
                     System.out.println("activated");
-                    User u = us.findByUsername(loginTF.getText());
-                    UserconnectedC = u;
                     u.toString();
                     switch (u.getRoles()) {
                         case "ROLE_ADMIN":

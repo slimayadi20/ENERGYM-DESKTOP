@@ -109,14 +109,21 @@ public class PanierController implements Initializable {
     private Button namefxid;
     @FXML
     private JFXToggleButton btnEditMode;
+    @FXML
+    private JFXButton a;
+    @FXML
+    private Label badge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          namefxid.setText(UserconnectedC.getNom());
-        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
+        PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
+
+        namefxid.setText(UserconnectedC.getNom());
+        File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\" + UserconnectedC.getImageFile());
 
         try {
             circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
@@ -152,18 +159,18 @@ public class PanierController implements Initializable {
                 GridPane.setMargin(anchorPane, new Insets(12));
                 //break;
                 tt += t.getPrix() * ths.getInstance().getQT(MainFX.UserconnectedC.getId(), t.getIdproduit());
-                global_variable= tt ; 
+                global_variable = tt;
                 count.setText(String.valueOf(ths.getInstance().getCount(MainFX.UserconnectedC.getId())) + " Items");
                 total.setText(String.valueOf(tt) + " DT");
 
-               
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-   DashboardUtilis.setOpacity(0);
+        DashboardUtilis.setOpacity(0);
         makeFadeInTransition();
     }
+
     private void makeFadeInTransition() {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
@@ -173,7 +180,8 @@ public class PanierController implements Initializable {
         fadeTransition.play();
 
     }
-        private void makeFadeInTransition(String a) {
+
+    private void makeFadeInTransition(String a) {
 
         try {
             Stage stage = (Stage) DashboardUtilis.getScene().getWindow();
@@ -187,6 +195,7 @@ public class PanierController implements Initializable {
         }
 
     }
+
     public void displayGrid() {
         AnchorPane panee;
         try {
@@ -234,13 +243,23 @@ public class PanierController implements Initializable {
         if (somme > 0) {
 
             AnchorPane panee;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/GUI/Paiement.fxml"));
             try {
-                panee = FXMLLoader.load(getClass().getResource("Paiement.fxml"));
-                DashboardUtilis.getChildren().setAll(panee);
-
-            } catch (IOException ex) {
-                Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
+                loader.load();
+            } catch (Exception ex) {
+                ex.getMessage();
             }
+            PaiementController addLivraisonController = loader.getController();
+            Parent parent = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+            stage = (Stage) a.getScene().getWindow();
+            stage.close();
+            /*   panee = FXMLLoader.load(getClass().getResource("Paiement.fxml"));
+            DashboardUtilis.getChildren().setAll(panee);*/
         } else {
             showAlert(Alert.AlertType.INFORMATION, "Veuillez remplir votre panier", "error", "Veuillez remplir votre panier");
         }
@@ -248,8 +267,6 @@ public class PanierController implements Initializable {
     }
 
 // 4242 4242 4242 4242
-
-
     @FXML
     private void ajoutcode(MouseEvent event) {
         PanierService ths = new PanierService();
@@ -271,52 +288,50 @@ public class PanierController implements Initializable {
         }
     }
 
-
-
     @FXML
     private void vider_panier(MouseEvent event) {
-         PanierService ths = new PanierService();
-         ths.supprimerPanierbyuser(MainFX.UserconnectedC.getId());
-          FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
-                try {
-                    loader.load();
-                } catch (Exception ex) {
-                    ex.getMessage();
-                }
+        PanierService ths = new PanierService();
+        ths.supprimerPanierbyuser(MainFX.UserconnectedC.getId());
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/GUI/Panier.fxml"));
+        try {
+            loader.load();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
 
-          PanierController addLivraisonController = loader.getController();
+        PanierController addLivraisonController = loader.getController();
 
-                Parent parent = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(parent));
-                stage.initStyle(StageStyle.UTILITY);
-                stage.show();
-                stage = (Stage) vider.getScene().getWindow();
-                stage.close();
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+        stage = (Stage) vider.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void quiz(MouseEvent event) throws IOException {
-         FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/QuizStyle/MainView.fxml"));
-                    try {
-                        loader.load();
-                    } catch (Exception ex) {
-                        ex.getMessage();
-                    }
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/QuizStyle/MainView.fxml"));
+        try {
+            loader.load();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
 
-                    MainController addLivraisonController = loader.getController();
+        MainController addLivraisonController = loader.getController();
 
-                    Parent parent = loader.getRoot();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(parent));
-                    stage.initStyle(StageStyle.UTILITY);
-                    stage.show();
-        
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+
     }
 
-   @FXML
+    @FXML
     private void home(MouseEvent event) throws IOException {
         makeFadeInTransition("HomeFront.fxml");
 
@@ -327,7 +342,7 @@ public class PanierController implements Initializable {
         makeFadeInTransition("Evenement.fxml");
     }
 
-   @FXML
+    @FXML
     private void salle(MouseEvent event) {
         makeFadeInTransition("Salle.fxml");
     }
@@ -354,13 +369,12 @@ public class PanierController implements Initializable {
 
     @FXML
     private void panier(MouseEvent event) {
-                makeFadeInTransition("Panier.fxml");
+        makeFadeInTransition("Panier.fxml");
 
     }
-
 
     @FXML
     private void btnEditModeToggle(MouseEvent event) {
     }
-    
+
 }

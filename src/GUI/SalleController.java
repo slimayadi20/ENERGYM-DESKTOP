@@ -9,8 +9,10 @@ import Entities.Produit;
 import Entities.Salle;
 import static GUI.HomeFrontController.status;
 import GUIBACK.ProfileController;
+import Services.PanierService;
 import Services.SalleService;
 import com.jfoenix.controls.JFXToggleButton;
+import energym.desktop.MainFX;
 import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
 import java.io.IOException;
@@ -98,12 +100,17 @@ public class SalleController implements Initializable {
     String htLink = "http://www.google.com/search?q=";
     String adrsLink;
     WebEngine engine;
+    @FXML
+    private Label badge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+           PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
+
         engine = web.getEngine();
         engine.load(htLink + "www.google.com");
         namefxid.setText(UserconnectedC.getNom());

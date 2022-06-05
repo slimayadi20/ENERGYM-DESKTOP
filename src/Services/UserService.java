@@ -372,7 +372,9 @@ public class UserService {
 
     public void updatemdp(String email, String mdp) throws SQLException {
         Statement stm = cnx.createStatement();
-        String query = "UPDATE user SET password= '" + cryptWithMD5(mdp) + "' WHERE email='" + email + "'";
+        Argon2PasswordEncoder encoder = new Argon2PasswordEncoder(32, 64, 1, 15 * 1024, 2);
+        String hash = encoder.encode(mdp);
+        String query = "UPDATE user SET password= '" + hash + "' WHERE email='" + email + "'";
         stm.executeUpdate(query);
 
     }
@@ -410,7 +412,46 @@ public class UserService {
 
         return 0;
     }
+    public void modifierLoginAttempt() {
+        try {
+            System.out.println("1");
 
+            PreparedStatement st;
+            st = cnx.prepareStatement("UPDATE `login_attempt` SET `image`=?  WHERE image is NULL");
+            System.out.println("2");
+
+            st.setString(1, "");
+            
+            if (st.executeUpdate() == 1) {
+                System.out.println("user modifier avec success");
+            } else {
+                System.out.println("user n'existe pas");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public void modifierLoginAttemptfail() {
+        try {
+            System.out.println("1");
+
+            PreparedStatement st;
+            st = cnx.prepareStatement("UPDATE `login_attempt` SET `fail`=?  WHERE fail is NULL");
+            System.out.println("2");
+
+            st.setInt(1, 0);
+            
+            if (st.executeUpdate() == 1) {
+                System.out.println("user modifier avec success");
+            } else {
+                System.out.println("user n'existe pas");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     public void RapportHCbyUser(User us) throws IOException, DocumentException, IOException {
         List<LoginAttempt> lHc = afficherloginattempt(us.getEmail());
         String filename = "";

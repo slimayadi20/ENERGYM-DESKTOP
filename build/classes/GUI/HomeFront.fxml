@@ -78,6 +78,7 @@
                               <Insets top="3.0" />
                            </HBox.margin>
                         </ImageView>
+                        <Label fx:id="badge" alignment="CENTER" prefHeight="21.0" prefWidth="80.0" styleClass="round-lbl" textFill="WHITE" />
                      </children>
                   </HBox>
                   <JFXToggleButton fx:id="btnEditMode" onMouseClicked="#btnEditModeToggle" prefHeight="60.0" prefWidth="160.0" text="Switch to light mode" textFill="WHITE" toggleColor="WHITE" toggleLineColor="WHITE" unToggleColor="WHITE" unToggleLineColor="WHITE" wrapText="true" />

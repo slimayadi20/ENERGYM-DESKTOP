@@ -3,10 +3,12 @@
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,16 +24,20 @@
 <AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="1017.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SalleController">
    <children>
       <WebView fx:id="web" layoutX="7.0" layoutY="223.0" prefHeight="471.0" prefWidth="1002.0" />
-      <ScrollPane fx:id="scrollPane" layoutX="5.0" layoutY="218.0" prefHeight="481.0" prefWidth="1009.0" style="-fx-background-color: #000000;" styleClass="dark-background" stylesheets="@style.css">
+      <ScrollPane fx:id="scrollPane" layoutX="5.0" layoutY="218.0" prefHeight="485.0" prefWidth="1009.0" style="-fx-background-color: #000000;" styleClass="dark-background" stylesheets="@style.css">
          <content>
-            <GridPane fx:id="grid" prefHeight="487.0" prefWidth="990.0" styleClass="dark-background" stylesheets="@style.css">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               </rowConstraints>
-               <columnConstraints>
-                  <ColumnConstraints />
-               </columnConstraints>
-            </GridPane>
+            <AnchorPane prefHeight="462.0" prefWidth="1008.0" styleClass="dark-background">
+               <children>
+                  <GridPane fx:id="grid" prefHeight="560.0" prefWidth="1008.0" styleClass="dark-background" stylesheets="@style.css">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                     </columnConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
          </content>
       </ScrollPane>
       <Label fx:id="salle" layoutX="443.0" layoutY="99.0" prefHeight="58.0" prefWidth="132.0" text="Nos salles" textFill="WHITE">
@@ -59,27 +65,36 @@
             <Pane prefHeight="100.0" prefWidth="64.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
                <children>
-                  <Label fx:id="articlefxid" onMouseClicked="#article" opacity="0.8" text="Article" textFill="WHITE" />
+                  <Label fx:id="articlefxid" onMouseClicked="#article" opacity="0.6" text="Article" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="71.0">
                <children>
-                  <Label fx:id="sallefxid" onMouseClicked="#salle" text="Salle" textFill="WHITE" />
+                  <Label fx:id="sallefxid" onMouseClicked="#salle" text="Salle" textFill="WHITE" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="88.0">
                <children>
-                  <Label fx:id="eventfxid" onMouseClicked="#event" opacity="0.8" text="Event" textFill="WHITE" />
+                  <Label fx:id="eventfxid" onMouseClicked="#event" opacity="0.6" text="Event" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="84.0">
                <children>
-                  <Label fx:id="produitfxid" onMouseClicked="#produit" opacity="0.8" prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
+                  <Label fx:id="produitfxid" onMouseClicked="#produit" opacity="0.6" prefHeight="21.0" prefWidth="58.0" text="Produit" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="92.0">
                <children>
-                  <Label fx:id="reclamationfxid" onMouseClicked="#reclamation" opacity="0.8" text="Reclamation" textFill="WHITE" />
+                  <Label fx:id="reclamationfxid" onMouseClicked="#reclamation" opacity="0.6" text="Reclamation" textFill="WHITE" />
                </children>
             </HBox>
             <Pane layoutX="146.0" layoutY="10.0" prefHeight="100.0" prefWidth="64.0" />
@@ -95,6 +110,7 @@
                         <Insets top="3.0" />
                      </HBox.margin>
                   </ImageView>
+                  <Label fx:id="badge" alignment="CENTER" prefHeight="21.0" prefWidth="75.0" styleClass="round-lbl" textFill="WHITE" />
                </children>
             </HBox>
             <JFXToggleButton fx:id="btnEditMode" onMouseClicked="#btnEditModeToggle" prefHeight="60.0" prefWidth="160.0" text="Switch to light mode" textFill="WHITE" toggleColor="WHITE" toggleLineColor="WHITE" unToggleColor="WHITE" unToggleLineColor="WHITE" wrapText="true" />

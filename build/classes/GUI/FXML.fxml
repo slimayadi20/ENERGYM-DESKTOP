@@ -44,12 +44,12 @@
                </viewport>
             </ImageView>
             <TextField fx:id="prenomtf" layoutX="392.0" layoutY="100.0" promptText="Last name" />
-            <Button fx:id="upload" alignment="CENTER" layoutX="385.0" layoutY="370.0" onMouseClicked="#uploadimage" prefHeight="42.0" prefWidth="201.0" style="-fx-background-color: #4286f4;" styleClass="customButton" text="Upload Image" textFill="WHITE">
+            <Button fx:id="upload" alignment="CENTER" layoutX="385.0" layoutY="370.0" onMouseClicked="#uploadimage" prefHeight="42.0" prefWidth="201.0" style="-fx-background-color: #DD1010; -fx-background-radius: 15;" styleClass="customButton" text="Upload Image" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="signupbtn" layoutX="255.0" layoutY="453.0" onMouseClicked="#performeSignup" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: #4286f4;" styleClass="customButton" text="Signup" textFill="WHITE">
+            <Button fx:id="signupbtn" layoutX="255.0" layoutY="453.0" onMouseClicked="#performeSignup" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: #DD1010; -fx-background-radius: 15;" styleClass="customButton" text="Signup" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font></Button>
@@ -60,7 +60,7 @@
                   <Font name="Arial Bold" size="22.0" />
                </font>
             </Label>
-            <Button fx:id="valSignInBtn" alignment="CENTER" layoutX="302.0" layoutY="312.0" onMouseClicked="#performLogIn" style="-fx-background-color: #4286f4;" styleClass="customButton" text="Login" textFill="WHITE">
+            <Button fx:id="valSignInBtn" alignment="CENTER" layoutX="301.0" layoutY="276.0" onMouseClicked="#performLogIn" style="-fx-background-color: #DD1010; -fx-background-radius: 15;" styleClass="customButton" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font></Button>
@@ -111,7 +111,7 @@
                   <Circle fx:id="closeBtn" fill="#fc5d57" onMouseClicked="#closeOnClick" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
             </HBox>
-            <Button fx:id="btnfp" layoutX="370.0" layoutY="270.0" mnemonicParsing="false" onAction="#forgotpassword" style="-fx-background-color: #4286f4;" text="Forgot password" textFill="WHITE" />
+            <Button fx:id="btnfp" layoutX="274.0" layoutY="325.0" mnemonicParsing="false" onAction="#forgotpassword" style="-fx-background-color: #DD1010; -fx-background-radius: 16;" text="Forgot password" textFill="WHITE" />
             <ImageView fx:id="passwordicon1" fitHeight="26.0" fitWidth="26.0" layoutX="37.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Resources/Icons/icons8-mot-de-passe-52.png" />
@@ -166,21 +166,21 @@
                   <Image url="@../images/Preloader_9.gif" />
                </image>
             </ImageView>
-            <JFXDatePicker fx:id="dpdate" layoutX="383.0" layoutY="161.0" />
+            <JFXDatePicker fx:id="dpdate" defaultColor="#dd1010" layoutX="383.0" layoutY="161.0" />
             <JFXCheckBox fx:id="chkPasswordMask" checkedColor="#109c56" layoutX="440.0" layoutY="238.0" onMouseClicked="#chkPasswordMaskAction" prefHeight="21.0" prefWidth="14.0" />
             <JFXTextField fx:id="txtPasswordShown" layoutX="243.0" layoutY="232.0" prefHeight="31.0" prefWidth="187.0" />
             <ProgressBar fx:id="strength" layoutX="70.0" layoutY="204.0" prefHeight="23.0" prefWidth="187.0" progress="0.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="animLayer" layoutX="-7.0" prefHeight="588.0" prefWidth="393.0" style="-fx-background-color: linear-gradient(to right, #bdc3c7,  #AC005D);" styleClass="anLayer">
+      <AnchorPane fx:id="animLayer" layoutX="-7.0" prefHeight="588.0" prefWidth="393.0" style="-fx-background-color: linear-gradient(to right, #dd1010,  #808080);" styleClass="anLayer">
          <children>
-            <Label fx:id="varLB" layoutX="97.0" layoutY="283.0" text="Welcome Back!" textFill="WHITE">
+            <Label fx:id="varLB" layoutX="97.0" layoutY="283.0" text="Welcome Back !" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="26.0" />
                </font>
             </Label>
-            <Button fx:id="signUpBtn" layoutX="115.0" layoutY="337.0" onMouseClicked="#signUpForm" prefHeight="50.0" prefWidth="158.0" styleClass="signUpButton" text="Sign Up" />
-            <Button fx:id="swapbtn" layoutX="114.0" layoutY="337.0" onMouseClicked="#swapForm" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: #4286f4;" styleClass="signUpButton" text="Sign In" textFill="WHITE">
+            <Button fx:id="signUpBtn" layoutX="115.0" layoutY="337.0" onMouseClicked="#signUpForm" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: WHITE; -fx-background-radius: 15;" styleClass="signUpButton" text="Sign Up" textFill="#dd1010" />
+            <Button fx:id="swapbtn" layoutX="114.0" layoutY="337.0" onMouseClicked="#swapForm" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: WHITE; -fx-background-radius: 15;" styleClass="signUpButton" text="Sign In" textFill="#dd1010">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font></Button>

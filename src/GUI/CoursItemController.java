@@ -7,6 +7,9 @@ package GUI;
 
 import Entities.Cours;
 import Entities.Salle;
+import animatefx.animation.FadeOut;
+import animatefx.animation.Pulse;
+import animatefx.animation.ZoomInUp;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -40,6 +44,8 @@ public class CoursItemController implements Initializable {
     private Label heureffx;
     @FXML
     private Label nomcoursfrontfx;
+    @FXML
+    private Pane paneanimation;
 
     /**
      * Initializes the controller class.
@@ -57,6 +63,11 @@ public class CoursItemController implements Initializable {
   
  
         
+    }
+
+    @FXML
+    private void animation(MouseEvent event) {
+        new Pulse(paneanimation).setResetOnFinished(true).play();
     }
     
 }

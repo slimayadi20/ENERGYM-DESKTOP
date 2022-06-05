@@ -105,7 +105,7 @@ public class ProduitController implements Initializable {
     @FXML
     private Circle circle;
     @FXML
-    private Label badge;
+    public Label badge;
 
     /**
      * Initializes the controller class.

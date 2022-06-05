@@ -20,54 +20,36 @@ public class answer {
      */
     public static String[][] getAnswerqca()
 	{
-		        
-         qca[0][0]="What displays from the following statements? String word = �abcde�; \n for(int i=0; i<4; i+=2) System.out.print(word[i]);\n";
-         qca[0][1]="ac";
+	 qca[0][0]="Quel est la salle la plus like dans notre plateform?" ;
+        qca[0][1]="Anas Plus";
 
-         qca[1][0]="What is the default value of the local variables?";
-         qca[1][1]="No default value for local variables";
+         qca[1][0]="Aprés l'inscription dans un evenement comment tu confirme ta participation? ";
+         qca[1][1]="QR CODE";
 
-         qca[2][0]="What is a loop?";
-         qca[2][1]="A segment of code to be run a specified amount of times";
+         qca[2][0]="Quelles sont les couleurs des cinq anneaux olympiques?";
+          qca[2][1]="Bleu, jaune, vert, rouge et noir,";
 
-         qca[3][0]="Following code will result in: int a1 = 5; double a2 = (float)a1;";
-         qca[3][1]="No errors";
+         qca[3][0]="Quelle est la durée d'un match de football ?;";
+          qca[3][1]="90 min";
 
-         qca[4][0]="What is the highest index value associated with the array the follows?\r\n" + 
-          		"Byte[] values = new bytes[x];\r\n";
-         qca[4][1]="x-1";
+        qca[4][0]="Combien de joueurs une équipe de football compte-t-elle sur le terrain?";
+        qca[4][1]="11";
 
-         qca[5][0]="What is the only type of exception that is NOT checked?";
-         qca[5][1]="Class RunTimeException and its subclasses";
-
-         qca[6][0]="What method of an Exception object returns a message string?";
-         qca[6][1]="getMessage()";
+          qca[5][0]="Qui a gagné la Coupe du monde 2010 ? ";
+          qca[5][1]="L'Espagne";
+        qca[6][0]="Quelle équipe de Premier League a le plus de victoires en championnat ?";
+         qca[6][1]="Manchester United";
         
-         qca[7][0]="What type of exception is thrown by parseInt() if it gets illegal data?";
-         qca[7][1]="NumberFormatException";
+        qca[7][0]="Combien de temps dure la prolongation d'un match de football?";
+        qca[7][1]="30 min";
         
-         qca[8][0]="When is a finally{} block executed?";
-         qca[8][1]="Always after execution has left a try{} block, no matter for what reason";
+         qca[8][0]="Pour quel club italien Diego Maradona a-t-il joué?";
+         qca[8][1]="Napoli";
 
-         qca[9][0]="Which of the following will not directly cause a thread to stop?";
-         qca[9][1]="notify()";
+         qca[9][0]="Qui est le meilleur buteur du FC Barcelone ?";
+           qca[9][1]="Messi";
          
-         qca[10][0]="Which tag of DD maps internal name of servlet to public URL pattern?";
-         qca[10][1]="servlet-mapping";
-         
-         qca[11][0]="Which life cycle metod is called once in servlet life?";
-         qca[11][1]="init()";
-         
-         qca[12][0]="Which http method is idempotent?";
-         qca[12][1]="get";
-         
-         qca[13][0]="Which of these life-cycle method you can over-ride in your class?";
-         qca[13][1]="All of these";
-         
-         qca[14][0]="Which statements is not true about ServletConfig?";
-         qca[14][1]="There is one servlet config per one application";
-         
-         
+        
 		
 		return qca;
 		
@@ -80,51 +62,35 @@ public class answer {
     public static String[][] getAnswerqca1()
 	{
 		        
-         qca1[0][0]="What is the size of a Char in Java?";
-         qca1[0][1]="16 bits";
+       qca1[0][0]="Quel est la salle la plus like dans notre plateform?" ;
+        qca1[0][1]="Anas Plus";
 
-         qca1[1][0]="Java runs on -------";
-         qca1[1][1]="All of the above";
+         qca1[1][0]="Aprés l'inscription dans un evenement comment tu confirme ta participation? ";
+         qca1[1][1]="QR CODE";
 
-         qca1[2][0]="Following code will result in: int num = 6.7;";
-         qca1[2][1]="Compilation error";
+         qca1[2][0]="Quelles sont les couleurs des cinq anneaux olympiques?";
+          qca1[2][1]="Bleu, jaune, vert, rouge et noir,";
 
-         qca1[3][0]="What will be the ouput of the following code?\r\n" + 
-         		   "Int[] arr = new int[9]; System.out.println(arr[0]);\r\n";
-         qca1[3][1]="0";
+         qca1[3][0]="Quelle est la durée d'un match de football ?;";
+          qca1[3][1]="90 min";
 
-         qca1[4][0]="The length of the following array is int[] grades = new int[4];";
-         qca1[4][1]="4";
+        qca1[4][0]="Combien de joueurs une équipe de football compte-t-elle sur le terrain?";
+        qca1[4][1]="11";
 
-         qca1[5][0]="Keyword which is used to access the method or member variables from the superclass";
-         qca1[5][1]="super";
-
-         qca1[6][0]="Constructors are used to";
-         qca1[6][1]="Initialize a newly created object";
+          qca1[5][0]="Qui a gagné la Coupe du monde 2010 ? ";
+          qca1[5][1]="L'Espagne";
+        qca1[6][0]="Quelle équipe de Premier League a le plus de victoires en championnat ?";
+         qca1[6][1]="Manchester United";
         
-         qca1[7][0]="What method of an Exception object prints a list of methods that were called before the exception was thrown?";
-         qca1[7][1]="printStackTrace()";
+        qca1[7][0]="Combien de temps dure la prolongation d'un match de football?";
+        qca1[7][1]="30 min";
         
-         qca1[8][0]="What happens during execution if an negative value is used for an array index?";
-         qca1[8][1]="An IndexOutOfBoundsException is thrown";
+         qca1[8][0]="Pour quel club italien Diego Maradona a-t-il joué?";
+         qca1[8][1]="Napoli";
 
-         qca1[9][0]="When is a finally{} block executed?";
-         qca1[9][1]="Always after execution has left a try{} block, no matter for what reason";
-		
-         qca1[10][0]="What is the meaning of response.setIntHeader(\"xyz\" ,67); ?";
-         qca1[10][1]="Replace the value to integer to existing header or Add a new header with integer value";
-         
-         qca1[11][0]="Which method shows the client what server is receiving?";
-         qca1[11][1]="doTrace";
-         
-         qca1[12][0]="Which of these is not a Application Server?";
-         qca1[12][1]="Apache HTTP Server";
-         
-         qca1[13][0]="In which folder we can put web.xml?";
-         qca1[13][1]="WEB-INF";
-         
-         qca1[14][0]="Which of these is not webserver?";
-         qca1[14][1]="glassfish";
+         qca1[9][0]="Qui est le meilleur buteur du FC Barcelone ?";
+           qca1[9][1]="Messi";
+        
          
 		return qca1;
 		
@@ -137,51 +103,36 @@ public class answer {
     public static String[][] getAnswerqca2()
 	{
 		        
-         qca2[0][0]="What is the default value of the local variables?";
-         qca2[0][1]="No default value for local variables";
+        qca2[0][0]="Quel est la salle la plus like dans notre plateform?" ;
+        qca2[0][1]="Anas Plus";
 
-         qca2[1][0]="Following code will result in: int num = 6.7;";
-         qca2[1][1]="Compilation error";
+         qca2[1][0]="Aprés l'inscription dans un evenement comment tu confirme ta participation? ";
+         qca2[1][1]="QR CODE";
 
-         qca2[2][0]="What is the highest index value associated with the array the follows?\r\n" + 
-      		        "Byte[] values = new bytes[x];\r\n";
-         qca2[2][1]="x-1";
+         qca2[2][0]="Quelles sont les couleurs des cinq anneaux olympiques?";
+          qca2[2][1]="Bleu, jaune, vert, rouge et noir,";
 
-         qca2[3][0]="Constructors are used to";
-         qca2[3][1]="Initialize a newly created object";
+         qca2[3][0]="Quelle est la durée d'un match de football ?;";
+          qca2[3][1]="90 min";
 
-         qca2[4][0]="What happens during execution if an negative value is used for an array index?";
-         qca2[4][1]="An IndexOutOfBoundsException is thrown";
+        qca2[4][0]="Combien de joueurs une équipe de football compte-t-elle sur le terrain?";
+        qca2[4][1]="11";
 
-         qca2[5][0]="Which class or interface defines the wait(), notify(),and notifyAll() methods?";
-         qca2[5][1]="Object";
-
-         qca2[6][0]="What is the size of a Char in Java?";
-         qca2[6][1]="16 bits";
+          qca2[5][0]="Qui a gagné la Coupe du monde 2010 ? ";
+          qca2[5][1]="L'Espagne";
+        qca2[6][0]="Quelle équipe de Premier League a le plus de victoires en championnat ?";
+         qca2[6][1]="Manchester United";
         
-         qca2[7][0]="What is the difference between private and public functions ?";
-         qca2[7][1]="Public functions can be used by anyone,private can only be used by other code in the class";
+        qca2[7][0]="Combien de temps dure la prolongation d'un match de football?";
+        qca2[7][1]="30 min";
         
-         qca2[8][0]="How many JDBC driver types does Sun define?";
-         qca2[8][1]="4";
+         qca2[8][0]="Pour quel club italien Diego Maradona a-t-il joué?";
+         qca2[8][1]="Napoli";
 
-         qca2[9][0]="________ is an open source DBMS product that runs on UNIX, Linux and Windows";
-         qca2[9][1]="MySQL";
-		
-         qca2[10][0]="Which statement is not true about ServletContext?";
-         qca2[10][1]="There is one ServletContext per one servlet";
+         qca2[9][0]="Qui est le meilleur buteur du FC Barcelone ?";
+           qca2[9][1]="Messi";
          
-         qca2[11][0]="Which interface contain servlet life-cycle methods?";
-         qca2[11][1]="Servlet";
-         
-         qca2[12][0]="Which life-cycle method make ready the servlet for garbage collection?";
-         qca2[12][1]="destroy";
-         
-         qca2[13][0]="Which method does not exists in HttpServlet Class?";
-         qca2[13][1]="init";
-         
-         qca2[14][0]="Which method is called when client request come?";
-         qca2[14][1]="service()";
+        
          
 		return qca2;
 		

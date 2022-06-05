@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import static energym.desktop.MainFX.UserconnectedC;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -114,7 +115,6 @@ public class CategoriesEventBack implements Initializable {
     @FXML
     private ImageView Fr;
 
-    
     @FXML
     private Label NomLabel;
     @FXML
@@ -369,7 +369,7 @@ public class CategoriesEventBack implements Initializable {
     }
 
     @FXML
-     private void handleClicks(ActionEvent event) throws IOException {
+    private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnUsers) {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Users.fxml"));
             mainmoviespane.getChildren().setAll(panee);
@@ -439,13 +439,17 @@ public class CategoriesEventBack implements Initializable {
             AnchorPane panee = FXMLLoader.load(getClass().getResource("Livraison.fxml"));
             mainmoviespane.getChildren().setAll(panee);
         }
+          if (event.getSource() == logoutbtn) {
+            AnchorPane panee = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+            mainmoviespane.getChildren().setAll(panee);
+            UserconnectedC=null ; 
+        }
     }
-
 
     @FXML
     private void LangueAr(MouseEvent event) {
 
-    //    Langue = "Ar";
+        //    Langue = "Ar";
         Traduction();
 
     }
@@ -453,7 +457,7 @@ public class CategoriesEventBack implements Initializable {
     @FXML
     private void LangueFr(MouseEvent event) {
 
-    //    Langue = "Fr";
+        //    Langue = "Fr";
         Traduction();
 
     }
@@ -482,6 +486,10 @@ public class CategoriesEventBack implements Initializable {
             btnproduit.setText("Produits");
             btnevenement.setText("Evenement");
             btnparticipation.setText("Participation");
+            btnarticle.setText("Article");
+            btncommentaire.setText("Commentaire");
+            btncommande.setText("Commande");
+            btnlivraison.setText("Livraison");
 
         } else {
             NomLabel.setText("اسم:");
@@ -494,7 +502,7 @@ public class CategoriesEventBack implements Initializable {
             btnUsers.setText("المستخدمون");
             btnReclamation.setText("استصلاح");
             btnReply.setText("إجابه");
-            logoutbtn1.setText("خروج");
+            logoutbtn.setText("خروج");
             categ.setText("فئة الأحداث");
             Id_col.setText("المعرف");
             nom_col.setText("اسم");
@@ -507,6 +515,10 @@ public class CategoriesEventBack implements Initializable {
             btnevenement.setText("الأحداث");
             btnparticipation.setText("مشاركة");
             btncategoriesevent.setText("فئة الأحداث");
+            btnarticle.setText("مقالة ");
+            btncommentaire.setText("ملاحظة ");
+            btncommande.setText("طلب تجاري");
+            btnlivraison.setText("توصيل");
 
         }
     }

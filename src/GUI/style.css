@@ -72,3 +72,8 @@
     -fx-background-color: #FE7A79;
     -fx-background-radius: 100%;
 }
+.jfx-slider-style{
+    -jfx-default-track : #808080 ; 
+    -jfx-default-thumb : #dd1010 ; 
+    -jfx-indicator-position : top ; 
+}

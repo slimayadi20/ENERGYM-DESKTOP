@@ -117,8 +117,8 @@
             </AnchorPane>
             <TableView fx:id="tableviewreclamation" layoutX="34.0" layoutY="287.0" prefHeight="384.0" prefWidth="883.0">
                <columns>
-                  <TableColumn fx:id="reclamation_col" prefWidth="100.0" style="-fx-alignement: center;" text="Reclamation" />
-                  <TableColumn fx:id="contenu_col" prefWidth="308.0" style="-fx-alignement: center;" text="Contenu" />
+                  <TableColumn fx:id="reclamation_col" minWidth="0.0" prefWidth="0.0" style="-fx-alignement: center;" text="Reclamation" />
+                  <TableColumn fx:id="contenu_col" prefWidth="408.0" style="-fx-alignement: center;" text="Contenu" />
                   <TableColumn fx:id="email_rec_col" prefWidth="259.0" style="-fx-alignement: center;" text="email_receiver" />
                   <TableColumn fx:id="email_sender_col" prefWidth="215.0" style="-fx-alignement: center;" text="email_sender" />
                </columns>

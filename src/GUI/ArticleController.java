@@ -10,8 +10,10 @@ import Entities.Salle;
 import static GUI.HomeFrontController.status;
 import GUIBACK.ProfileController;
 import Services.ArticleService;
+import Services.PanierService;
 import Services.SalleService;
 import com.jfoenix.controls.JFXToggleButton;
+import energym.desktop.MainFX;
 import static energym.desktop.MainFX.UserconnectedC;
 import java.io.File;
 import java.io.IOException;
@@ -79,6 +81,8 @@ public class ArticleController implements Initializable {
     private JFXToggleButton btnEditMode;
     @FXML
     private Circle circle;
+    @FXML
+    private Label badge;
 
     /**
      * Initializes the controller class.
@@ -86,6 +90,9 @@ public class ArticleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         PanierService phs = new PanierService();
+        badge.setText(String.valueOf(phs.getInstance().getCount(MainFX.UserconnectedC.getId())));
+
         namefxid.setText(UserconnectedC.getNom());
         File file = new File("D:\\Nouveau dossier\\SAUVGARDE\\ENERGYM\\public\\uploads\\user\\"  + UserconnectedC.getImageFile());
 

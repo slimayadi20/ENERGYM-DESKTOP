@@ -40,7 +40,7 @@
          </font>
       </Label>
       <HBox layoutX="457.0" layoutY="185.0" prefHeight="4.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" />
-      <JFXButton layoutX="791.0" layoutY="491.0" onMouseClicked="#ajouter_commande" prefHeight="26.0" prefWidth="188.0" ripplerFill="RED" style="-fx-background-color: F94242; -fx-background-radius: 8;" text="Passer au paiement" wrapText="true">
+      <JFXButton fx:id="a" layoutX="791.0" layoutY="491.0" onMouseClicked="#ajouter_commande" prefHeight="26.0" prefWidth="188.0" ripplerFill="RED" style="-fx-background-color: F94242; -fx-background-radius: 8;" text="Passer au paiement" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -152,6 +152,7 @@
                         <Insets top="3.0" />
                      </HBox.margin>
                   </ImageView>
+                  <Label fx:id="badge" alignment="CENTER" prefHeight="21.0" prefWidth="85.0" styleClass="round-lbl" textFill="WHITE" />
                </children>
             </HBox>
             <JFXToggleButton fx:id="btnEditMode" onMouseClicked="#btnEditModeToggle" prefHeight="60.0" prefWidth="160.0" text="Switch to light mode" textFill="WHITE" toggleColor="WHITE" toggleLineColor="WHITE" unToggleColor="WHITE" unToggleLineColor="WHITE" wrapText="true" />

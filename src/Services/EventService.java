@@ -33,8 +33,8 @@ public class EventService {
         try {
             Statement st;
             st = cnx.createStatement();
-            String query = "INSERT INTO `evenement`(`nom_categorie_id`,`nom_event`, `date_event`, `description_event`, `lieu_event`, `nbr_participants_event`, `image`, `etat`) "
-                    + "VALUES ('" + t.getCategories() + "','" + t.getnomEvent() + "','" + t.getDateEvent() + "','" + t.getDescriptionEvent() + "','" + t.getLieuEvent() + "','" + t.getNbrPlacesEvent() + "','" + (t.getImageFile()) + "','" + "incomplet" + "')";
+            String query = "INSERT INTO `evenement`(`nom_categorie_id`,`nom_event`, `date_event`, `description_event`, `lieu_event`, `nbr_participants_event`, `image`, `etat`,`time`) "
+                    + "VALUES ('" + t.getCategories() + "','" + t.getnomEvent() + "','" + t.getDateEvent() + "','" + t.getDescriptionEvent() + "','" + t.getLieuEvent() + "','" + t.getNbrPlacesEvent() + "','" + (t.getImageFile()) + "','" + "incomplet" +"','" + "2022-05-17 12:50:27" + "')";
             st.executeUpdate(query);
             System.out.println("Event ajouté avec success");
         } catch (SQLException ex) {
@@ -47,7 +47,7 @@ public class EventService {
             System.out.println("1");
 
             PreparedStatement st;
-            st = cnx.prepareStatement("UPDATE `evenement` SET `nom_categorie_id`=?,`nom_event`=?, `date_event`=?,`description_event`=?,`lieu_event`=?,`nbr_participants_event`=?,`image`=? WHERE id=?");
+            st = cnx.prepareStatement("UPDATE `evenement` SET `nom_categorie_id`=?,`nom_event`=?, `date_event`=?,`description_event`=?,`lieu_event`=?,`nbr_participants_event`=?,`image`=?,`time`=? WHERE id=?");
             System.out.println("2");
 
             st.setInt(1, t.getCategories());
@@ -57,7 +57,8 @@ public class EventService {
             st.setString(5, t.getLieuEvent());
             st.setString(6, t.getNbrPlacesEvent());
             st.setString(7, t.getImageFile());
-            st.setLong(8, id_amodifier);
+            st.setString(8,  "2022-05-17 12:50:27");
+            st.setLong(9, id_amodifier);
             if (st.executeUpdate() == 1) {
                 System.out.println("event modifier avec success");
             } else {
